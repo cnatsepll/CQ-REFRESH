@@ -9,4 +9,8 @@ app.get('/', (req, res)=> {
     res.sendFile(path.join(__dirname + '/webapp/html/index.html'));
 });
 
+app.get('/quiz', (req, res)=> {
+    res.sendFile(path.join(__dirname + '/webapp/html/quiz.html'));
+})
+
 app.listen(port);
