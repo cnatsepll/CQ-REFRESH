@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/img/c.png">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Color Quiz - Charts</title>
+</head>
+<body>
+    <section>
+        <div>
+            <input type="button" id="topResults" onclick="getTopResults()">View Top Results</a>
+        </div>
+        <div>
+            <canvas id="topResultsChart"></canvas>
+        </div>
+    </section>
+    <section>
+        <div>
+            <input type="button" id="resultMostLike" onclick="getResultMostLike()">View Results Most Like A Question Word</a>
+        </div>
+        <div>
+            <canvas id="resultMostLikeChart"></canvas>
+        </div>
+    </section>
+    <section>
+        <div>
+            <input type="button" id="resultLeastLike" onclick="getResultLeastLike()">View Results Least Like A Question Word</a>
+        </div>
+        <div>
+            <canvas id="resultLeastLikeChart"></canvas>
+        </div>
+    </section>
+</body>
+
+<script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
+<script src="/js/charts.js"></script>
+
+</html>

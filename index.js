@@ -1,45 +1,65 @@
 const express = require('express');
 const app = express();
 const path = require('path');
-const { Pool, Client } = require('pg')
-const port = 3000;
-
-const queries = require('./sql/queries')
-
-const pool = new Pool({
+const { Pool, Client } = require('pg');
+const connection = {
     user: process.env.PGUSER,
     host: process.env.PGHOST,
     database: 'color_quiz',
     password: process.env.PGPASSWORD,
     port: 5432
-})
-pool.query(queries.topResult, (err, res) => {
-    console.log(err, res)
-    pool.end()
-  })
+};
+const port = 3000;
 
-// // you can also use async/await
-// const res = await pool.query('SELECT NOW()')
-// await pool.end()
-// // clients will also use environment variables
-// // for connection information
-// const client = new Client()
-// await client.connect()
-// const res = await client.query('SELECT NOW()')
-// await client.end()
+const queries = require('./sql/queries');
+
+
+
 
 app.use(express.static("webapp"))
 
 app.get('/', (req, res)=> {
-    res.sendFile(path.join(__dirname + '/webapp/html/index.html'));
+    res.sendFile(path.join(__dirname + '/webapp/html/home.html'));
 });
 
 app.get('/quiz', (req, res)=> {
     res.sendFile(path.join(__dirname + '/webapp/html/quiz.html'));
+});
+
+app.get('/charts', (req, res)=> {
+    res.sendFile(path.join(__dirname + '/webapp/html/charts.html'));
 })
 
-app.get('/quiz/question', (req, res)=>{
-
+app.get('/charts/topResults', (req, res)=>{
+    const client = new Client(connection);
+    let response;
+    client.connect();
+    client.query(queries.topResult, (err, data) => {
+      err ? err.stack : response = data;
+      client.end();
+      res.send(response);
+    })
+});
+app.get('/charts/resultMostLike', (req, res)=>{
+    const client = new Client(connection);
+    let response;
+    client.connect();
+    client.query(queries.resultMostLike, (err, data) => {
+        err ? err.stack : response = data;
+        client.end();
+        res.send(response);
+    })
 })
+app.get('/charts/resultLeastLike', (req, res)=>{
+    const client = new Client(connection);
+    let response;
+    client.connect();
+    client.query(queries.resultLeastLike, (err, data) => {
+        err ? err.stack : response = data;
+        client.end();
+        res.send(response);
+    })
+})
+
 
 app.listen(port);

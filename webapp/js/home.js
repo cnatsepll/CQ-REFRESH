@@ -6,3 +6,7 @@ function clicked(element){
 function toQuiz(){
     location.href='/html/quiz.html';
 }
+
+function toCharts(){
+    location.href='/html/charts.html';
+}
