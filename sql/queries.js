@@ -6,12 +6,11 @@ select result_color, answers, total, (answers / total) percent_difference from (
     result_color, 
     count(answer.user_id) answers, 
     (select cast(count(user_id) as decimal) total from result r2 where r1.result_color = r2.result_color)
-    
     from answer
     join result r1 on r1.user_id = answer.user_id
     where 
     question_word = 'Skepticism' 
-    and answer_value > 16
+    and answer_value >= 15
     and result_color like '%Planeswalker%'
     group by result_color
     ) innerTable
@@ -19,20 +18,19 @@ select result_color, answers, total, (answers / total) percent_difference from (
 
 const resultLeastLike = `
 select result_color, answers, total, (answers / total) percent_difference from (
-    select 
-    result_color, 
-    count(answer.user_id) answers, 
-    (select cast(count(user_id) as decimal) total from result r2 where r1.result_color = r2.result_color)
-    
-    from answer
-    join result r1 on r1.user_id = answer.user_id
-    where 
-    question_word = 'Service' 
-    and answer_value < 9
-    and result_color like '%Planeswalker%'
-    group by result_color
-    ) innerTable
-    order by percent_difference desc`;
+select 
+result_color, 
+count(answer.user_id) answers, 
+(select cast(count(user_id) as decimal) total from result r2 where r1.result_color = r2.result_color)
+from answer
+join result r1 on r1.user_id = answer.user_id
+where 
+question_word = 'Service' 
+and answer_value < 9
+and result_color like '%Planeswalker%'
+group by result_color
+) innerTable
+order by percent_difference desc`;
 
 
 exports.topResult = topResult;
