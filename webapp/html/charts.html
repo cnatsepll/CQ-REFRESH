@@ -10,6 +10,14 @@
 <body>
     <section>
         <div>
+            <input type="button" id="topResultsDetailed" onclick="getTopResultsDetailed()">View Top Results Detailed</a>
+        </div>
+        <!-- <div>
+            <canvas id="topResultsDetailedChart"></canvas>
+        </div> -->
+    </section>
+    <section>
+        <div>
             <input type="button" id="topResults" onclick="getTopResults()">View Top Results</a>
         </div>
         <div>
@@ -21,6 +29,12 @@
             <input type="button" id="resultMostLike" onclick="getResultMostLike()">View Results Most Like A Question Word</a>
         </div>
         <div>
+            <input type="text" id="resultMostLikeSearch" value="Honor">
+        </div>
+        <div>
+            <input type="button" id="resultMostLikeRandom" value="Random Word" onclick="randomQuestionWord()">
+        </div>
+        <div id="resultMostLikeChartContainer">
             <canvas id="resultMostLikeChart"></canvas>
         </div>
     </section>
@@ -30,6 +44,22 @@
         </div>
         <div>
             <canvas id="resultLeastLikeChart"></canvas>
+        </div>
+    </section>
+    <section>
+        <div>
+            <input type="button" id="topWordsForResult" onclick="getTopWordsForResult()">View Result Profile's top words</a>
+        </div>
+        <div>
+            <canvas id="topWordsForResultChart"></canvas>
+        </div>
+    </section>
+    <section>
+        <div>
+            <input type="button" id="bottomWordsForResult" onclick="getBottomWordsForResult()">View Result Profile's bottom words</a>
+        </div>
+        <div>
+            <canvas id="bottomWordsForResultChart"></canvas>
         </div>
     </section>
 </body>

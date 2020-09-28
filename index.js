@@ -15,7 +15,7 @@ const queries = require('./sql/queries');
 
 
 
-
+app.use(express.json())
 app.use(express.static("webapp"))
 
 app.get('/', (req, res)=> {
@@ -28,8 +28,21 @@ app.get('/quiz', (req, res)=> {
 
 app.get('/charts', (req, res)=> {
     res.sendFile(path.join(__dirname + '/webapp/html/charts.html'));
-})
+});
 
+
+
+
+app.get('/charts/listAllQuestionWords', (req, res)=>{
+    const client = new Client(connection);
+    let response;
+    client.connect();
+    client.query(queries.listAllQuestionWords, (err, data) => {
+      err ? err.stack : response = data;
+      client.end();
+      res.send(response);
+    })
+});
 app.get('/charts/topResults', (req, res)=>{
     const client = new Client(connection);
     let response;
@@ -40,16 +53,27 @@ app.get('/charts/topResults', (req, res)=>{
       res.send(response);
     })
 });
-app.get('/charts/resultMostLike', (req, res)=>{
+app.get('/charts/topResultsDetailed', (req, res)=>{
     const client = new Client(connection);
     let response;
     client.connect();
-    client.query(queries.resultMostLike, (err, data) => {
-        err ? err.stack : response = data;
+    client.query(queries.topResultsDetailed, (err, data) => {
+      err ? err.stack : response = data;
+      client.end();
+      res.send(response);
+    })
+});
+app.post('/charts/resultMostLike', (req, res)=>{
+    console.log(req.body)
+    const client = new Client(connection);
+    let response;
+    client.connect();
+    client.query(queries.resultMostLike, [req.body.question_word], (err, data) => {
+        err ? console.log(err.stack) : response = data;
         client.end();
         res.send(response);
     })
-})
+});
 app.get('/charts/resultLeastLike', (req, res)=>{
     const client = new Client(connection);
     let response;
@@ -59,7 +83,29 @@ app.get('/charts/resultLeastLike', (req, res)=>{
         client.end();
         res.send(response);
     })
-})
+});
+app.get('/charts/topWordsForResult', (req, res)=>{
+    const client = new Client(connection);
+    let response;
+    client.connect();
+    client.query(queries.topWordsForResult, (err, data) => {
+        err ? err.stack : response = data;
+        client.end();
+        res.send(response);
+    })
+});
+app.get('/charts/bottomWordsForResult', (req, res)=>{
+    const client = new Client(connection);
+    let response;
+    client.connect();
+    client.query(queries.bottomWordsForResult, (err, data) => {
+        err ? err.stack : response = data;
+        client.end();
+        res.send(response);
+    })
+});
+
+
 
 
 app.listen(port);
