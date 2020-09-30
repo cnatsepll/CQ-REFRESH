@@ -185,7 +185,7 @@ a:visited {
 
 
 @media only screen and (max-width:750px) {
-    #action-block{
+    #home-block{
         min-width: 30ch;
         max-width: 40ch;
         grid-template-columns:auto;
