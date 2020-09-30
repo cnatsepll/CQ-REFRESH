@@ -1,8 +1,8 @@
 :root{
-    --bg-shade: rgb(171 172 171);
-    --body-text-color: rgb(243 243 243);
-    --nav-button-color: rgb(255 255 255);
-    --action-hover-1: rgb(255 255 255);
+    --bg-shade: rgb(243 243 243);
+    --body-text-color: rgb(115 115 115);
+    --nav-button-color: rgb(115 115 115);
+    --action-hover-1: rgb(115 115 115);
     --action-hover-2: rgb(255 255 255);
 }
 
@@ -59,10 +59,10 @@ a:visited {
     display: grid;
     grid-template-columns: 1fr auto;
     margin-bottom: 5%;
-    border-bottom: solid white 3px;
+    border-bottom: solid --body-text-color 3px;
 }
 #headerH1, .section-card article{
-    color: white;
+    color: var(--bg-shade);
     /* text-shadow: 2px 3px 4px #3a596b;    
     filter: drop-shadow(.2em .2em .2em #7a8e97); */
 }
@@ -79,8 +79,8 @@ a:visited {
 
 #footer{
     margin-top: 10%;
-    border-top: solid white 3px;
-    color: white;
+    border-top: solid var(--body-text-color) 3px;
+    color: var(--body-text-color);
     text-align: end;
     /* text-shadow: 2px 3px 4px #3a596b;    
     filter: drop-shadow(.2em .2em .2em #456a7c); */
