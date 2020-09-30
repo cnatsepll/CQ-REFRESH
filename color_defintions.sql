@@ -34,25 +34,3 @@ insert into color_definitions (quick_name, color_group) values ('Multicolored', 
 
 
 
-
-
--- questions included in the db that are not included in the answers
-select distinct(question)
-from (
-	select substring(question_word from 2) question
-from black_questions
-union
-select substring(question_word from 2) question
-from blue_questions
-union
-select substring(question_word from 2) question
-from green_questions
-union
-select substring(question_word from 2) question
-from red_questions
-union
-select substring(question_word from 2) question
-from white_questions
-order by question
-) T
-where question not in (select distinct(question_word) from answer)
