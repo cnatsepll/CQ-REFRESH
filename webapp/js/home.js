@@ -10,3 +10,4 @@ function toQuiz(){
 function toCharts(){
     location.href='/html/charts.html';
 }
+
