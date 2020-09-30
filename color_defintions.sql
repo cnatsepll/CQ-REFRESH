@@ -31,6 +31,3 @@ insert into color_definitions (quick_name, color_group) values ('Sultai', array[
 insert into color_definitions (quick_name, color_group) values ('Temur', array['r','g','u']);
 insert into color_definitions (quick_name, color_group) values ('Boros', array['r','w']);
 insert into color_definitions (quick_name, color_group) values ('Multicolored', array['b','g','r','u','w']);
-
-
-
