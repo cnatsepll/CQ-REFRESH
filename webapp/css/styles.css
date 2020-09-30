@@ -1,10 +1,45 @@
 :root{
-    --bg-shade: #fafffa;
+    --bg-shade: rgb(171 172 171);
+    --body-text-color: rgb(243 243 243);
+    --nav-button-color: rgb(255 255 255);
+    --action-hover-1: rgb(255 255 255);
+    --action-hover-2: rgb(255 255 255);
 }
 
 body{
     font-family: Arial, Helvetica, sans-serif;
+    color: var(--body-text-color);
     margin: 0 10% 0 10%;
+}
+
+a{
+    text-decoration:none;
+    font-family:'Roboto',sans-serif;
+    font-weight:300;
+    padding:0.3em 1.2em;
+    margin:0 0.1em 0.1em 0;
+    color: var(--nav-button-color);
+    text-decoration: none;  
+}
+a:visited {
+    color: var(--nav-button-color);
+    text-decoration: none;
+}
+
+.navButtonDiv{
+    cursor: pointer;
+}
+.navButton{
+    display:inline-block;
+    border:0.16em solid rgba(255,255,255,0);
+    border-radius:2em;
+    box-sizing: border-box;
+    /* text-shadow: 0 0.04em 0.04em rgba(119, 119, 119, 0.35); */
+    text-align:center;
+    transition: all 0.2s;
+}
+.navButton:hover {
+    border-color: var(--action-hover-1);
 }
 
 .bg-mists{
@@ -13,6 +48,10 @@ body{
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+}
+
+.bg-off-white{
+    background-color: var(--bg-shade);
 }
 
 #header{
@@ -24,8 +63,8 @@ body{
 }
 #headerH1, .section-card article{
     color: white;
-    text-shadow: 2px 3px 4px #3a596b;    
-    filter: drop-shadow(.2em .2em .2em #7a8e97);
+    /* text-shadow: 2px 3px 4px #3a596b;    
+    filter: drop-shadow(.2em .2em .2em #7a8e97); */
 }
 #header-button-row{
     width: 100%;
@@ -43,8 +82,8 @@ body{
     border-top: solid white 3px;
     color: white;
     text-align: end;
-    text-shadow: 2px 3px 4px #3a596b;    
-    filter: drop-shadow(.2em .2em .2em #456a7c);
+    /* text-shadow: 2px 3px 4px #3a596b;    
+    filter: drop-shadow(.2em .2em .2em #456a7c); */
 }
 
 .section-card{
@@ -55,11 +94,11 @@ body{
     display: flex;
     justify-content: center;
     flex-direction: column;
-    background: #83969e;
-    background: -webkit-radial-gradient(center, #b7c2c09c, #83969e);
+    background: rgba(118, 118, 118, .8);
+    /* background: -webkit-radial-gradient(center, #b7c2c09c, #83969e);
     background: -moz-radial-gradient(center, #b7c2c09c, #83969e);
     background: radial-gradient(ellipse at center, #b7c2c09c, #83969e);
-    box-shadow: 0px 3px 10px 3px #4d6c7e;
+    box-shadow: 0px 3px 10px 3px #4d6c7e; */
     border: 5px solid transparent;
     border-radius: 2px;
     -webkit-transition: all 0.09s ease-in-out;
@@ -72,30 +111,29 @@ body{
     justify-self: start;
 }
 .section-card:hover{
-    border: 5px solid #dcdcdc;
+    border: 5px solid var(--action-hover-1);;
     -webkit-transition: all 0.09s ease-in-out;
     transition: all 0.09s ease-in-out;
 }
-.section-card-clicked{
+/* .section-card:click{
     background: #b7c2c09c;
     background: -webkit-radial-gradient(center, #83969e, #b7c2c09c);
     background: -moz-radial-gradient(center, #83969e, #b7c2c09c);
     background: radial-gradient(ellipse at center, #83969e, #b7c2c09c);
-}
-#section-start{
+} */
+#home-start{
     grid-area: start;
 }
-#section-charts{
+#home-charts{
     grid-area: charts;
 }
-#section-results{
+#home-results{
     grid-area: results;
 }
-#section-about{
+#home-about{
     grid-area: about;
 }
-
-#action-block{
+#home-block{
     margin: auto;
     min-width: 60ch;
     max-width: 125ch;
@@ -108,28 +146,38 @@ body{
     "results start"
     "about start";
 }
-.navButtonDiv{
-    cursor: pointer;
-}
-a.navButton{
-    display:inline-block;
-    padding:0.3em 1.2em;
-    margin:0 0.1em 0.1em 0;
-    border:0.16em solid rgba(255,255,255,0);
-    border-radius:2em;
-    box-sizing: border-box;
-    text-decoration:none;
-    font-family:'Roboto',sans-serif;
-    font-weight:300;
-    color:#385a6b;
-    text-shadow: 0 0.04em 0.04em rgba(0,0,0,0.35);
-    text-align:center;
-    transition: all 0.2s;
-}
-a.navButton:hover{
-    border-color: #385a6b;
-}
 
+
+#quiz-info-box{
+    grid-area: info;
+    border: 3px solid;
+}
+#quiz-response{
+    grid-area: response;
+    border: 3px solid;
+}
+#quiz-left-options{
+    grid-area: left-options;
+}
+#quiz-right-options{
+    grid-area: right-options;
+}
+#quiz-bottom-options{
+    grid-area: bottom-options;
+}
+#quiz-block{
+    text-align: center;
+    margin: auto;
+    min-width: 60ch;
+    max-width: 125ch;
+    display: grid;
+    grid-template-columns:auto auto;
+    grid-template-rows: auto;
+    grid-gap: 1rem;
+    grid-template: 
+    "info info info info"
+    "left-options response response right-options";
+}
 
 
 

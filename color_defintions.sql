@@ -1,3 +1,10 @@
+CREATE TABLE color_definitions(
+    cd_key SERIAL,
+	quick_name varchar(200),
+	color_group char[]
+);
+
+
 insert into color_definitions (quick_name, color_group) values ('Jund', array['b','r','g']);
 insert into color_definitions (quick_name, color_group) values ('Dimir', array['b','u']);
 insert into color_definitions (quick_name, color_group) values ('Golgari', array['b','g']);
@@ -24,3 +31,28 @@ insert into color_definitions (quick_name, color_group) values ('Sultai', array[
 insert into color_definitions (quick_name, color_group) values ('Temur', array['r','g','u']);
 insert into color_definitions (quick_name, color_group) values ('Boros', array['r','w']);
 insert into color_definitions (quick_name, color_group) values ('Multicolored', array['b','g','r','u','w']);
+
+
+
+
+
+-- questions included in the db that are not included in the answers
+select distinct(question)
+from (
+	select substring(question_word from 2) question
+from black_questions
+union
+select substring(question_word from 2) question
+from blue_questions
+union
+select substring(question_word from 2) question
+from green_questions
+union
+select substring(question_word from 2) question
+from red_questions
+union
+select substring(question_word from 2) question
+from white_questions
+order by question
+) T
+where question not in (select distinct(question_word) from answer)

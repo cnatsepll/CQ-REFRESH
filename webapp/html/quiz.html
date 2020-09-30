@@ -7,21 +7,39 @@
     <link rel="stylesheet" href="/css/styles.css">
     <title>Color Quiz - Questions</title>
 </head>
-<body>
-    <section>
-        <h1>Quiz Page</h1>
-        <article>
-            <p>Questions will load in</p>
-            <p>Option to color code question words</p>
-            <p>Dictionary API to explain choices</p>
-            <p>View Previous Questions/Answers</p>
-        </article>
+<body class="bg-off-white">
+    <section id="header">
+        <div id="headerH1">
+            <a href="/html/home.html"><h1>Welcome to the Color Quiz</h1></a>
+        </div>
+        <nav id="header-button-row">
+            <div class="navButtonDiv">
+                <a href="/html/quiz.html" class="navButton">QUIZ</a>
+            </div>
+            <div class="navButtonDiv">
+                <a href="/html/charts.html" class="navButton">CHARTS</a>
+            </div>
+            <div class="navButtonDiv">
+                <a class="navButton">LINKS</a>
+            </div>
+        </nav>    
     </section>
-    <section>
-        <h2>Question Generator</h2>
-        <div id="question"></div>
-        <div id="answerRow"></div>
-        <div id="actionsRow"></div>
+    <section id="quiz-block">
+        <section id="quiz-info-box">
+            <h1>Quiz Page</h1>
+            <article>
+                <p>Questions will load in</p>
+                <p>Option to color code question words</p>
+                <p>Dictionary API to explain choices</p>
+                <p>View Previous Questions/Answers</p>
+            </article>
+        </section>
+        <section id="quiz-response">
+            <h2>Question Generator</h2>
+            <div id="question"></div>
+            <div id="answerRow"></div>
+            <div id="actionsRow"></div>
+        </section>
     </section>
 </body>
 <script src="/js/quiz.js"></script>

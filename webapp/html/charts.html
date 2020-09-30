@@ -7,32 +7,82 @@
     <link rel="stylesheet" href="/css/styles.css">
     <title>Color Quiz - Charts</title>
 </head>
-<body>
-    <section>
-        <div>
-            <input type="button" id="topResultsDetailed" onclick="getTopResultsDetailed()">View Top Results Detailed</a>
+<body class="bg-off-white">
+    <section id="header">
+        <div id="headerH1">
+            <a href="/html/home.html"><h1>Welcome to the Color Quiz</h1></a>
         </div>
-        <!-- <div>
-            <canvas id="topResultsDetailedChart"></canvas>
-        </div> -->
+        <nav id="header-button-row">
+            <div class="navButtonDiv">
+                <a href="/html/quiz.html" class="navButton">QUIZ</a>
+            </div>
+            <div class="navButtonDiv">
+                <a href="/html/charts.html" class="navButton">CHARTS</a>
+            </div>
+            <div class="navButtonDiv">
+                <a class="navButton">LINKS</a>
+            </div>
+        </nav>    
     </section>
     <section>
         <div>
-            <input type="button" id="topResults" onclick="getTopResults()">View Top Results</a>
+            <input type="button" id="topResults" onclick="getTopResults()">View Top Results
         </div>
         <div>
             <canvas id="topResultsChart"></canvas>
         </div>
     </section>
+        <section>
+        <div>
+            <input type="button" id="fiveColorRadar" onclick="getfiveColorRadar()">View Question Word Radar Graph
+        </div>
+        <div>
+            <input type="text" id="fiveColorRadarSearch" value="Spirituality">
+        </div>
+        <div>
+            <input type="button" id="fiveColorRadarRandom" value="Random Word" onclick="randomQuestionWord(this)">
+        </div>
+        <div id="fiveColorRadarChartContainer">
+            <canvas id="fiveColorRadarChart"></canvas>
+        </div>
+    </section>
     <section>
         <div>
-            <input type="button" id="resultMostLike" onclick="getResultMostLike()">View Results Most Like A Question Word</a>
+            <input type="button" id="topWordsForResult" onclick="getTopWordsForResult()">View Result Profile's top words
+        </div>
+        <div>
+            <input type="text" id="topWordsForResultSearch" value="Jund">
+        </div>
+        <div>
+            <input type="button" id="topWordsForResultRandom" value="Random Color Group" onclick="randomColorGroup(this)">
+        </div>
+        <div id="topWordsForResultChartContainer">
+            <canvas id="topWordsForResultChart"></canvas>
+        </div>
+    </section>
+    <section>
+        <div>
+            <input type="button" id="bottomWordsForResult" onclick="getBottomWordsForResult()">View Result Profile's bottom words
+        </div>
+        <div>
+            <input type="text" id="bottomWordsForResultSearch" value="Jund">
+        </div>
+        <div>
+            <input type="button" id="bottomWordsForResultRandom" value="Random Color Group" onclick="randomColorGroup(this)">
+        </div>
+        <div id="bottomWordsForResultChartContainer">
+            <canvas id="bottomWordsForResultChart"></canvas>
+        </div>
+    </section>
+    <section>
+        <div>
+            <input type="button" id="resultMostLike" onclick="getResultMostLike()">View Results Most Like A Question Word
         </div>
         <div>
             <input type="text" id="resultMostLikeSearch" value="Honor">
         </div>
         <div>
-            <input type="button" id="resultMostLikeRandom" value="Random Word" onclick="randomQuestionWord()">
+            <input type="button" id="resultMostLikeRandom" value="Random Word" onclick="randomQuestionWord(this)">
         </div>
         <div id="resultMostLikeChartContainer">
             <canvas id="resultMostLikeChart"></canvas>
@@ -40,27 +90,22 @@
     </section>
     <section>
         <div>
-            <input type="button" id="resultLeastLike" onclick="getResultLeastLike()">View Results Least Like A Question Word</a>
+            <input type="button" id="resultLeastLike" onclick="getResultLeastLike()">View Results Least Like A Question Word
         </div>
         <div>
+            <input type="text" id="resultLeastLikeSearch" value="Honor">
+        </div>
+        <div>
+            <input type="button" id="resultLeastLikeRandom" value="Random Word" onclick="randomQuestionWord(this)">
+        </div>
+        <div id="resultLeastLikeChartContainer">
             <canvas id="resultLeastLikeChart"></canvas>
         </div>
     </section>
     <section>
-        <div>
-            <input type="button" id="topWordsForResult" onclick="getTopWordsForResult()">View Result Profile's top words</a>
-        </div>
-        <div>
-            <canvas id="topWordsForResultChart"></canvas>
-        </div>
-    </section>
-    <section>
-        <div>
-            <input type="button" id="bottomWordsForResult" onclick="getBottomWordsForResult()">View Result Profile's bottom words</a>
-        </div>
-        <div>
-            <canvas id="bottomWordsForResultChart"></canvas>
-        </div>
+        <br>
+        <br>
+        <br>
     </section>
 </body>
 

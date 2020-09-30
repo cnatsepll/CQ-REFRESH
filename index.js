@@ -43,6 +43,16 @@ app.get('/charts/listAllQuestionWords', (req, res)=>{
       res.send(response);
     })
 });
+app.get('/charts/listAllColorGroups', (req, res)=>{
+    const client = new Client(connection);
+    let response;
+    client.connect();
+    client.query(queries.listAllColorGroups, (err, data) => {
+      err ? err.stack : response = data;
+      client.end();
+      res.send(response);
+    })
+});
 app.get('/charts/topResults', (req, res)=>{
     const client = new Client(connection);
     let response;
@@ -74,37 +84,46 @@ app.post('/charts/resultMostLike', (req, res)=>{
         res.send(response);
     })
 });
-app.get('/charts/resultLeastLike', (req, res)=>{
+app.post('/charts/resultLeastLike', (req, res)=>{
     const client = new Client(connection);
     let response;
     client.connect();
-    client.query(queries.resultLeastLike, (err, data) => {
+    client.query(queries.resultLeastLike, [req.body.question_word], (err, data) => {
         err ? err.stack : response = data;
         client.end();
         res.send(response);
     })
 });
-app.get('/charts/topWordsForResult', (req, res)=>{
+app.post('/charts/topWordsForResult', (req, res)=>{
     const client = new Client(connection);
     let response;
     client.connect();
-    client.query(queries.topWordsForResult, (err, data) => {
+    client.query(queries.topWordsForResult, [req.body.question_word],(err, data) => {
+        err ? console.log(err.stack) : response = data;
+        client.end();
+        res.send(response);
+    })
+});
+app.post('/charts/bottomWordsForResult', (req, res)=>{
+    const client = new Client(connection);
+    let response;
+    client.connect();
+    client.query(queries.bottomWordsForResult, [req.body.question_word], (err, data) => {
         err ? err.stack : response = data;
         client.end();
         res.send(response);
     })
 });
-app.get('/charts/bottomWordsForResult', (req, res)=>{
+app.post('/charts/fiveColorRadar', (req, res)=>{
     const client = new Client(connection);
     let response;
     client.connect();
-    client.query(queries.bottomWordsForResult, (err, data) => {
+    client.query(queries.fiveColorRadar, [req.body.question_word], (err, data) => {
         err ? err.stack : response = data;
         client.end();
         res.send(response);
     })
 });
-
 
 
 
