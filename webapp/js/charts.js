@@ -334,9 +334,9 @@ function getfiveColorRadar(){
               labels: ['White', 'Blue', 'Black', 'Red', 'Green'],
               datasets: [{
                   label: 'Percentage of Result',
-                  backgroundColor: "rgba(255,255,255,.6)",
-                  borderColor: "rgb(255,155,0)",
-                  borderWidth: 4,
+                  backgroundColor: "rgba(55,155,55,.6)",
+                  borderColor: "rgb(225,215,0)",
+                  borderWidth: 3,
                   data: [`${white_counter*100}`, `${blue_counter*100}`, `${black_counter*100}`, `${red_counter*100}`, `${green_counter*100}`]
               }]
               // second dataset to show the percentage of the result color popularity
