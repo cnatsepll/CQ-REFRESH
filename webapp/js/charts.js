@@ -334,8 +334,8 @@ function getfiveColorRadar(){
               labels: ['White', 'Blue', 'Black', 'Red', 'Green'],
               datasets: [{
                   label: 'Percentage of Result',
-                  backgroundColor: "rgba(55,155,55,.6)",
-                  borderColor: "rgb(225,215,0)",
+                  backgroundColor: "rgba(55,55,55,.6)",
+                  borderColor: "rgba(225,215,0, .6)",
                   borderWidth: 3,
                   data: [`${white_counter*100}`, `${blue_counter*100}`, `${black_counter*100}`, `${red_counter*100}`, `${green_counter*100}`]
               }]
@@ -353,6 +353,10 @@ function getfiveColorRadar(){
                 scale: {
                     pointLabels :{
                        fontStyle: "bold",
+                    },
+                    ticks: {
+                        suggestedMin: 15,
+                        suggestedMax: 25
                     }
                 }
             }
