@@ -2,19 +2,55 @@ let questionWords;
 let colorGroups;
 let topResults;
 let resultMostLike;
-
+let selectorsQuestionWords = document.getElementById('question-words');
+let selectorsColorGroups = document.getElementById('color-groups');
 
 window.onload = ()=>{
     fetch('/charts/listAllQuestionWords')
     .then(response => response.json())
-    .then(data => {questionWords = data;});
+    .then(data => {questionWords = data.rows;})
+    .then(()=>{
+        for(let i = 0; i < questionWords.length; i+=1){
+            let wordDiv = document.createElement('div');
+            let colorDiv = document.createElement('div');
+            let questionContainer = document.createElement('div');
+            questionContainer.className ='question-container';
+            wordDiv.className = 'question-word-div'
+            colorDiv.className = 'color-type-div';
+            wordDiv.innerText = questionWords[i].question;
+            colorDiv.innerText = questionWords[i].cd_color;
+            questionContainer.appendChild(wordDiv);
+            questionContainer.appendChild(colorDiv);
+            document.getElementById('question-words').appendChild(questionContainer);
+        }
+    });
     
     fetch('/charts/listAllColorGroups')
     .then(response => response.json())
-    .then(data => {colorGroups = data;});
+    .then(data => {colorGroups = data.rows;})
+    .then(()=>{
+        for(let i = 0; i < colorGroups.length; i+=1){
+            let resultDiv = document.createElement('div');
+            let colorArrayDiv = document.createElement('div');
+            let resultContainer = document.createElement('div');
+            resultContainer.className ='result-container';
+            resultDiv.className = 'result-group-div'
+            colorArrayDiv.classList.add('color-array-div');
+            colorArrayDiv.classList.add('flex-end');
+            resultDiv.innerText = colorGroups[i].quick_name;
+            for(let e = 0 ; e < colorGroups[i].color_group.length; e+=1){
+                colorArrayDiv.innerText += `  ${colorGroups[i].color_group[e].toUpperCase()}`;
+            }
+            resultContainer.appendChild(resultDiv);
+            resultContainer.appendChild(colorArrayDiv);
+            document.getElementById('color-groups').appendChild(resultContainer);
+        }
+    });
 }
 
-
+// most / least popular words
+// most / least defining words
+// most / least aligned words
 
 function getTopResults(){
     fetch('/charts/topResults')
@@ -369,14 +405,14 @@ function randomScalingFactor(){
 }
 
 function randomQuestionWord(e){
-    num = Math.floor(Math.random() * Math.floor(questionWords.rows.length));
+    num = Math.floor(Math.random() * Math.floor(questionWords.length));
     let eventId = e.id.slice(0,-6);
     const question_word = document.getElementById(`${eventId}Search`);
-    question_word.value = questionWords.rows[num].question;
+    question_word.value = questionWords[num].question;
 }
 function randomColorGroup(e){
-    num = Math.floor(Math.random() * Math.floor(colorGroups.rows.length));
+    num = Math.floor(Math.random() * Math.floor(colorGroups.length));
     let eventId = e.id.slice(0,-6);
     const question_word = document.getElementById(`${eventId}Search`);
-    question_word.value = colorGroups.rows[num].quick_name;
+    question_word.value = colorGroups[num].quick_name;
 }

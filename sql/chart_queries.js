@@ -1,22 +1,25 @@
 const listAllQuestionWords = `
-select substring(question_word from 2) question, substring(question_word from 1 for 1) cd_color
-from black_questions
-union
-select substring(question_word from 2) question, substring(question_word from 1 for 1) cd_color
-from blue_questions
-union
-select substring(question_word from 2) question, substring(question_word from 1 for 1) cd_color
-from green_questions
-union
-select substring(question_word from 2) question, substring(question_word from 1 for 1) cd_color
-from red_questions
-union
-select substring(question_word from 2) question, substring(question_word from 1 for 1) cd_color
-from white_questions
+select * from (
+	select substring(question_word from 2) question, upper(substring(question_word from 1 for 1))cd_color
+	from black_questions
+	union
+	select substring(question_word from 2) question, upper(substring(question_word from 1 for 1)) cd_color
+	from blue_questions
+	union
+	select substring(question_word from 2) question, upper(substring(question_word from 1 for 1)) cd_color
+	from green_questions
+	union
+	select substring(question_word from 2) question, upper(substring(question_word from 1 for 1)) cd_color
+	from red_questions
+	union
+	select substring(question_word from 2) question, upper(substring(question_word from 1 for 1)) cd_color
+	from white_questions
+) innerTable
+order by question
 `;
 
 const listAllColorGroups = `
-select * from color_definitions;
+select quick_name, color_group from color_definitions;
 `;
 
 

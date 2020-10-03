@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/img/c.png">
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/common-styles.css">
+    <link rel="stylesheet" href="/css/charts-styles.css">
     <title>Color Quiz - Charts</title>
 </head>
-<body class="body-margin">
-    <section id="header" class="large-margin-bottom">
+<body>
+    <section id="header" class="body-margin">
         <div id="headerH1">
           <a href="/html/home.html"><h1>Welcome to the Color Quiz</h1></a>
         </div>
@@ -17,108 +18,120 @@
                 <a href="/html/quiz.html" class="navButton">QUIZ</a>
             </div>
             <div class="navButtonDiv">
-                <a href="/html/charts.html" class="navButton">CHARTS</a>
+                <a style="text-decoration: underline;" href="/html/charts.html" class="navButton">CHARTS</a>
             </div>
             <div class="navButtonDiv">
                 <a class="navButton">LINKS</a>
             </div>
         </nav>    
     </section>
-    <section id="chart-group" style="width: 95vp">
-        <section>
-            <div class="centered-grid">
-                <p><b>Most Popular Colors by User Result</b></p>
-                <input type="button" id="topResults" onclick="getTopResults()">View Top Results
+    <section id="chart-page">
+        <section id="selectors">
+            <div  class="centered-text">
+                <b>Question Word - Word Bank</b>
             </div>
-            <div>
-                <canvas id="topResultsChart"></canvas>
+            <div id="word-bank">
+                <div id="question-words"></div>
             </div>
-        </section>
-        <div class="hr-style-bottom margin-top-small"></div>
-        <section>
-            <div class="centered-grid">
-                <p><b>Percent of User's Result Color Values Who Answered Strongly in Favor With the Question</b></p>
-                <input type="button" id="fiveColorRadar" onclick="getfiveColorRadar()">View Question Word Radar Graph
+            <div  class="centered-text">
+                <b>Result Color - Word Bank</b>
             </div>
-            <div>
-                <input type="text" id="fiveColorRadarSearch" value="Uninhibited">
-            </div>
-            <div>
-                <input type="button" id="fiveColorRadarRandom" value="Random Word" onclick="randomQuestionWord(this)">
-            </div>
-            <div id="fiveColorRadarChartContainer">
-                <canvas id="fiveColorRadarChart"></canvas>
+            <div id="group-bank">
+                <div id="color-groups"></div>
             </div>
         </section>
-        <div class="hr-style-top margin-bottom-small"></div>
-        <section>
-            <div class="centered-grid">
-                <p><b>Percent of Users by Color Who Favored the Question Term</b></p>
-                <input type="button" id="topWordsForResult" onclick="getTopWordsForResult()">View Result Profile's top words
-            </div>
-            <div>
-                <input type="text" id="topWordsForResultSearch" value="Jund">
-            </div>
-            <div>
-                <input type="button" id="topWordsForResultRandom" value="Random Color Group" onclick="randomColorGroup(this)">
-            </div>
-            <div id="topWordsForResultChartContainer">
-                <canvas id="topWordsForResultChart"></canvas>
-            </div>
+        <section id="chart-group">      
+            <div class="hr-style-bottom margin-top-small"></div>      
+            <section>
+                <div class="centered-grid">
+                    <p><h3>Most Popular Colors by User Result</h3></p>
+                    <input type="button" id="topResults" onclick="getTopResults()">View Top Results
+                </div>
+                <div>
+                    <canvas class="chart-container" id="topResultsChart"></canvas>
+                </div>
+            </section>
+            <div class="hr-style-bottom margin-top-small"></div>
+            <section>
+                <div class="centered-grid">
+                    <p><h3>Percent of User's Result Color Values Who Answered Strongly in Favor With the Question</h3></p>
+                    <input type="button" id="fiveColorRadar" onclick="getfiveColorRadar()">View Question Word Radar Graph
+                </div>
+                <div>
+                    <input type="text" id="fiveColorRadarSearch" value="Uninhibited">
+                </div>
+                <div>
+                    <input type="button" id="fiveColorRadarRandom" value="Random Word" onclick="randomQuestionWord(this)">
+                </div>
+                <div id="fiveColorRadarChartContainer">
+                    <canvas class="chart-container" id="fiveColorRadarChart"></canvas>
+                </div>
+            </section>
+            <div class="hr-style-top margin-bottom-small"></div>
+            <section>
+                <div class="centered-grid">
+                    <p><b>Total Users by Color Who Favored the Question Term</b></p>
+                    <input type="button" id="topWordsForResult" onclick="getTopWordsForResult()">View Result Profile's top words
+                </div>
+                <div>
+                    <input type="text" id="topWordsForResultSearch" value="Jund">
+                </div>
+                <div>
+                    <input type="button" id="topWordsForResultRandom" value="Random Color Group" onclick="randomColorGroup(this)">
+                </div>
+                <div id="topWordsForResultChartContainer">
+                    <canvas class="chart-container" id="topWordsForResultChart"></canvas>
+                </div>
+            </section>
+            <div class="hr-style-bottom"></div>
+            <section>
+                <div class="centered-grid">
+                    <p><b>Total Users by Color Who Opposed the Question Term</b></p>
+                    <input type="button" id="bottomWordsForResult" onclick="getBottomWordsForResult()">View Result Profile's bottom words
+                </div>
+                <div>
+                    <input type="text" id="bottomWordsForResultSearch" value="Jund">
+                </div>
+                <div>
+                    <input type="button" id="bottomWordsForResultRandom" value="Random Color Group" onclick="randomColorGroup(this)">
+                </div>
+                <div id="bottomWordsForResultChartContainer">
+                    <canvas class="chart-container" id="bottomWordsForResultChart"></canvas>
+                </div>
+            </section>
+            <div class="hr-style-bottom"></div>
+            <section>
+                <div class="centered-grid">
+                    <p><b>Percentage of Result Color's Users That Favored the Question Term</b></p>
+                    <input type="button" id="resultMostLike" onclick="getResultMostLike()">View Results Most Like A Question Word
+                </div>
+                <div>
+                    <input type="text" id="resultMostLikeSearch" value="Honor">
+                </div>
+                <div>
+                    <input type="button" id="resultMostLikeRandom" value="Random Word" onclick="randomQuestionWord(this)">
+                </div>
+                <div id="resultMostLikeChartContainer">
+                    <canvas class="chart-container" id="resultMostLikeChart"></canvas>
+                </div>
+            </section>
+            <div class="hr-style-bottom"></div>
+            <section>
+                <div class="centered-grid">
+                    <p><b>Displays Percentage of Result Color's Users That Disagreed With the Given Word</b></p>
+                    <input type="button" id="resultLeastLike" onclick="getResultLeastLike()">View Results Least Like A Question Word
+                </div>
+                <div>
+                    <input type="text" id="resultLeastLikeSearch" value="Honor">
+                </div>
+                <div>
+                    <input type="button" id="resultLeastLikeRandom" value="Random Word" onclick="randomQuestionWord(this)">
+                </div>
+                <div id="resultLeastLikeChartContainer">
+                    <canvas class="chart-container" id="resultLeastLikeChart"></canvas>
+                </div>
+            </section>
         </section>
-        <div class="hr-style-bottom"></div>
-        <section>
-            <div class="centered-grid">
-                <p><b>Percent of Users by Color Who Opposed the Question Term</b></p>
-                <input type="button" id="bottomWordsForResult" onclick="getBottomWordsForResult()">View Result Profile's bottom words
-            </div>
-            <div>
-                <input type="text" id="bottomWordsForResultSearch" value="Jund">
-            </div>
-            <div>
-                <input type="button" id="bottomWordsForResultRandom" value="Random Color Group" onclick="randomColorGroup(this)">
-            </div>
-            <div id="bottomWordsForResultChartContainer">
-                <canvas id="bottomWordsForResultChart"></canvas>
-            </div>
-        </section>
-        <div class="hr-style-bottom"></div>
-        <section>
-            <div class="centered-grid">
-                <p><b>Percentage of Result Color's Users That Favored the Question Term</b></p>
-                <input type="button" id="resultMostLike" onclick="getResultMostLike()">View Results Most Like A Question Word
-            </div>
-            <div>
-                <input type="text" id="resultMostLikeSearch" value="Honor">
-            </div>
-            <div>
-                <input type="button" id="resultMostLikeRandom" value="Random Word" onclick="randomQuestionWord(this)">
-            </div>
-            <div id="resultMostLikeChartContainer">
-                <canvas id="resultMostLikeChart"></canvas>
-            </div>
-        </section>
-        <div class="hr-style-bottom"></div>
-        <section>
-            <div class="centered-grid">
-                <p><b>Displays Percentage of Result Color's Users That Disagreed With the Given Word</b></p>
-                <input type="button" id="resultLeastLike" onclick="getResultLeastLike()">View Results Least Like A Question Word
-            </div>
-            <div>
-                <input type="text" id="resultLeastLikeSearch" value="Honor">
-            </div>
-            <div>
-                <input type="button" id="resultLeastLikeRandom" value="Random Word" onclick="randomQuestionWord(this)">
-            </div>
-            <div id="resultLeastLikeChartContainer">
-                <canvas id="resultLeastLikeChart"></canvas>
-            </div>
-        </section>
-    </section>
-    <section>
-        <br>
-        <br>
-        <br>
     </section>
 </body>
 

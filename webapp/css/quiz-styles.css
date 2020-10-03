@@ -1,0 +1,31 @@
+#quiz-info-box{
+    grid-area: info;
+    border: 3px solid;
+}
+#quiz-response{
+    grid-area: response;
+    border: 3px solid;
+}
+#quiz-left-options{
+    grid-area: left-options;
+}
+#quiz-right-options{
+    grid-area: right-options;
+}
+#quiz-bottom-options{
+    grid-area: bottom-options;
+}
+#quiz-block{
+    text-align: center;
+    margin: auto;
+    min-width: 60ch;
+    max-width: 125ch;
+    display: grid;
+    grid-template-columns:auto auto;
+    grid-template-rows: auto;
+    grid-gap: 1rem;
+    grid-template: 
+    "info info info info"
+    "left-options response response right-options";
+}
+

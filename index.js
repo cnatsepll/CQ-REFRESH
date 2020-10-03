@@ -11,7 +11,7 @@ const connection = {
 };
 const port = 3000;
 
-const queries = require('./sql/queries');
+const queries = require('./sql/chart_queries');
 
 
 
