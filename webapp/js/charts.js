@@ -29,6 +29,7 @@ window.onload = ()=>{
     .then(response => response.json())
     .then(data => {colorGroups = data.rows;})
     .then(()=>{
+        colorGroups.sort(compareValues('quick_name', 'desc'));
         for(let i = 0; i < colorGroups.length; i+=1){
             let resultDiv = document.createElement('div');
             let colorArrayDiv = document.createElement('div');
@@ -96,7 +97,7 @@ function getTopResults(){
                     }],
                     yAxes: [{
                         display: true,
-                        type: 'linear',
+                        type: 'linear'
                     }]
                 }
             }
@@ -124,7 +125,7 @@ function getResultMostLike(){
         method: 'POST',
         mode: 'cors',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(resultMostLikeSearch)
       })
@@ -182,7 +183,7 @@ function getResultLeastLike(){
         method: 'POST',
         mode: 'cors',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(resultLeastLikeSearch)
     })
@@ -237,7 +238,7 @@ function getTopWordsForResult(){
         method: 'POST',
         mode: 'cors',
         headers: {
-          'Content-Type': 'application/json',
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(topWordsForResultSearch)
     })
@@ -352,17 +353,20 @@ function getfiveColorRadar(){
     })
     .then(response => response.json())
     .then(data => {fiveColorRadar = data;
-        let white_counter = (fiveColorRadar.rows[0].white_counter / fiveColorRadar.rows[0].total_counter).toFixed(2);
-        let blue_counter = (fiveColorRadar.rows[0].blue_counter / fiveColorRadar.rows[0].total_counter).toFixed(2);
-        let black_counter = (fiveColorRadar.rows[0].black_counter / fiveColorRadar.rows[0].total_counter).toFixed(2);
-        let red_counter = (fiveColorRadar.rows[0].red_counter / fiveColorRadar.rows[0].total_counter).toFixed(2);
-        let green_counter = (fiveColorRadar.rows[0].green_counter / fiveColorRadar.rows[0].total_counter).toFixed(2);
-        let decimals = 2;
-        Number(Math.round(white_counter+'e'+decimals)+'e-'+decimals);
-        Number(Math.round(blue_counter+'e'+decimals)+'e-'+decimals);
-        Number(Math.round(black_counter+'e'+decimals)+'e-'+decimals);
-        Number(Math.round(red_counter+'e'+decimals)+'e-'+decimals);
-        Number(Math.round(green_counter+'e'+decimals)+'e-'+decimals);
+        let white_counter = (fiveColorRadar.rows[0].white_counter / fiveColorRadar.rows[0].total_counter).toFixed(3);
+        let blue_counter = (fiveColorRadar.rows[0].blue_counter / fiveColorRadar.rows[0].total_counter).toFixed(3);
+        let black_counter = (fiveColorRadar.rows[0].black_counter / fiveColorRadar.rows[0].total_counter).toFixed(3);
+        let red_counter = (fiveColorRadar.rows[0].red_counter / fiveColorRadar.rows[0].total_counter).toFixed(3);
+        let green_counter = (fiveColorRadar.rows[0].green_counter / fiveColorRadar.rows[0].total_counter).toFixed(3);
+
+        let colorCounterArray = [
+            {name: 'white', count: white_counter},
+            {name: 'blue', count: blue_counter},
+            {name: 'black', count: black_counter},
+            {name: 'red', count: red_counter},
+            {name: 'green', count: green_counter}
+        ];
+        colorCounterArray.sort((a,b)=> b.count - a.count);
         var ctx = document.getElementById('fiveColorRadarChart').getContext('2d');
         window.fiveColorRadar = new Chart(ctx, {
             type: 'radar',
@@ -370,8 +374,8 @@ function getfiveColorRadar(){
               labels: ['White', 'Blue', 'Black', 'Red', 'Green'],
               datasets: [{
                   label: 'Percentage of Result',
-                  backgroundColor: "rgba(55,55,55,.6)",
-                  borderColor: "rgba(225,215,0, .6)",
+                  backgroundColor: colorCounterArray[0].name,
+                  borderColor: colorCounterArray[1].name,
                   borderWidth: 3,
                   data: [`${white_counter*100}`, `${blue_counter*100}`, `${black_counter*100}`, `${red_counter*100}`, `${green_counter*100}`]
               }]
@@ -416,3 +420,28 @@ function randomColorGroup(e){
     const question_word = document.getElementById(`${eventId}Search`);
     question_word.value = colorGroups[num].quick_name;
 }
+
+
+function compareValues(key, order = 'asc') {
+    return function innerSort(a, b) {
+      if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
+        // property doesn't exist on either object
+        return 0;
+      }
+  
+      const varA = (typeof a[key] === 'string')
+        ? a[key].toUpperCase() : a[key];
+      const varB = (typeof b[key] === 'string')
+        ? b[key].toUpperCase() : b[key];
+  
+      let comparison = 0;
+      if (varA > varB) {
+        comparison = 1;
+      } else if (varA < varB) {
+        comparison = -1;
+      }
+      return (
+        (order === 'desc') ? (comparison * -1) : comparison
+      );
+    };
+  }
