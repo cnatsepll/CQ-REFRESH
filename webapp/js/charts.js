@@ -52,6 +52,7 @@ window.onload = ()=>{
 // most / least popular words
 // most / least defining words
 // most / least aligned words
+// box and whisker plot of color type value averages for each result color
 
 function getTopResults(){
     fetch('/charts/topResults')
