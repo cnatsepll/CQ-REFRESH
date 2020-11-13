@@ -1,7 +1,7 @@
 
 #chart-page{
     overflow-y:scroll;
-    height: 90vh;
+    height: 85vh;
 }
 
 #chart-group{
@@ -26,7 +26,7 @@
 #word-bank{
     background: var(--card-forground-2);
     overflow-y: auto;
-    height: 7vh;
+    height: 15vh;
     margin: 0 5vh 5vh 5vh;
     padding: 2em 2em 5em 2em;
 }
@@ -57,7 +57,7 @@
 #group-bank{
     overflow-y: auto;
     background: var(--card-forground-2);
-    height: 9vh;
+    height: 12vh;
     margin: 0 5vh 5vh 5vh;
     padding: 2em 2em 5em 2em;
 }

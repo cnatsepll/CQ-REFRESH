@@ -14,14 +14,14 @@
           <a href="/html/home.html"><h1>Welcome to the Color Quiz</h1></a>
         </div>
         <nav id="header-button-row">
-            <div class="navButtonDiv">
-                <a style="text-decoration: underline;" href="/html/quiz.html" class="navButton">QUIZ</a>
+            <div>
+                <a style="text-decoration: underline;" href="/html/quiz.html" class="nav-button">QUIZ</a>
             </div>
-            <div class="navButtonDiv">
-                <a href="/html/charts.html" class="navButton">CHARTS</a>
+            <div>
+                <a href="/html/charts.html" class="nav-button">CHARTS</a>
             </div>
-            <div class="navButtonDiv">
-                <a class="navButton">LINKS</a>
+            <div>
+                <a href="/html/about.html" class="nav-button">ABOUT</a>
             </div>
         </nav>    
     </section>
@@ -29,20 +29,40 @@
         <section id="quiz-info-box">
             <h1>Quiz Page</h1>
             <article>
-                <p>Questions will load in</p>
-                <p>Option to color code question words for transparency</p>
+                <p>Questions will load in with option to color code question words for transparency</p>
                 <p>Dictionary API to explain choices</p>
                 <p>View Previous Questions/Answers</p>
             </article>
         </section>
-        <section id="quiz-response">
+        <section id="quiz-response" class="margin-top-medium">
             <h2>Question Generator</h2>
-            <a style="color:blue" href="https://still-anchorage-15218.herokuapp.com/">MTG COLOR QUIZ LINK</a>
-            <div id="question"></div>
-            <div id="answerRow"></div>
+            <div id="question" class="margin-bottom-large margin-top-medium">This is an example of a question phrase</div>
+            <div id="answerRow" class="flex flex-center">
+                <div class="response-button padding-sides-medium" onclick="selected(5)">
+                    Strongly
+                </div>
+                <div class="response-button padding-sides-medium" onclick="selected(4)">
+                    Moderately
+                </div>
+                <div class="response-button padding-sides-medium" onclick="selected(3)">
+                    Slightly
+                </div>
+                <div class="response-button padding-sides-medium" onclick="selected(2)">
+                    Neutral
+                </div>
+                <div class="response-button padding-sides-medium" onclick="selected(1)">
+                    Disagree
+                </div>
+                <div class="response-button padding-sides-medium" onclick="selected(0)">
+                    Disagree Completely
+                </div>
+            </div>
             <div id="actionsRow"></div>
         </section>
     </section>
 </body>
+
+
 <script src="/js/quiz.js"></script>
+
 </html> 

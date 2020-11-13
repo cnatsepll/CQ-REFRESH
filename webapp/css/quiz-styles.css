@@ -1,6 +1,6 @@
 #quiz-info-box{
     grid-area: info;
-    border: 3px solid;
+    border-top: 3px solid;
 }
 #quiz-response{
     grid-area: response;
@@ -27,5 +27,21 @@
     grid-template: 
     "info info info info"
     "left-options response response right-options";
+}
+
+.response-button{
+    cursor: pointer; 
+    font-family:'Roboto',sans-serif;
+    font-size: 1.1em;
+    text-decoration: none;  
+    display:inline-block;
+    border:0.16em solid rgba(255,255,255,0);
+    border-radius:2px;
+    box-sizing: border-box;
+    text-align:center;
+    transition: all 0.2s;
+    padding:0.3em 1.2em;
+    margin:0 1em 1em 0;
+    color: var(--nav-button-color);
 }
 

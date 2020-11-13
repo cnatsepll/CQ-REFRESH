@@ -8,7 +8,7 @@ let selectorsColorGroups = document.getElementById('color-groups');
 window.onload = ()=>{
     fetch('/charts/listAllQuestionWords')
     .then(response => response.json())
-    .then(data => {questionWords = data.rows;})
+    .then(response => {questionWords = response.rows;})
     .then(()=>{
         for(let i = 0; i < questionWords.length; i+=1){
             let wordDiv = document.createElement('div');
@@ -27,7 +27,7 @@ window.onload = ()=>{
     
     fetch('/charts/listAllColorGroups')
     .then(response => response.json())
-    .then(data => {colorGroups = data.rows;})
+    .then(response => {colorGroups = response.rows;})
     .then(()=>{
         colorGroups.sort(compareValues('quick_name', 'desc'));
         for(let i = 0; i < colorGroups.length; i+=1){

@@ -1,7 +1,14 @@
+let questionWords;
+
 window.onload = function(e){ 
-    // let body = document.getElementById("body");
-    // body.innerHTML = `<h1>Hello World</h1>`;
+    fetch("/charts/listAllQuestionWords")
+    .then(response => response.json())
+    .then(response => {questionWords = response.rows;})
+    .then(()=>{
+        console.log(questionWords)
+    });
 }
 
-// send questions over in an initial batch and store to session
-// then we can refresh the page and view previous answers
+const selected = (responseValue) => {
+    alert(responseValue)
+}

@@ -14,7 +14,7 @@
     --nav-button-color: rgb(95 95 95);
     --action-hover-1: rgba(75 75 75 / 75%);
     --action-hover-2: rgb(241 241 241);
-    --card-background: rgba(112 111 111 / 95%);
+    --card-background: rgba(160 160 160 / 100%);
     --card-background-2: rgba(104 104 104 / 100%);
     --card-forground: rgba(122 122 122 / 80%);
     --card-forground-2: rgba(208 208 208 / 73%);
@@ -56,18 +56,24 @@ a h1 {
     justify-content: center;
     align-items: center;
 }
+.flex{
+    display: flex;
+}
 .flex-start{
     justify-self: start;
 }
 .flex-end{
     justify-self: end;
 }
+.flex-center{
+    justify-content: center;
+}
 
 .body-margin{
     padding: 0 10% 0 10%;
 }
 
-.large-margin-bottom{
+.margin-bottom-large{
     margin-bottom: 8%;
 }
 .margin-top-small{
@@ -77,11 +83,15 @@ a h1 {
     margin-top: 5%;
 }
 
+.margin-sides-medium{
+    margin: 0 1em 0 1em;
+}
 
-.navButtonDiv{
+.nav-button-div{
     cursor: pointer;    
 }
-.navButton{
+.nav-button{
+    cursor: pointer; 
     font-family:'Roboto',sans-serif;
     font-size: 1.1em;
     text-decoration: none;  
@@ -95,10 +105,10 @@ a h1 {
     margin:0 0.1em 0.1em 0;
     color: var(--nav-button-color);
 }
-.navButton:hover {
+.nav-button:hover {
     border-color: var(--action-hover-1);
 }
-.navButton:active{
+.nav-button:active{
     border-color: var(--action-hover-2);
 }
 
@@ -150,13 +160,3 @@ a h1 {
 }
 
 
-
-
-
-
-@media all and (max-width:30em) {
-    a.navButton{
-        display: block;
-        margin: 0.2em auto;
-    }
-}

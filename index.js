@@ -30,6 +30,9 @@ app.get('/charts', (req, res)=> {
     res.sendFile(path.join(__dirname + '/webapp/html/charts.html'));
 });
 
+app.get('/about', (req, res)=> {
+    res.sendFile(path.join(__dirname + '/webapp/html/about.html'));
+});
 
 
 
