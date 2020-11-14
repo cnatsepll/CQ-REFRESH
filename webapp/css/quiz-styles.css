@@ -1,10 +1,13 @@
 #quiz-info-box{
     grid-area: info;
-    border-top: 3px solid;
+    margin-top: 5vh;
 }
 #quiz-response{
     grid-area: response;
     border: 3px solid;
+    height: fit-content;
+    margin-top: 10vh;
+    padding: .25em;
 }
 #quiz-left-options{
     grid-area: left-options;
@@ -16,17 +19,18 @@
     grid-area: bottom-options;
 }
 #quiz-block{
+    height: 90vh;
     text-align: center;
     margin: auto;
     min-width: 60ch;
-    max-width: 125ch;
+    max-width: 135ch;
     display: grid;
-    grid-template-columns:auto auto;
-    grid-template-rows: auto;
     grid-gap: 1rem;
     grid-template: 
     "info info info info"
     "left-options response response right-options";
+    grid-template-rows: 15vh auto;
+    grid-template-columns:auto auto;
 }
 
 .response-button{
@@ -44,4 +48,9 @@
     margin:0 1em 1em 0;
     color: var(--nav-button-color);
 }
-
+.response-button:hover {
+    border-color: var(--action-hover-1);
+}
+.response-button:active{
+    border-color: var(--action-hover-2);
+}
