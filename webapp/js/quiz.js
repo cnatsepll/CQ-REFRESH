@@ -18,7 +18,7 @@ const checkQuizHistory = ()=>{
 
 const checkForCounter = ()=>{
  if(!localStorage.getItem("counter")){
-    questionCounter = 177;
+    questionCounter = 0;
     localStorage.setItem("counter", questionCounter);
  } else {
     questionCounter = parseInt(localStorage.getItem("counter"));
