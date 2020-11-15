@@ -68,7 +68,9 @@ a h1 {
 .flex-center{
     justify-content: center;
 }
-
+.flex-space-between{
+    justify-content: space-around;
+}
 .body-margin{
     padding: 0 10% 0 10%;
 }
@@ -111,6 +113,29 @@ a h1 {
 .nav-button:active{
     border-color: var(--action-hover-2);
 }
+
+.option-button{
+    cursor: pointer; 
+    font-family:'Roboto',sans-serif;
+    font-size: 1.1em;
+    text-decoration: none;  
+    display:inline-block;
+    border:0.16em solid rgba(255,255,255,0);
+    border-radius:2px;
+    box-sizing: border-box;
+    text-align:center;
+    transition: all 0.2s;
+    padding:0.3em 1.2em;
+    margin:0 0.1em 0.1em 0;
+    color: var(--nav-button-color);
+}
+.option-button:hover {
+    border-color: var(--action-hover-1);
+}
+.option-button:active{
+    border-color: var(--action-hover-2);
+}
+
 
 .bg-mists{
     background: url(/img/mist.jpg) no-repeat center center fixed; 

@@ -26,12 +26,21 @@
         </nav>    
     </section>
     <section id="quiz-block">
-        <section id="quiz-info-box">
+
+        <section id="quiz-info-box" class="flex flex-space-between">
             <article>
                 <p>Questions will load in with option to color code question words for transparency</p>
                 <p>Dictionary API to explain choices</p>
                 <p>View Previous Questions/Answers</p>
             </article>
+            <div id="scoreboard">
+                <p>Position in quiz and possibly a running total</p>
+            </div>
+            <div id="quiz-options">
+                <div class="option-button" onclick="resetQuiz()">
+                    Reset Quiz
+                </div>
+            </div>
         </section>
         <section id="quiz-response" class="margin-top-medium">
             <h2>Question Generator</h2>

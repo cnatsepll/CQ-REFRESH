@@ -38,7 +38,6 @@ const checkForAnswerValues = ()=>{
         answers = JSON.parse(localStorage.getItem("answers"));
      }
 }
-
 const checkForQuestions = ()=>{
     if(!localStorage.getItem("questions")){
         fetch("/charts/listAllQuestionWords")
@@ -55,14 +54,52 @@ const checkForQuestions = ()=>{
     }
 }
 
+const setQuestionWords = () =>{
+    if(!localStorage.getItem("questions")){
+        fetch("/charts/listAllQuestionWords")
+        .then(response => response.json())
+        .then(response => {pgQuestionWords = response.rows;})
+        .then(()=>{
+            questionWordsStringified = JSON.stringify(pgQuestionWords);
+            localStorage.setItem("questions", questionWordsStringified);
+            questionWords = pgQuestionWords;
+            shuffle(questionWords);
+        })
+    } else {
+        questionWords = JSON.parse(localStorage.getItem("questions"));
+        shuffle(questionWords);
+    }
+}
+const refreshQuestion = ()=>{
+    let questionDiv = document.querySelector("#question");
+    questionDiv.textContent = questionWords[questionCounter].question;
+}
+
+const resetQuiz = ()=>{
+    answers = {
+        "white" : 0,
+        "blue" : 0,
+        "black" : 0,
+        "red" : 0,
+        "green" : 0
+    };
+    questionCounter = 0;
+    localStorage.setItem("answers", JSON.stringify(answers));
+    localStorage.setItem("counter", questionCounter);
+    setQuestionWords();
+    refreshQuestion();
+}
+
 const selected = (responseValue) => {
-    alert(`(${questionCounter})  ${questionWords[questionCounter].question}, ${questionWords[questionCounter].cd_color}  :::   ${responseValue}`);
+    //alert(`(${questionCounter})  ${questionWords[questionCounter].question}, ${questionWords[questionCounter].cd_color}  :::   ${responseValue}`);
     
     if(questionCounter < questionWords.length -1){
         questionCounter += 1;
     }
 
     localStorage.setItem("counter", questionCounter);
+
+    refreshQuestion();
 }
 
 
