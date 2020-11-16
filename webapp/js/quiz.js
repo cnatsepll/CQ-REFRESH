@@ -5,34 +5,31 @@ const quizStorage = localStorage;
 let questionCounter;
 let answers;
 
+
 window.onload = function(){ 
     checkQuizHistory();
 }
 
 
 const checkQuizHistory = ()=>{
-    checkForQuestions();
-    checkForCounter();
-    checkForAnswerValues();
+    checkForCounter()
+    .then(
+        checkForAnswerValues(),
+        checkForQuestions()
+    )
 }
 
-const checkForCounter = ()=>{
- if(!localStorage.getItem("counter")){
-    questionCounter = 0;
-    localStorage.setItem("counter", questionCounter);
- } else {
-    questionCounter = parseInt(localStorage.getItem("counter"));
- }
-}
+const checkForCounter = ()=> new Promise((resolve) =>{
+        if(!localStorage.getItem("counter")){
+        clearCounter();
+        } else {
+        questionCounter = parseInt(localStorage.getItem("counter"));
+        setCounter();
+        }
+    })
 const checkForAnswerValues = ()=>{
     if(!localStorage.getItem("answers")){
-        answers = {
-            "white" : 0,
-            "blue" : 0,
-            "black" : 0,
-            "red" : 0,
-            "green" : 0
-        }
+        clearAnswers();
         localStorage.setItem("answers", JSON.stringify(answers));
      } else {
         answers = JSON.parse(localStorage.getItem("answers"));
@@ -40,66 +37,92 @@ const checkForAnswerValues = ()=>{
 }
 const checkForQuestions = ()=>{
     if(!localStorage.getItem("questions")){
-        fetch("/charts/listAllQuestionWords")
-        .then(response => response.json())
-        .then(response => {pgQuestionWords = response.rows;})
-        .then(()=>{
-            shuffle(pgQuestionWords);
-            questionWordsStringified = JSON.stringify(pgQuestionWords);
-            localStorage.setItem("questions", questionWordsStringified);
-            questionWords = pgQuestionWords;
-        })
+        fetchQuestions()
     } else {
-        questionWords = JSON.parse(localStorage.getItem("questions"));
+        setQuestion();
     }
 }
-
-const setQuestionWords = () =>{
+const resetQuestionWords = () =>{
     if(!localStorage.getItem("questions")){
-        fetch("/charts/listAllQuestionWords")
-        .then(response => response.json())
-        .then(response => {pgQuestionWords = response.rows;})
-        .then(()=>{
-            questionWordsStringified = JSON.stringify(pgQuestionWords);
-            localStorage.setItem("questions", questionWordsStringified);
-            questionWords = pgQuestionWords;
-            shuffle(questionWords);
-        })
+        fetchQuestions();
     } else {
         questionWords = JSON.parse(localStorage.getItem("questions"));
         shuffle(questionWords);
+        questionWordsStringified = JSON.stringify(questionWords);
+        localStorage.setItem("questions", questionWordsStringified);
+        setQuestion();
     }
 }
-const refreshQuestion = ()=>{
+const fetchQuestions = ()=>{
+    fetch("/charts/listAllQuestionWords")
+    .then(response => response.json())
+    .then(response => {pgQuestionWords = response.rows;})
+    .then(()=>{
+        questionWords = pgQuestionWords;
+        shuffle(questionWords);
+        questionWordsStringified = JSON.stringify(questionWords);
+        localStorage.setItem("questions", questionWordsStringified);
+        setQuestion();
+    })
+}
+const setQuestion = ()=>{
     let questionDiv = document.querySelector("#question");
+    questionWords = JSON.parse(localStorage.getItem("questions"));
     questionDiv.textContent = questionWords[questionCounter].question;
 }
 
+
+
 const resetQuiz = ()=>{
-    answers = {
-        "white" : 0,
-        "blue" : 0,
-        "black" : 0,
-        "red" : 0,
-        "green" : 0
-    };
-    questionCounter = 0;
-    localStorage.setItem("answers", JSON.stringify(answers));
-    localStorage.setItem("counter", questionCounter);
-    setQuestionWords();
-    refreshQuestion();
+    clearCounter();
+    clearAnswers()
+    resetQuestionWords();
 }
 
-const selected = (responseValue) => {
-    //alert(`(${questionCounter})  ${questionWords[questionCounter].question}, ${questionWords[questionCounter].cd_color}  :::   ${responseValue}`);
-    
+const clearAnswers = ()=>{
+    answers = {
+        "W" : 0,
+        "U" : 0,
+        "B" : 0,
+        "R" : 0,
+        "G" : 0
+    };
+    localStorage.setItem("answers", JSON.stringify(answers));
+}
+const addAnswer = (key, responseValue)=>{
+    answers[key] += parseInt(responseValue);
+    console.log(JSON.stringify(answers));
+    localStorage.setItem("answers", JSON.stringify(answers));
+}
+
+const increaseCounter = ()=>{
     if(questionCounter < questionWords.length -1){
         questionCounter += 1;
+        setCounter();
+        return true
+    } else {
+        return false
     }
-
+    
+}
+const clearCounter = ()=>{
+    questionCounter = 0;
+    setCounter();
     localStorage.setItem("counter", questionCounter);
+}
+const setCounter = ()=>{
+    let counterDiv = document.querySelector("#counter");
+    counterDiv.textContent = questionCounter;
+    localStorage.setItem("counter", questionCounter);
+}
+const selected = (responseValue) => {
 
-    refreshQuestion();
+    // ${questionWords[questionCounter].question}
+    // ${questionWords[questionCounter].cd_color} 
+    if(increaseCounter()){
+        addAnswer(questionWords[questionCounter].cd_color, responseValue);
+    }
+    setQuestion();
 }
 
 

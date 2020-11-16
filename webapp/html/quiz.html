@@ -28,14 +28,9 @@
     <section id="quiz-block">
 
         <section id="quiz-info-box" class="flex flex-space-between">
-            <article>
-                <p>Questions will load in with option to color code question words for transparency</p>
-                <p>Dictionary API to explain choices</p>
-                <p>View Previous Questions/Answers</p>
-            </article>
             <div id="scoreboard">
-                <p>Position in quiz and possibly a running total</p>
-            </div>
+                <div id="counter"></div>
+                <div id="max-questions"></div>         
             <div id="quiz-options">
                 <div class="option-button" onclick="resetQuiz()">
                     Reset Quiz
@@ -44,7 +39,7 @@
         </section>
         <section id="quiz-response" class="margin-top-medium">
             <h2>Question Generator</h2>
-            <div id="question" class="margin-bottom-large margin-top-medium">This is an example of a question phrase</div>
+            <div id="question" class="margin-bottom-large margin-top-medium"></div>
             <div id="answerRow" class="flex flex-center">
                 <div class="response-button padding-sides-medium" onclick="selected(5)">
                     Strongly
