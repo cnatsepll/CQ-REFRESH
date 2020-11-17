@@ -13,6 +13,17 @@
     grid-template-columns:auto auto;
 }
 
+#instruction-reminder{
+    margin-top: 1em;
+    font-size: 1em;
+}
+
+#question{
+    margin: 8% 0 8% 0;
+    font-weight: bold;
+    font-size: x-large;
+}
+
 #quiz-left-options{
     grid-area: left-options;
 }
@@ -33,11 +44,13 @@
 #quiz-response{
     grid-area: response;
     border: 3px solid;
+    border-radius: 3px;
     height: fit-content;
-    margin-top: 10vh;
-    padding: .25em;
+    margin-top: 8vh;
+    padding: .6em;
 }
 .response-button{
+    -webkit-user-select: none;
     cursor: pointer; 
     font-family:'Roboto',sans-serif;
     font-size: 1.1em;

@@ -21,7 +21,7 @@
                 <a href="/html/charts.html" class="nav-button">CHARTS</a>
             </div>
             <div>
-                <a href="/html/about.html" class="nav-button">ABOUT</a>
+                <a href="/html/about.html" class="nav-button">RESULTS</a>
             </div>
         </nav>    
     </section>
@@ -30,16 +30,17 @@
         <section id="quiz-info-box" class="flex flex-space-between">
             <div id="scoreboard">
                 <div id="counter"></div>
-                <div id="max-questions"></div>         
+                <div id="max-questions"></div>    
+            </div>     
             <div id="quiz-options">
                 <div class="option-button" onclick="resetQuiz()">
                     Reset Quiz
                 </div>
             </div>
         </section>
-        <section id="quiz-response" class="margin-top-medium">
-            <h2>Question Generator</h2>
-            <div id="question" class="margin-bottom-large margin-top-medium"></div>
+        <section id="quiz-response">
+            <div id="instruction-reminder">How closely do you align yourself with the word or phrase shown below?</div>
+            <div id="question"></div>
             <div id="answerRow" class="flex flex-center">
                 <div class="response-button padding-sides-medium" onclick="selected(5)">
                     Strongly
@@ -66,6 +67,7 @@
 </body>
 
 
+<script src="/js/quiz-responses.js"></script>
 <script src="/js/quiz.js"></script>
 
 </html> 

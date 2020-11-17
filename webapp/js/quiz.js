@@ -12,21 +12,20 @@ window.onload = function(){
 
 
 const checkQuizHistory = ()=>{
-    checkForCounter()
-    .then(
-        checkForAnswerValues(),
+        checkForCounter()
+        checkForAnswerValues()
         checkForQuestions()
-    )
 }
 
-const checkForCounter = ()=> new Promise((resolve) =>{
+const checkForCounter = ()=>{
         if(!localStorage.getItem("counter")){
         clearCounter();
         } else {
         questionCounter = parseInt(localStorage.getItem("counter"));
         setCounter();
         }
-    })
+        console.log('counter check');
+    }
 const checkForAnswerValues = ()=>{
     if(!localStorage.getItem("answers")){
         clearAnswers();
@@ -34,13 +33,16 @@ const checkForAnswerValues = ()=>{
      } else {
         answers = JSON.parse(localStorage.getItem("answers"));
      }
+     console.log('answer check');
 }
 const checkForQuestions = ()=>{
     if(!localStorage.getItem("questions")){
-        fetchQuestions()
+       fetchQuestions.then(()=>{setMaxQuestionsDiv()});
     } else {
         setQuestion();
+        setMaxQuestionsDiv();
     }
+    console.log('question check');
 }
 const resetQuestionWords = () =>{
     if(!localStorage.getItem("questions")){
@@ -53,25 +55,43 @@ const resetQuestionWords = () =>{
         setQuestion();
     }
 }
-const fetchQuestions = ()=>{
+const fetchQuestions = new Promise((resolve, reject) => {
     fetch("/charts/listAllQuestionWords")
-    .then(response => response.json())
-    .then(response => {pgQuestionWords = response.rows;})
-    .then(()=>{
+    .then(response => {
+        console.log('one')
+        return response.json()
+    })
+    .then(response => {
+        console.log('two')
+        pgQuestionWords = response.rows
+        return pgQuestionWords
+    })
+    .then((response)=>{
+        console.log('three')
         questionWords = pgQuestionWords;
         shuffle(questionWords);
         questionWordsStringified = JSON.stringify(questionWords);
         localStorage.setItem("questions", questionWordsStringified);
         setQuestion();
+        console.log(response)
+    }).then(()=>{
+        console.log('four')
+        resolve('success')
+        return
     })
-}
+})
+
+
 const setQuestion = ()=>{
     let questionDiv = document.querySelector("#question");
     questionWords = JSON.parse(localStorage.getItem("questions"));
     questionDiv.textContent = questionWords[questionCounter].question;
 }
 
-
+const setMaxQuestionsDiv = ()=>{
+    let maxQuestionsDiv = document.querySelector("#max-questions");
+    maxQuestionsDiv.textContent = questionWords.length;
+}
 
 const resetQuiz = ()=>{
     clearCounter();
@@ -112,7 +132,7 @@ const clearCounter = ()=>{
 }
 const setCounter = ()=>{
     let counterDiv = document.querySelector("#counter");
-    counterDiv.textContent = questionCounter;
+    counterDiv.textContent = questionCounter+1;
     localStorage.setItem("counter", questionCounter);
 }
 const selected = (responseValue) => {

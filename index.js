@@ -1,3 +1,4 @@
+const bodyParser = require('body-parser');
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -15,7 +16,7 @@ const queries = require('./sql/chart_queries');
 
 
 
-app.use(express.json())
+app.use(bodyParser.json());
 app.use(express.static("webapp"))
 
 app.get('/', (req, res)=> {
