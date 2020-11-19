@@ -19,26 +19,89 @@
 
 
 
-
+let first;
+let second;
+let third;
+let fourth;
+let fifth;
 let white;
 let blue;
 let black;
 let red;
 let green;
-let sortedAnswers;
+let placed;
+let wubrgAnswers;
+let sortedAnswersArray
 
-const quizAnswer = (answersObject) =>{
-    white = answersObject['W'];
-    blue = answersObject['U'];
-    black = answersObject['B'];
-    red = answersObject['R'];
-    green = answersObject['G'];
+const calculateResult = (answersObject) =>{
+    wubrgAnswers = answersObject;
 
-    sortedAnswers = answersObject;
-    sortedAnswers = Object.entries(sortedAnswers).sort((a,b) => b[1]-a[1]);
-    console.log(`wubrg answers ${JSON.stringify(answersObject)}`);
-    console.log(`sorted answers ${sortedAnswers}`);
+    white = wubrgAnswers['W'];
+    blue = wubrgAnswers['U'];
+    black = wubrgAnswers['B'];
+    red = wubrgAnswers['R'];
+    green = wubrgAnswers['G'];
+
+    sortedAnswersArray = wubrgAnswers;
+    sortedAnswersArray.W = [sortedAnswersArray.W, "White"];
+    sortedAnswersArray.U = [sortedAnswersArray.U, "Blue"];
+    sortedAnswersArray.B = [sortedAnswersArray.B, "Black"];
+    sortedAnswersArray.R = [sortedAnswersArray.R, "Red"];
+    sortedAnswersArray.G = [sortedAnswersArray.G, "Green"];
+
+    sortedAnswersArray = Object.entries(sortedAnswersArray).sort((a,b) => b[1]-a[1]);
+    first = sortedAnswersArray[0];
+    second = sortedAnswersArray[1];
+    third = sortedAnswersArray[2];
+    fourth = sortedAnswersArray[3];
+    fifth = sortedAnswersArray[4];
+
+    placed = {
+        first: {
+            key: first[0],
+            value: first[1][0],
+            name: first[1][1]
+        },
+        second: {
+            key: second[0],
+            value: second[1][0],
+            name: second[1][1]
+        },
+        third: {
+            key: third[0],
+            value: third[1][0],
+            name: third[1][1]
+        },
+        fourth: {
+            key: fourth[0],
+            value: fourth[1][0],
+            name: first[1][1]
+        },
+        fifth: {
+            key: fifth[0],
+            value: fifth[1][0],
+            name: fifth[1][1]
+        }
+    };
+
+    console.log(`wubrg answers  ${JSON.stringify(wubrgAnswers)}`);
+    console.log(`sorted answers  ${sortedAnswersArray}`);
+    console.log(`answers placed  ${JSON.stringify(placed)}`);
+
+    if(placed.first.value * .72 > placed.second.value){
+        twoColor();
+    }
+
 }
 
 
+const twoColor = ()=>{
+    if ((placed.first.key == "W" || placed.second.key == "U") && (placed.second.key == "U" || placed.first.key == "W"))
+        {
+            azorious();
+        }
+}
 
+const azorious = ()=>{
+    console.log(`congrats you did it`)
+}

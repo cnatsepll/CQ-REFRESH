@@ -57,7 +57,7 @@
     grid-area: about;
 }
 #home-block{
-    margin: auto;
+    margin: 10vh auto auto auto;
     min-width: 60ch;
     max-width: 125ch;
     display: grid;

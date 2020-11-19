@@ -36,13 +36,16 @@ const checkForAnswerValues = ()=>{
      console.log('answer check');
 }
 const checkForQuestions = ()=>{
+    console.log('question check');
     if(!localStorage.getItem("questions")){
-       fetchQuestions.then(()=>{setMaxQuestionsDiv()});
+       fetchQuestions().then(()=>{setMaxQuestionsDiv()});
+       console.log('questions not found')
     } else {
+        console.log('questions found')
         setQuestion();
         setMaxQuestionsDiv();
+        
     }
-    console.log('question check');
 }
 const resetQuestionWords = () =>{
     if(!localStorage.getItem("questions")){
@@ -55,37 +58,40 @@ const resetQuestionWords = () =>{
         setQuestion();
     }
 }
-const fetchQuestions = new Promise((resolve, reject) => {
-    fetch("/charts/listAllQuestionWords")
-    .then(response => {
-        console.log('one')
-        return response.json()
-    })
-    .then(response => {
-        console.log('two')
-        pgQuestionWords = response.rows
-        return pgQuestionWords
-    })
-    .then((response)=>{
-        console.log('three')
-        questionWords = pgQuestionWords;
-        shuffle(questionWords);
-        questionWordsStringified = JSON.stringify(questionWords);
-        localStorage.setItem("questions", questionWordsStringified);
-        setQuestion();
-        console.log(response)
-    }).then(()=>{
-        console.log('four')
-        resolve('success')
-        return
-    })
-})
+
+const fetchQuestions = ()=>
+    new Promise((resolve, reject) => {
+        fetch("/charts/listAllQuestionWords")
+        .then(response => {
+            console.log('fetch');
+            return response.json();
+        })
+        .then(response => {
+            console.log('response');
+            pgQuestionWords = response.rows;
+            return pgQuestionWords;
+        })
+        .then((response)=>{
+            console.log('store');
+            questionWords = pgQuestionWords;
+            shuffle(questionWords);
+            questionWordsStringified = JSON.stringify(questionWords);
+            localStorage.setItem("questions", questionWordsStringified);
+            setQuestion();
+            console.log(response);
+        }).then(()=>{
+            resolve(console.log('questions success'));
+        })
+    });
+
+
 
 
 const setQuestion = ()=>{
     let questionDiv = document.querySelector("#question");
     questionWords = JSON.parse(localStorage.getItem("questions"));
-    questionDiv.textContent = questionWords[questionCounter].question;
+    questionDiv.textContent = `${questionWords[questionCounter].question} :: ${questionWords[questionCounter].cd_color}`;
+    console.log('set question');
 }
 
 const setMaxQuestionsDiv = ()=>{
@@ -139,8 +145,9 @@ const selected = (responseValue) => {
 
     // ${questionWords[questionCounter].question}
     // ${questionWords[questionCounter].cd_color} 
-    if(increaseCounter()){
+    if(questionCounter < questionWords.length -1){
         addAnswer(questionWords[questionCounter].cd_color, responseValue);
+        increaseCounter();
     }
     setQuestion();
 }
