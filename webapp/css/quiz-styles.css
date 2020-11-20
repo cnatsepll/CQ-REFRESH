@@ -8,7 +8,9 @@
     grid-gap: 1rem;
     grid-template: 
     "info info info info"
-    "left-options response response right-options";
+    "left-options response response right-options"
+    "left-options results results right-options"
+    ;
     grid-template-rows: 15vh auto;
     grid-template-columns:auto auto;
 }
@@ -70,4 +72,14 @@
 }
 .response-button:active{
     border-color: var(--action-hover-2);
+}
+
+
+#results-section{
+    grid-area: results;
+    border: 3px solid;
+    border-radius: 3px;
+    height: fit-content;
+    margin-top: 8vh;
+    padding: .6em;
 }

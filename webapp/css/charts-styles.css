@@ -24,7 +24,7 @@
 }
 
 #word-bank{
-    background: var(--card-forground-2);
+    background: var(--card-accent);
     overflow-y: auto;
     height: 15vh;
     margin: 0 5vh 5vh 5vh;
@@ -56,7 +56,7 @@
 
 #group-bank{
     overflow-y: auto;
-    background: var(--card-forground-2);
+    background: var(--card-accent);
     height: 12vh;
     margin: 0 5vh 5vh 5vh;
     padding: 2em 2em 5em 2em;

@@ -15,10 +15,9 @@
     --action-hover-1: rgba(75 75 75 / 75%);
     --action-hover-2: rgb(241 241 241);
     --card-background: rgba(165 165 165 / 90%);
-    --card-background-2: rgba(104 104 104 / 100%);
-    --card-forground: rgba(122 122 122 / 80%);
-    --card-forground-2: rgba(208 208 208 / 73%);
+    --card-forground: rgba(82 82 82 / 70%);
     --card-shadow: rgba(85 85 85 / 85%);
+    --card-accent: rgba(82 82 82 / 15%);
     --hr-line: rgba(112 112 112 / 85%);
     --darker-text: rgba(96 96 96 / 1);
 }

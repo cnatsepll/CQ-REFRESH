@@ -12,9 +12,9 @@ window.onload = function(){
 
 
 const checkQuizHistory = ()=>{
-        checkForCounter()
-        checkForAnswerValues()
-        checkForQuestions()
+        checkForCounter();
+        checkForAnswerValues();
+        checkForQuestions();
 }
 
 const checkForCounter = ()=>{
@@ -25,7 +25,8 @@ const checkForCounter = ()=>{
         setCounter();
         }
         console.log('counter check');
-    }
+    };
+    
 const checkForAnswerValues = ()=>{
     if(!localStorage.getItem("answers")){
         clearAnswers();
@@ -34,7 +35,7 @@ const checkForAnswerValues = ()=>{
         answers = JSON.parse(localStorage.getItem("answers"));
      }
      console.log('answer check');
-}
+};
 const checkForQuestions = ()=>{
     console.log('question check');
     if(!localStorage.getItem("questions")){
@@ -46,7 +47,7 @@ const checkForQuestions = ()=>{
         setMaxQuestionsDiv();
         
     }
-}
+};
 const resetQuestionWords = () =>{
     if(!localStorage.getItem("questions")){
         fetchQuestions();
@@ -57,7 +58,7 @@ const resetQuestionWords = () =>{
         localStorage.setItem("questions", questionWordsStringified);
         setQuestion();
     }
-}
+};
 
 const fetchQuestions = ()=>
     new Promise((resolve, reject) => {
@@ -92,18 +93,18 @@ const setQuestion = ()=>{
     questionWords = JSON.parse(localStorage.getItem("questions"));
     questionDiv.textContent = `${questionWords[questionCounter].question} :: ${questionWords[questionCounter].cd_color}`;
     console.log('set question');
-}
+};
 
 const setMaxQuestionsDiv = ()=>{
     let maxQuestionsDiv = document.querySelector("#max-questions");
     maxQuestionsDiv.textContent = questionWords.length;
-}
+};
 
 const resetQuiz = ()=>{
     clearCounter();
     clearAnswers()
     resetQuestionWords();
-}
+};
 
 const clearAnswers = ()=>{
     answers = {
@@ -114,12 +115,13 @@ const clearAnswers = ()=>{
         "G" : 0
     };
     localStorage.setItem("answers", JSON.stringify(answers));
-}
+};
+
 const addAnswer = (key, responseValue)=>{
     answers[key] += parseInt(responseValue);
     console.log(JSON.stringify(answers));
     localStorage.setItem("answers", JSON.stringify(answers));
-}
+};
 
 const increaseCounter = ()=>{
     if(questionCounter < questionWords.length -1){
@@ -130,29 +132,36 @@ const increaseCounter = ()=>{
         return false
     }
     
-}
+};
+
 const clearCounter = ()=>{
     questionCounter = 0;
     setCounter();
     localStorage.setItem("counter", questionCounter);
-}
+};
+
 const setCounter = ()=>{
     let counterDiv = document.querySelector("#counter");
     counterDiv.textContent = questionCounter+1;
     localStorage.setItem("counter", questionCounter);
-}
-const selected = (responseValue) => {
+};
 
-    // ${questionWords[questionCounter].question}
-    // ${questionWords[questionCounter].cd_color} 
+const selected = (responseValue) => {
+    let question = questionWords[questionCounter].question;
+    let questionColor = questionWords[questionCounter].cd_color;
+    let questionValue = responseValue;
     if(questionCounter < questionWords.length -1){
-        addAnswer(questionWords[questionCounter].cd_color, responseValue);
+        addAnswer(questionColor, questionValue);
         increaseCounter();
     }
+    storeAnswerResponse(question, questionColor, questionValue);
     setQuestion();
-}
+};
 
 
+const storeAnswerResponse = (question, questionColor, questionValue)=>{
+    
+};
 
 
 const shuffle = (array) => {
@@ -169,4 +178,4 @@ const shuffle = (array) => {
       array[randomIndex] = temporaryValue;
     }
     return array;
-  }
+  };

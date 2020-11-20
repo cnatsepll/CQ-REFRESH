@@ -1,24 +1,3 @@
-
-
-
-// if (firstPlace *.9 <= secondPlace && firstPlace *.9 <= thirdPlace && firstPlace *.9 <= fourthPlace){
-//     mage.add("You are a Multicolored Wonder. The Planes are at your fingertips");
-// } else if (whiteCounter == firstPlace && (firstPlace *.72) > secondPlace) {
-//     mage.add("You are a Mono White Mage, all for one one for all.");
-// } else if ((redCounter == firstPlace && whiteCounter == secondPlace && blueCounter == thirdPlace
-//     || redCounter == firstPlace && blueCounter == secondPlace && whiteCounter == thirdPlace
-//     || whiteCounter == firstPlace && redCounter == secondPlace && blueCounter == thirdPlace
-//     || whiteCounter == firstPlace && blueCounter == secondPlace && redCounter == thirdPlace
-//     || blueCounter == firstPlace && redCounter == secondPlace && whiteCounter == thirdPlace
-//     || blueCounter == firstPlace && whiteCounter == secondPlace && redCounter == thirdPlace)
-//     && (secondPlace *.89) <= thirdPlace) {
-//     mage.add("You are a Mage of The Jeskai Way");
-// } else if (greenCounter == firstPlace && redCounter == secondPlace) {
-//     mage.add("You are a Green/Red Mage (Welcome to the Gruul Clans).");
-// }
-
-
-
 let first;
 let second;
 let third;
@@ -30,26 +9,24 @@ let black;
 let red;
 let green;
 let placed;
-let wubrgAnswers;
-let sortedAnswersArray
+let sortedAnswersArray = {};
 
-const calculateResult = (answersObject) =>{
-    wubrgAnswers = answersObject;
+const calculateResult = (ansObj) =>{   
+    let newTest = {};
 
-    white = wubrgAnswers['W'];
-    blue = wubrgAnswers['U'];
-    black = wubrgAnswers['B'];
-    red = wubrgAnswers['R'];
-    green = wubrgAnswers['G'];
+    white = ansObj['W'];
+    blue = ansObj['U'];
+    black = ansObj['B'];
+    red = ansObj['R'];
+    green = ansObj['G'];
 
-    sortedAnswersArray = wubrgAnswers;
-    sortedAnswersArray.W = [sortedAnswersArray.W, "White"];
-    sortedAnswersArray.U = [sortedAnswersArray.U, "Blue"];
-    sortedAnswersArray.B = [sortedAnswersArray.B, "Black"];
-    sortedAnswersArray.R = [sortedAnswersArray.R, "Red"];
-    sortedAnswersArray.G = [sortedAnswersArray.G, "Green"];
+    newTest.W = [ansObj.W, "White"];
+    newTest.U = [ansObj.U, "Blue"];
+    newTest.B = [ansObj.B, "Black"];
+    newTest.R = [ansObj.R, "Red"];
+    newTest.G = [ansObj.G, "Green"];
 
-    sortedAnswersArray = Object.entries(sortedAnswersArray).sort((a,b) => b[1]-a[1]);
+    sortedAnswersArray = Object.entries(newTest).sort((a,b) => b[1][0]-a[1][0]);
     first = sortedAnswersArray[0];
     second = sortedAnswersArray[1];
     third = sortedAnswersArray[2];
@@ -84,12 +61,21 @@ const calculateResult = (answersObject) =>{
         }
     };
 
-    console.log(`wubrg answers  ${JSON.stringify(wubrgAnswers)}`);
-    console.log(`sorted answers  ${sortedAnswersArray}`);
-    console.log(`answers placed  ${JSON.stringify(placed)}`);
-
-    if(placed.first.value * .72 > placed.second.value){
+    // console.log(`wubrg answers  ${JSON.stringify(wubrgAnswers)}`);
+    // console.log(`sorted answers  ${sortedAnswersArray}`);
+    // console.log(`answers placed  ${JSON.stringify(placed)}`);
+    if(placed.first.value *.9 <= placed.second.value 
+        && placed.first.value *.9 <= placed.third.value  
+        && placed.first.value *.9 <= placed.fourth.value){
+        // Colorless
+    } else if(placed.first.value * .72 > placed.second.value){
+        // monoColor();
+    } else if(placed.second.value * .89 <= placed.third.value){
+        //triColor()
+    } else if(placed.first.value >= placed.second.value){
         twoColor();
+    } else {
+        console.log('no result');
     }
 
 }
@@ -97,11 +83,26 @@ const calculateResult = (answersObject) =>{
 
 const twoColor = ()=>{
     if ((placed.first.key == "W" || placed.second.key == "U") && (placed.second.key == "U" || placed.first.key == "W"))
-        {
-            azorious();
-        }
+        {azorious();}
+    else if ((placed.first.key == "W" || placed.second.key == "B") && (placed.second.key == "B" || placed.first.key == "W"))
+        {orzhov();}
 }
 
 const azorious = ()=>{
-    console.log(`congrats you did it`)
+    let azoriousResponse = `azorious is you`;
+    console.log(azoriousResponse);
+    setResult(azoriousResponse);
+}
+const orzhov = ()=>{
+    let orzhovResponse = `orzhov is you`;
+    console.log(orzhovResponse);
+    setResult(orzhovResponse);
+}
+
+const setResult = (result)=>{
+    let totalsDiv = document.querySelector("#totals");
+    let resultsDiv = document.querySelector("#results");
+
+    totalsDiv.textContent = JSON.stringify(answers);
+    resultsDiv.textContent = result;
 }
