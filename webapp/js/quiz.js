@@ -18,13 +18,16 @@ const checkQuizHistory = ()=>{
 }
 
 const checkForCounter = ()=>{
+    console.log('counter check');
         if(!localStorage.getItem("counter")){
         clearCounter();
+        console.log('counter reset');
         } else {
         questionCounter = parseInt(localStorage.getItem("counter"));
         setCounter();
+        console.log('counter found');
         }
-        console.log('counter check');
+        
     };
     
 const checkForAnswerValues = ()=>{
@@ -92,7 +95,6 @@ const setQuestion = ()=>{
     let questionDiv = document.querySelector("#question");
     questionWords = JSON.parse(localStorage.getItem("questions"));
     questionDiv.textContent = `${questionWords[questionCounter].question} :: ${questionWords[questionCounter].cd_color}`;
-    console.log('set question');
 };
 
 const setMaxQuestionsDiv = ()=>{
