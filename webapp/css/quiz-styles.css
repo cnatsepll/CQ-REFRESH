@@ -42,14 +42,11 @@
     margin-top: 4vh;
 }
 
-
-#quiz-response{
+#response-block{
     grid-area: response;
-    border: 3px solid;
-    border-radius: 3px;
-    height: fit-content;
+}
+#quiz-response{
     margin-top: 8vh;
-    padding: .6em;
 }
 .response-button{
     -webkit-user-select: none;
@@ -64,7 +61,6 @@
     text-align:center;
     transition: all 0.2s;
     padding:0.3em 1.2em;
-    margin:0 1em 1em 0;
     color: var(--nav-button-color);
 }
 .response-button:hover {
@@ -74,12 +70,14 @@
     border-color: var(--action-hover-2);
 }
 
-
-#results-section{
-    grid-area: results;
+.section-card{
     border: 3px solid;
     border-radius: 3px;
     height: fit-content;
-    margin-top: 8vh;
     padding: .6em;
+}
+
+#results-section{
+    grid-area: results;
+    margin-top: 8vh;
 }

@@ -27,7 +27,7 @@
     </section>
     <section id="quiz-block">
 
-        <section id="quiz-info-box" class="flex flex-space-between">
+        <section id="quiz-info-box" class="flex flex-space-around">
             <div id="scoreboard">
                 <div id="counter"></div>
                 <div id="max-questions"></div>    
@@ -38,33 +38,36 @@
                 </div>
             </div>
         </section>
-        <section id="quiz-response">
-            <div id="instruction-reminder">How closely do you align yourself with the word or phrase shown below?</div>
-            <div id="question"></div>
-            <div id="answerRow" class="flex flex-center">
-                <div class="response-button padding-sides-medium" onclick="selected(5)">
-                    Disagree Completely
+        <section id="response-block">
+            <div id="quiz-response" class="section-card">
+                <div id="instruction-reminder">How closely do you align yourself with the word or phrase shown below?</div>
+                <div id="question"></div>
+                <div id="answerRow" class="flex flex-space-around">
+                    <div class="response-button padding-sides-medium" onclick="selected(1)">
+                        Not at all
+                    </div>
+                    <div class="response-button padding-sides-medium" onclick="selected(2)">
+                        A little bit
+                    </div>
+                    <div class="response-button padding-sides-medium" onclick="selected(5)">
+                        Some
+                    </div>
+                    <div class="response-button padding-sides-medium" onclick="selected(10)">
+                        Very Strongly
+                    </div>
+                    <div class="response-button padding-sides-medium" onclick="selected(20)">
+                        That's me
+                    </div>
                 </div>
-                <div class="response-button padding-sides-medium" onclick="selected(4)">
-                    Disagree
-                </div>
-                <div class="response-button padding-sides-medium" onclick="selected(3)">
-                    Neutral
-                </div>
-                <div class="response-button padding-sides-medium" onclick="selected(2)">
-                    Slightly
-                </div>
-                <div class="response-button padding-sides-medium" onclick="selected(1)">
-                    Moderately
-                </div>
-                <div class="response-button padding-sides-medium" onclick="selected(0)">
-                    Strongly Agree
-                </div>
+                <div id="actionsRow"></div>
             </div>
-            <div id="actionsRow"></div>
+        
+            <div onclick="calculateResult()" class="response-button margin-top-medium">Calculate Result</div>
+
         </section>
 
-        <section id="results-section" class="section-card">
+
+        <section id="results-section" class="section-card hiddenElement">
             <div id="totals"></div>
             <div id="results"></div>
         </section>

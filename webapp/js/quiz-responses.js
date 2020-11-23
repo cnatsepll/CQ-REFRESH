@@ -11,7 +11,8 @@ let green;
 let placed;
 let sortedAnswersArray = {};
 
-const calculateResult = (ansObj) =>{   
+const calculateResult = () =>{   
+    let ansObj = answers;
     let newTest = {};
 
     white = ansObj['W'];
@@ -67,17 +68,19 @@ const calculateResult = (ansObj) =>{
     if(placed.first.value *.9 <= placed.second.value 
         && placed.first.value *.9 <= placed.third.value  
         && placed.first.value *.9 <= placed.fourth.value){
-        // Colorless
+        // Colorless();
+        setResult('colorless result');
     } else if(placed.first.value * .72 > placed.second.value){
         // monoColor();
+        setResult('mono color result');
     } else if(placed.second.value * .89 <= placed.third.value){
-        //triColor()
+        // triColor();
+        setResult('tri color result');
     } else if(placed.first.value >= placed.second.value){
         twoColor();
     } else {
         console.log('no result');
     }
-
 }
 
 
@@ -100,9 +103,10 @@ const orzhov = ()=>{
 }
 
 const setResult = (result)=>{
+    let resultsSection = document.querySelector("#results-section");
     let totalsDiv = document.querySelector("#totals");
     let resultsDiv = document.querySelector("#results");
-
+    resultsSection.classList.remove("hiddenElement")
     totalsDiv.textContent = JSON.stringify(answers);
     resultsDiv.textContent = result;
 }

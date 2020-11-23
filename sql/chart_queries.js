@@ -196,6 +196,32 @@ group by white_counter, blue_counter, black_counter, red_counter, green_counter
 
 `;
 
+const resultColorpieSlices =
+`
+select white_counter, blue_counter, black_counter, red_counter, green_counter
+,sum(white_counter+blue_counter+black_counter+red_counter+green_counter) total_counter
+from(
+	select sum(white_counter) white_counter
+	, sum(blue_counter) blue_counter
+	, sum(black_counter) black_counter
+	, sum(red_counter) red_counter
+	, sum(green_counter) green_counter
+	from (
+		select 
+		count(answer.user_id) answers
+		, sum(white_counter) white_counter 
+		, sum(blue_counter) blue_counter
+		, sum(black_counter) black_counter
+		, sum(red_counter) red_counter
+		, sum(green_counter) green_counter
+		from answer
+		join result r1 on r1.user_id = answer.user_id
+		where  result_color like $1
+	) innerTable
+)outerTable
+group by white_counter, blue_counter, black_counter, red_counter, green_counter
+
+`;
 
 
 
@@ -208,5 +234,6 @@ exports.resultMostLike = resultMostLike;
 exports.resultLeastLike = resultLeastLike;
 exports.topWordsForResult = topWordsForResult;
 exports.bottomWordsForResult = bottomWordsForResult;
+exports.resultColorpieSlices = resultColorpieSlices;
 
 exports.fiveColorRadar = fiveColorRadar;

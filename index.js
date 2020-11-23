@@ -128,7 +128,16 @@ app.post('/charts/fiveColorRadar', (req, res)=>{
         res.send(response);
     })
 });
-
+app.post('/charts/resultColorpieSlices', (req, res)=>{
+    const client = new Client(connection);
+    let response;
+    client.connect();
+    client.query(queries.resultColorpieSlices, [`%${req.body.question_word}%`], (err, data) => {
+        err ? err.stack : response = data;
+        client.end();
+        res.send(response);
+    })
+});
 
 
 app.listen(port);

@@ -404,6 +404,72 @@ function getfiveColorRadar(){
         })
     })
 }
+let colorpieSlicesSearch = { question_word: '' };
+function getColorpieSlices(){
+    const question_word = document.getElementById('resultColorpieSlicesSearch').value;
+    colorpieSlicesSearch.question_word = question_word;
+    document.getElementById('resultColorpieSlicesChart').remove(); 
+    let canvas = document.createElement('canvas');
+    canvas.id = 'resultColorpieSlicesChart';
+    document.getElementById('resultColorpieSlicesChartContainer').append(canvas);
+    fetch('/charts/resultColorpieSlices',{
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(colorpieSlicesSearch)
+    })
+    .then(response => response.json())
+    .then(data => {
+        let colorpieSlices = data;
+        let white_counter = (colorpieSlices.rows[0].white_counter / colorpieSlices.rows[0].total_counter).toFixed(3);
+        let blue_counter = (colorpieSlices.rows[0].blue_counter / colorpieSlices.rows[0].total_counter).toFixed(3);
+        let black_counter = (colorpieSlices.rows[0].black_counter / colorpieSlices.rows[0].total_counter).toFixed(3);
+        let red_counter = (colorpieSlices.rows[0].red_counter / colorpieSlices.rows[0].total_counter).toFixed(3);
+        let green_counter = (colorpieSlices.rows[0].green_counter / colorpieSlices.rows[0].total_counter).toFixed(3);
+
+        let colorCounterArray = [
+            {name: 'white', count: white_counter},
+            {name: 'blue', count: blue_counter},
+            {name: 'black', count: black_counter},
+            {name: 'red', count: red_counter},
+            {name: 'green', count: green_counter}
+        ];
+
+        colorCounterArray.sort((a,b)=> b.count - a.count);
+
+        console.log(colorCounterArray)
+
+
+        var ctx = document.getElementById('resultColorpieSlicesChart').getContext('2d');
+        window.colorpieSlices = new Chart(ctx, {
+            type: 'pie',
+            data: {
+              labels: [colorCounterArray[0].name, colorCounterArray[1].name, colorCounterArray[2].name, colorCounterArray[3].name, colorCounterArray[4].name],
+              datasets: [{
+                backgroundColor: [colorCounterArray[0].name, colorCounterArray[1].name, colorCounterArray[2].name, colorCounterArray[3].name, colorCounterArray[4].name],
+                borderColor: 'black',
+                borderWidth: 3,
+                  label: 'Percentage of Result',
+                  data: [`${colorCounterArray[0].count*100}`, `${colorCounterArray[1].count*100}`, `${colorCounterArray[2].count*100}`, `${colorCounterArray[3].count*100}`, `${colorCounterArray[4].count*100}`]
+              }]
+              // second dataset to show the percentage of the result color popularity
+          },
+            options: {
+                responsive: true,
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: `${question_word} Radar Graph`
+                }
+            }
+        })
+    })
+}
+
 
 function randomScalingFactor(){
     return Math.floor(Math.random() * Math.floor(25))
@@ -429,12 +495,10 @@ function compareValues(key, order = 'asc') {
         // property doesn't exist on either object
         return 0;
       }
-  
       const varA = (typeof a[key] === 'string')
         ? a[key].toUpperCase() : a[key];
       const varB = (typeof b[key] === 'string')
         ? b[key].toUpperCase() : b[key];
-  
       let comparison = 0;
       if (varA > varB) {
         comparison = 1;

@@ -41,6 +41,10 @@ a h1{
     font-size: 1.7em;
 }
 
+.hiddenElement{
+    display: none;
+}
+
 .centered-text{
     text-align: center;
 }
@@ -60,7 +64,7 @@ a h1{
 .flex-center{
     justify-content: center;
 }
-.flex-space-between{
+.flex-space-around{
     justify-content: space-around;
 }
 .body-margin{

@@ -51,6 +51,22 @@
                     <canvas class="chart-container" id="topResultsChart"></canvas>
                 </div>
             </section>
+            <div class="hr-style-bottom"></div>
+            <section>
+                <div class="centered-grid">
+                    <p><b>Displays Percentage of Result Color's Color Pie Slices</b></p>
+                    <input type="button" id="resultColorpieSlices" onclick="getColorpieSlices()">View Result's ColorPie
+                </div>
+                <div>
+                    <input type="text" id="resultColorpieSlicesSearch" value="Temur">
+                </div>
+                <div>
+                    <input type="button" id="resultColorpieSlicesRandom" value="Random Word" onclick="randomColorGroup(this)">
+                </div>
+                <div id="resultColorpieSlicesChartContainer">
+                    <canvas class="chart-container" id="resultColorpieSlicesChart"></canvas>
+                </div>
+            </section> 
             <div class="hr-style-bottom margin-top-small"></div>
             <section>
                 <div class="centered-grid">
@@ -131,6 +147,7 @@
                     <canvas class="chart-container" id="resultLeastLikeChart"></canvas>
                 </div>
             </section>
+
         </section>
     </section>
 </body>

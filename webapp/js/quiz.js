@@ -31,19 +31,22 @@ const checkForCounter = ()=>{
     };
     
 const checkForAnswerValues = ()=>{
+    console.log('answer check');
     if(!localStorage.getItem("answers")){
         clearAnswers();
+        console.log('answers reset');
         localStorage.setItem("answers", JSON.stringify(answers));
      } else {
         answers = JSON.parse(localStorage.getItem("answers"));
+        console.log('answers found');
      }
-     console.log('answer check');
+     
 };
 const checkForQuestions = ()=>{
     console.log('question check');
     if(!localStorage.getItem("questions")){
        fetchQuestions().then(()=>{setMaxQuestionsDiv()});
-       console.log('questions not found')
+       console.log('questions reset')
     } else {
         console.log('questions found')
         setQuestion();
@@ -103,9 +106,19 @@ const setMaxQuestionsDiv = ()=>{
 };
 
 const resetQuiz = ()=>{
+    clearResult();
     clearCounter();
-    clearAnswers()
+    clearAnswers();
     resetQuestionWords();
+};
+
+const clearResult = ()=>{
+    let resultsSection = document.querySelector("#results-section");
+    let totalsDiv = document.querySelector("#totals");
+    let resultsDiv = document.querySelector("#results");
+    resultsSection.classList.add("hiddenElement");
+    totalsDiv.textContent = "";
+    resultsDiv.textContent = "";
 };
 
 const clearAnswers = ()=>{
