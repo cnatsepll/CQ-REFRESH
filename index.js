@@ -4,10 +4,10 @@ const app = express();
 const path = require('path');
 const { Pool, Client } = require('pg');
 const connection = {
-    user: process.env.PGUSER,
-    host: process.env.PGHOST,
+    user: 'postgres',
+    host: 'localhost',
     database: 'color_quiz',
-    password: process.env.PGPASSWORD,
+    password: 'admin',
     port: 5432
 };
 const port = 3000;
