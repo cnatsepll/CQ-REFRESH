@@ -1,11 +1,11 @@
 {
-  "name": "site_test_v_0.0.1",
+  "name": "color_quiz_v_1.0.1",
   "version": "1.0.0",
-  "description": "first try at a setup",
+  "description": "Word association quiz",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "app.js"
   },
   "author": "",
   "license": "ISC",
