@@ -1,6 +1,10 @@
 {
   "name": "color_quiz_v_1.0.1",
   "version": "1.0.0",
+  "engines": {
+    "node": "16.x",
+    "npm": "8.x"
+  },
   "description": "Word association quiz",
   "main": "app.js",
   "scripts": {
