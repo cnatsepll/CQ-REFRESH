@@ -1,6 +1,7 @@
-const bodyParser = require('body-parser');
+
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
 const path = require('path');
 const { Pool, Client } = require('pg');
 const connection = {
@@ -12,12 +13,20 @@ const connection = {
 };
 const port = 3000;
 
+// const client = new Client(connection);
+const client = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false
+    }
+  });
+
 const queries = require('./sql/chart_queries');
 
-
-
 app.use(bodyParser.json());
-app.use(express.static("webapp"))
+app.use(express.static("webapp"));
+app.listen(port);
+
 
 app.get('/', (req, res)=> {
     res.sendFile(path.join(__dirname + '/webapp/html/home.html'));
@@ -36,9 +45,7 @@ app.get('/about', (req, res)=> {
 });
 
 
-
 app.get('/charts/listAllQuestionWords', (req, res)=>{
-    const client = new Client(connection);
     let response;
     client.connect();
     client.query(queries.listAllQuestionWords, (err, data) => {
@@ -48,7 +55,6 @@ app.get('/charts/listAllQuestionWords', (req, res)=>{
     })
 });
 app.get('/charts/listAllColorGroups', (req, res)=>{
-    const client = new Client(connection);
     let response;
     client.connect();
     client.query(queries.listAllColorGroups, (err, data) => {
@@ -58,7 +64,6 @@ app.get('/charts/listAllColorGroups', (req, res)=>{
     })
 });
 app.get('/charts/topResults', (req, res)=>{
-    const client = new Client(connection);
     let response;
     client.connect();
     client.query(queries.topResult, (err, data) => {
@@ -68,7 +73,6 @@ app.get('/charts/topResults', (req, res)=>{
     })
 });
 app.get('/charts/topResultsDetailed', (req, res)=>{
-    const client = new Client(connection);
     let response;
     client.connect();
     client.query(queries.topResultsDetailed, (err, data) => {
@@ -78,8 +82,6 @@ app.get('/charts/topResultsDetailed', (req, res)=>{
     })
 });
 app.post('/charts/resultMostLike', (req, res)=>{
-    console.log(req.body)
-    const client = new Client(connection);
     let response;
     client.connect();
     client.query(queries.resultMostLike, [req.body.question_word], (err, data) => {
@@ -89,7 +91,6 @@ app.post('/charts/resultMostLike', (req, res)=>{
     })
 });
 app.post('/charts/resultLeastLike', (req, res)=>{
-    const client = new Client(connection);
     let response;
     client.connect();
     client.query(queries.resultLeastLike, [req.body.question_word], (err, data) => {
@@ -99,7 +100,6 @@ app.post('/charts/resultLeastLike', (req, res)=>{
     })
 });
 app.post('/charts/topWordsForResult', (req, res)=>{
-    const client = new Client(connection);
     let response;
     client.connect();
     client.query(queries.topWordsForResult, [req.body.question_word],(err, data) => {
@@ -109,7 +109,6 @@ app.post('/charts/topWordsForResult', (req, res)=>{
     })
 });
 app.post('/charts/bottomWordsForResult', (req, res)=>{
-    const client = new Client(connection);
     let response;
     client.connect();
     client.query(queries.bottomWordsForResult, [req.body.question_word], (err, data) => {
@@ -119,7 +118,6 @@ app.post('/charts/bottomWordsForResult', (req, res)=>{
     })
 });
 app.post('/charts/fiveColorRadar', (req, res)=>{
-    const client = new Client(connection);
     let response;
     client.connect();
     client.query(queries.fiveColorRadar, [req.body.question_word], (err, data) => {
@@ -129,7 +127,6 @@ app.post('/charts/fiveColorRadar', (req, res)=>{
     })
 });
 app.post('/charts/resultColorpieSlices', (req, res)=>{
-    const client = new Client(connection);
     let response;
     client.connect();
     client.query(queries.resultColorpieSlices, [`%${req.body.question_word}%`], (err, data) => {
@@ -140,4 +137,3 @@ app.post('/charts/resultColorpieSlices', (req, res)=>{
 });
 
 
-app.listen(port);
