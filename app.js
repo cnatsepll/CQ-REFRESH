@@ -13,13 +13,13 @@ const connection = {
 };
 const port = 3000;
 
- const client = new Client(connection);
-// const client = new Client({
-//     connectionString: process.env.DATABASE_URL,
-//     ssl: {
-//       rejectUnauthorized: false
-//     }
-//   });
+// const client = new Client(connection);
+const client = new Client({
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false
+    }
+  });
 
 const queries = require('./sql/chart_queries');
 
