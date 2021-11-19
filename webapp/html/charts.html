@@ -44,6 +44,15 @@
             <div class="hr-style-bottom margin-top-small"></div>      
             <section>
                 <div class="centered-grid">
+                    <p><h3>Most Favored Colors</h3></p>
+                    <input type="button" id="colorPopularity" onclick="mostPopularColors()">View Color Popularity
+                </div>
+                <div>
+                    <canvas class="chart-container" id="colorPopularityChart"></canvas>
+                </div>
+            </section>
+            <section>
+                <div class="centered-grid">
                     <p><h3>Most Popular Colors by User Result</h3></p>
                     <input type="button" id="topResults" onclick="getTopResults()">View Top Results
                 </div>
@@ -152,7 +161,7 @@
     </section>
 </body>
 
-<script src="https://www.chartjs.org/dist/2.9.3/Chart.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
 <script src="/js/charts.js"></script>
 
 </html>

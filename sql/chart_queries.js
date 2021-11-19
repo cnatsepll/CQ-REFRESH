@@ -167,33 +167,40 @@ limit 25
 `;
 
 const fiveColorRadar =
+//UPDATE
+//COLOR PERCENTAGES SHOULD BE RELATIVE TO EACH COLOR'S TOTAL RESPONSE TO THE WORD
+//BLUE HAS MOST TOTAL RESPONSES, NEED TO NORMALIZE
 `
-select white_counter, blue_counter, black_counter, red_counter, green_counter
-,sum(white_counter+blue_counter+black_counter+red_counter+green_counter) total_counter
-from(
-	select sum(white_counter) white_counter
-	, sum(blue_counter) blue_counter
-	, sum(black_counter) black_counter
-	, sum(red_counter) red_counter
-	, sum(green_counter) green_counter
-	from (
-		select 
-		count(answer.user_id) answers
-		, sum(white_counter) white_counter 
-		, sum(blue_counter) blue_counter
-		, sum(black_counter) black_counter
-		, sum(red_counter) red_counter
-		, sum(green_counter) green_counter
-		from answer
-		join result r1 on r1.user_id = answer.user_id
-		where 
-		question_word = $1
-		and answer_value >= 20
-		and result_color like '%Planeswalker%'
-	) innerTable
-)outerTable
-group by white_counter, blue_counter, black_counter, red_counter, green_counter
-
+select * from
+(
+select count(answer.user_id) answers
+, sum(white_counter) white_counter 
+, sum(blue_counter) blue_counter
+, sum(black_counter) black_counter
+, sum(red_counter) red_counter
+, sum(green_counter) green_counter
+, 'positive' response_value
+from answer
+join result r1 on r1.user_id = answer.user_id
+where 
+question_word = $1
+and answer_value >= 10
+union
+select 
+count(answer.user_id) answers
+, sum(white_counter) white_counter 
+, sum(blue_counter) blue_counter
+, sum(black_counter) black_counter
+, sum(red_counter) red_counter
+, sum(green_counter) green_counter
+,'negative' response_value
+from answer
+join result r1 on r1.user_id = answer.user_id
+where 
+question_word = $1
+and answer_value <= 10
+) value_gathering
+order by response_value desc
 `;
 
 const resultColorpieSlices =
@@ -223,7 +230,19 @@ group by white_counter, blue_counter, black_counter, red_counter, green_counter
 
 `;
 
+const mostFavoredColors = 
+`
+select count(answer.user_id) answers
+, sum(white_counter) white_counter 
+, sum(blue_counter) blue_counter
+, sum(black_counter) black_counter
+, sum(red_counter) red_counter
+, sum(green_counter) green_counter
+from answer
+join result r1 on r1.user_id = answer.user_id
+`;
 
+exports.mostFavoredColors = mostFavoredColors;
 
 exports.listAllQuestionWords = listAllQuestionWords;
 exports.listAllColorGroups = listAllColorGroups;
