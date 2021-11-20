@@ -99,7 +99,6 @@ a h1{
     border-radius:2px;
     box-sizing: border-box;
     text-align:center;
-    transition: all 0.2s;
     padding:0.3em 1.2em;
     margin:0 0.1em 0.1em 0;
     color: var(--nav-button-color);
@@ -122,7 +121,6 @@ a h1{
     border-radius:2px;
     box-sizing: border-box;
     text-align:center;
-    transition: all 0.2s;
     padding:0.3em 1.2em;
     margin:0 0.1em 0.1em 0;
     color: var(--nav-button-color);
@@ -144,7 +142,7 @@ a h1{
 }
 
 #header{
-    height: 5em;
+    height: 10vh;
     display: grid;
     grid-template-columns: 1fr auto;
     justify-items: left;
@@ -176,10 +174,14 @@ a h1{
 .hr-style-top{
     border-top: solid var(--hr-line) 3px;
     filter: drop-shadow(0 .1em .1em var(--card-forground));
+    width: 85vw;
+    margin: auto;
 }
 .hr-style-bottom{
     border-bottom: solid var(--hr-line) 3px;
     filter: drop-shadow(0 .1em .1em var(--card-forground));
+    width: 85vw;
+    margin: auto;
 }
 
 

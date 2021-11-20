@@ -27,7 +27,7 @@
 .section-card article{
     color: var(--bg-shade);
     text-shadow: 1px 2px 3px var(--card-forground);    
-    filter: drop-shadow(.2em .2em .2em var(--card-forground));
+    filter: drop-shadow(.1em .1em .1em var(--card-forground));
 }
 .section-card article:hover{
     color: white;

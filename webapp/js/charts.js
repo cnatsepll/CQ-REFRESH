@@ -4,6 +4,7 @@ let topResults;
 let resultMostLike;
 let selectorsQuestionWords = document.getElementById('question-words');
 let selectorsColorGroups = document.getElementById('color-groups');
+//Chart.register(ChartDataLabels);
 
 window.onload = ()=>{
     fetch('/charts/listAllQuestionWords')
@@ -54,56 +55,56 @@ window.onload = ()=>{
 // most / least aligned words
 // box and whisker plot of color type value averages for each result color
 
-function mostPopularColors(){
-    fetch('/charts/colorPopularity')
-    .then(response => response.json())
-    .then(data=>{
-        let count = [];
-        let resultColor =[];
-        let totalUsers = [];
-        for(let i = 0; i<data.rows.length; i+=1){
-            count.push(data.rows[i].user_count);
-            resultColor.push(data.rows[i].quick_name);
-            totalUsers.push(data.rows[i].total_users)
-        }
-        var ctx = document.getElementById('colorPopularity').getContext('2d');
-        window.colorPopularity = new Chart(ctx, {
-            type: 'bar',
-            data: {
-              labels: resultColor,
-              datasets: [{
-                  label: 'Most Popular Colors',
-                  borderWidth: 1,
-                  data: count
-              }
-            ]
-          },
-          options: {
-            plugins: {
-              title: {
-                display: true,
-                text: 'Chart.js Bar Chart - Stacked'
-              },
-            },
-            responsive: true,
-            scales: {
-              x: {
-                stacked: true,
-              },
-              y: {
-                stacked: true
-              }
-            }
-        }
-        })
-    })
-}
+// function mostPopularColors(){
+//     fetch('/charts/colorPopularity')
+//     .then(response => response.json())
+//     .then(data=>{
+//         let count = [];
+//         let resultColor =[];
+//         let totalUsers = [];
+//         for(let i = 0; i<data.rows.length; i+=1){
+//             count.push(data.rows[i].user_count);
+//             resultColor.push(data.rows[i].quick_name);
+//             totalUsers.push(data.rows[i].total_users)
+//         }
+//         var ctx = document.getElementById('colorPopularity').getContext('2d');
+//         window.colorPopularity = new Chart(ctx, {
+//             type: 'bar',
+//             data: {
+//               labels: resultColor,
+//               datasets: [{
+//                   label: 'Most Popular Colors',
+//                   borderWidth: 1,
+//                   data: count
+//               }
+//             ]
+//           },
+//           options: {
+//             plugins: {
+//               title: {
+//                 display: true,
+//                 text: 'Chart.js Bar Chart - Stacked'
+//               },
+//             },
+//             responsive: true,
+//             maintainAspectRatio: false,
+//             scales: {
+//               x: {
+//                 stacked: true,
+//               },
+//               y: {
+//                 stacked: true
+//               }
+//             }
+//         }
+//         })
+//     })
+// }
 function getTopResults(){
     fetch('/charts/topResults')
     .then(response => response.json())
     .then(data => {topResults = data;})
     .then(()=>{
-        console.log(topResults)
         let count = [];
         let resultColor =[];
         let totalUsers = [];
@@ -128,21 +129,13 @@ function getTopResults(){
           },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 legend: {
                     position: 'top',
                 },
                 title: {
                     display: true,
                     text: 'Top Quiz Results'
-                },
-                scales: {
-                    xAxes: [{
-                        display: true,
-                    }],
-                    yAxes: [{
-                        display: true,
-                        type: 'linear'
-                    }]
                 }
             }
         })
@@ -153,7 +146,6 @@ function getTopResultsDetailed(){
     .then(response => response.json())
     .then(data => {topResults = data;})
     .then(()=>{
-        console.log(topResults)
     })
 }
 
@@ -176,14 +168,12 @@ function getResultMostLike(){
     .then(response => response.json())
     .then(data => {resultMostLike = data;})
     .then(()=>{
-        console.log(resultMostLike)
         let count = [];
         let resultColor =[];
         for(let i = 0; i<resultMostLike.rows.length; i+=1){
             count.push(resultMostLike.rows[i].percent_difference);
             resultColor.push(resultMostLike.rows[i].quick_name);
         }
-        console.log(count);
         var ctx = document.getElementById('resultMostLikeChart').getContext('2d');
         window.resultMostLike = new Chart(ctx, {
             type: 'bar',
@@ -200,6 +190,7 @@ function getResultMostLike(){
           },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 legend: {
                     position: 'top',
                 },
@@ -234,14 +225,12 @@ function getResultLeastLike(){
     .then(response => response.json())
     .then(data => {resultLeastLike = data;})
     .then(()=>{
-        console.log(resultLeastLike)
         let count = [];
         let resultColor =[];
         for(let i = 0; i<resultLeastLike.rows.length; i+=1){
             count.push(resultLeastLike.rows[i].percent_difference);
             resultColor.push(resultLeastLike.rows[i].quick_name);
         }
-        console.log(count);
         var ctx = document.getElementById('resultLeastLikeChart').getContext('2d');
         window.resultLeastLike = new Chart(ctx, {
             type: 'bar',
@@ -258,6 +247,7 @@ function getResultLeastLike(){
           },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 legend: {
                     position: 'top',
                 },
@@ -289,14 +279,28 @@ function getTopWordsForResult(){
     .then(response => response.json())
     .then(data => {topWordsForResult = data;})
     .then(()=>{
-        console.log(topWordsForResult)
         let count = [];
-        let resultColor =[];
+        let resultColor = [];
+        let barColor = [];
         for(let i = 0; i<topWordsForResult.rows.length; i+=1){
             count.push(topWordsForResult.rows[i].sum);
             resultColor.push(topWordsForResult.rows[i].question_word);
+            if(topWordsForResult.rows[i].color_type_key == 'w'){
+                barColor.push('white')
+            }
+            if(topWordsForResult.rows[i].color_type_key == 'u'){
+                barColor.push('blue')
+            }
+            if(topWordsForResult.rows[i].color_type_key == 'b'){
+                barColor.push('black')
+            }
+            if(topWordsForResult.rows[i].color_type_key == 'r'){
+                barColor.push('red')
+            }
+            if(topWordsForResult.rows[i].color_type_key == 'g'){
+                barColor.push('green')
+            }
         }
-        console.log(count);
         var ctx = document.getElementById('topWordsForResultChart').getContext('2d');
         window.topWordsForResult = new Chart(ctx, {
             type: 'bar',
@@ -304,8 +308,8 @@ function getTopWordsForResult(){
               labels: resultColor,
               datasets: [{
                   label: 'Dataset 1',
-                  backgroundColor: "rgb(255,255,0)",
-                  borderColor: "rgb(255,255,0)",
+                  backgroundColor: barColor,
+                  borderColor: "black",
                   borderWidth: 1,
                   data: count
               }]
@@ -313,6 +317,7 @@ function getTopWordsForResult(){
           },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 legend: {
                     position: 'top',
                 },
@@ -343,14 +348,28 @@ function getBottomWordsForResult(){
     .then(response => response.json())
     .then(data => {bottomWordsForResult = data;})
     .then(()=>{
-        console.log(bottomWordsForResult)
         let count = [];
         let resultColor =[];
+        let barColor = [];
         for(let i = 0; i<bottomWordsForResult.rows.length; i+=1){
             count.push(bottomWordsForResult.rows[i].sum);
             resultColor.push(bottomWordsForResult.rows[i].question_word);
+            if(bottomWordsForResult.rows[i].color_type_key == 'w'){
+                barColor.push('white')
+            }
+            if(bottomWordsForResult.rows[i].color_type_key == 'u'){
+                barColor.push('blue')
+            }
+            if(bottomWordsForResult.rows[i].color_type_key == 'b'){
+                barColor.push('black')
+            }
+            if(bottomWordsForResult.rows[i].color_type_key == 'r'){
+                barColor.push('red')
+            }
+            if(bottomWordsForResult.rows[i].color_type_key == 'g'){
+                barColor.push('green')
+            }
         }
-        console.log(count);
         var ctx = document.getElementById('bottomWordsForResultChart').getContext('2d');
         window.bottomWordsForResult = new Chart(ctx, {
             type: 'bar',
@@ -358,8 +377,8 @@ function getBottomWordsForResult(){
               labels: resultColor,
               datasets: [{
                   label: 'Dataset 1',
-                  backgroundColor: "rgb(255,155,0)",
-                  borderColor: "rgb(255,155,0)",
+                  backgroundColor: barColor,
+                  borderColor: "black",
                   borderWidth: 1,
                   data: count
               }]
@@ -367,6 +386,7 @@ function getBottomWordsForResult(){
           },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 legend: {
                     position: 'top',
                 },
@@ -397,12 +417,16 @@ function getfiveColorRadar(){
     })
     .then(response => response.json())
     .then(data => {fiveColorRadar = data;
-        let white_counter = (fiveColorRadar.rows[0].white_counter / (parseInt(fiveColorRadar.rows[1].white_counter) + parseInt(fiveColorRadar.rows[0].white_counter))).toFixed(3);
-        let blue_counter = (fiveColorRadar.rows[0].blue_counter / (parseInt(fiveColorRadar.rows[1].blue_counter) + parseInt(fiveColorRadar.rows[0].blue_counter))).toFixed(3);
-        let black_counter = (fiveColorRadar.rows[0].black_counter / (parseInt(fiveColorRadar.rows[1].black_counter) + parseInt(fiveColorRadar.rows[0].black_counter))).toFixed(3);
-        let red_counter = (fiveColorRadar.rows[0].red_counter / (parseInt(fiveColorRadar.rows[1].red_counter) + parseInt(fiveColorRadar.rows[0].red_counter))).toFixed(3);
-        let green_counter = (fiveColorRadar.rows[0].green_counter / (parseInt(fiveColorRadar.rows[1].green_counter) + parseInt(fiveColorRadar.rows[0].green_counter))).toFixed(3);
-
+        // let white_counter = (fiveColorRadar.rows[0].white_counter / (parseInt(fiveColorRadar.rows[1].white_counter) + parseInt(fiveColorRadar.rows[0].white_counter))).toFixed(3);
+        // let blue_counter = (fiveColorRadar.rows[0].blue_counter / (parseInt(fiveColorRadar.rows[1].blue_counter) + parseInt(fiveColorRadar.rows[0].blue_counter))).toFixed(3);
+        // let black_counter = (fiveColorRadar.rows[0].black_counter / (parseInt(fiveColorRadar.rows[1].black_counter) + parseInt(fiveColorRadar.rows[0].black_counter))).toFixed(3);
+        // let red_counter = (fiveColorRadar.rows[0].red_counter / (parseInt(fiveColorRadar.rows[1].red_counter) + parseInt(fiveColorRadar.rows[0].red_counter))).toFixed(3);
+        // let green_counter = (fiveColorRadar.rows[0].green_counter / (parseInt(fiveColorRadar.rows[1].green_counter) + parseInt(fiveColorRadar.rows[0].green_counter))).toFixed(3);
+        let white_counter = (fiveColorRadar.rows[0].white_counter / (parseInt(fiveColorRadar.rows[1].white_counter)));
+        let blue_counter = (fiveColorRadar.rows[0].blue_counter / (parseInt(fiveColorRadar.rows[1].blue_counter)));
+        let black_counter = (fiveColorRadar.rows[0].black_counter / (parseInt(fiveColorRadar.rows[1].black_counter)));
+        let red_counter = (fiveColorRadar.rows[0].red_counter / (parseInt(fiveColorRadar.rows[1].red_counter)));
+        let green_counter = (fiveColorRadar.rows[0].green_counter / (parseInt(fiveColorRadar.rows[1].green_counter)));
         let colorCounterArray = [
             {name: 'white', count: white_counter},
             {name: 'blue', count: blue_counter},
@@ -410,8 +434,6 @@ function getfiveColorRadar(){
             {name: 'red', count: red_counter},
             {name: 'green', count: green_counter}
         ];
-        console.log(colorCounterArray);
-
         colorCounterArray.sort((a,b)=> b.count - a.count);
         var ctx = document.getElementById('fiveColorRadarChart').getContext('2d');
         window.fiveColorRadar = new Chart(ctx, {
@@ -423,12 +445,13 @@ function getfiveColorRadar(){
                   backgroundColor: colorCounterArray[0].name,
                   borderColor: colorCounterArray[1].name,
                   borderWidth: 3,
-                  data: [`${white_counter*100}`, `${blue_counter*100}`, `${black_counter*100}`, `${red_counter*100}`, `${green_counter*100}`]
+                  data: [`${(white_counter*100).toFixed(1)}`, `${(blue_counter*100).toFixed(1)}`, `${(black_counter*100).toFixed(1)}`, `${(red_counter*100).toFixed(1)}`, `${(green_counter*100).toFixed(1)}`]
               }]
               // second dataset to show the percentage of the result color popularity
-          },
+            },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 legend: {
                     position: 'top',
                 },
@@ -439,6 +462,17 @@ function getfiveColorRadar(){
                 scale: {
                     pointLabels :{
                        fontStyle: "bold",
+                    }
+                },
+                plugins:{
+                    datalabels: {
+                        backgroundColor: 'black',
+                        color: 'white',
+                        weight: 'bold',
+                        formatter: Math.round,
+                        formatter: function(value, context) {
+                            return context.chart.data.labels[context.value];
+                        }
                     }
                 }
             }
@@ -477,12 +511,7 @@ function getColorpieSlices(){
             {name: 'red', count: red_counter},
             {name: 'green', count: green_counter}
         ];
-
         colorCounterArray.sort((a,b)=> b.count - a.count);
-
-        console.log(colorCounterArray)
-
-
         var ctx = document.getElementById('resultColorpieSlicesChart').getContext('2d');
         window.colorpieSlices = new Chart(ctx, {
             type: 'pie',
@@ -493,12 +522,13 @@ function getColorpieSlices(){
                 borderColor: 'black',
                 borderWidth: 3,
                   label: 'Percentage of Result',
-                  data: [`${colorCounterArray[0].count*100}`, `${colorCounterArray[1].count*100}`, `${colorCounterArray[2].count*100}`, `${colorCounterArray[3].count*100}`, `${colorCounterArray[4].count*100}`]
+                  data: [`${(colorCounterArray[0].count*100).toFixed(1)}`, `${(colorCounterArray[1].count*100).toFixed(1)}`, `${(colorCounterArray[2].count*100).toFixed(1)}`, `${(colorCounterArray[3].count*100).toFixed(1)}`, `${(colorCounterArray[4].count*100).toFixed(1)}`]
               }]
               // second dataset to show the percentage of the result color popularity
           },
             options: {
                 responsive: true,
+                maintainAspectRatio: false,
                 legend: {
                     position: 'top',
                 },

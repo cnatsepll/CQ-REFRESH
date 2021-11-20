@@ -26,7 +26,7 @@ select quick_name, color_group from color_definitions;
 
 const topResultsDetailed = `
 SELECT COUNT(result.user_id) user_count, result_color, color_group, quick_name
-,(SELECT count(user_id) FROM result WHERE result_color LIKE '%Planeswalker%')total_users
+,(SELECT count(user_id) FROM result)total_users
 FROM result 
 LEFT JOIN users ON (result.user_id = users.user_id) 
 join color_definitions on result.result_color like concat('%',color_definitions.quick_name,'%')
@@ -36,7 +36,7 @@ ORDER BY user_count DESC
 
 const topResult = `
 SELECT COUNT(result.user_id) user_count, quick_name
-,(SELECT count(user_id) FROM result WHERE result_color LIKE '%Planeswalker%')total_users
+,(SELECT count(user_id) FROM result)total_users
 FROM result 
 LEFT JOIN users ON (result.user_id = users.user_id) 
 join color_definitions on result.result_color like concat('%',color_definitions.quick_name,'%')
@@ -56,8 +56,7 @@ from (
 	join color_definitions on r1.result_color like concat('%',color_definitions.quick_name,'%')
 	where 
 	question_word = $1
-	and answer_value >= 15
-	and result_color like '%Planeswalker%'
+	and answer_value > 5
 	group by quick_name
 ) innerTable
 order by percent_difference desc`;
@@ -71,8 +70,7 @@ from answer
 join result r1 on r1.user_id = answer.user_id
 where 
 question_word = $1 
-and answer_value >= 15
-and result_color like '%Planeswalker%'
+and answer_value > 5
 group by result_color
 ) innerTable
 order by percent_difference desc`;
@@ -89,8 +87,7 @@ from (
 	join color_definitions on r1.result_color like concat('%',color_definitions.quick_name,'%')
 	where 
 	question_word = $1
-	and answer_value <= 10
-	and result_color like '%Planeswalker%'
+	and answer_value < 5
 	group by quick_name
 ) innerTable
 order by percent_difference desc`;
@@ -104,14 +101,13 @@ from answer
 join result r1 on r1.user_id = answer.user_id
 where 
 question_word = $1
-and answer_value <= 10
-and result_color like '%Planeswalker%'
+and answer_value < 5
 group by result_color
 ) innerTable
 order by percent_difference desc`;
 
 const topWordsForResult = `
-select count(answer.user_id), question_word, sum(answer_value)
+select count(answer.user_id), question_word, sum(answer_value), color_type_key
 from answer
 join result on answer.user_id = result.user_id
 where 
@@ -133,13 +129,13 @@ from white_questions
 )
 and 
 result_color like concat('%',$1::text,'%')
-group by question_word
+group by question_word, color_type_key
 order by sum desc
-limit 25
+limit 30
 `;
 
 const bottomWordsForResult = `
-select count(answer.user_id), question_word, sum(answer_value)
+select count(answer.user_id), question_word, sum(answer_value), color_type_key
 from answer
 join result on answer.user_id = result.user_id
 where 
@@ -161,15 +157,12 @@ from white_questions
 )
 and 
 result_color like concat('%',$1::text,'%')
-group by question_word
-order by sum asc
-limit 25
+group by question_word, color_type_key
+order by sum asc 
+limit 30
 `;
 
 const fiveColorRadar =
-//UPDATE
-//COLOR PERCENTAGES SHOULD BE RELATIVE TO EACH COLOR'S TOTAL RESPONSE TO THE WORD
-//BLUE HAS MOST TOTAL RESPONSES, NEED TO NORMALIZE
 `
 select * from
 (
@@ -184,7 +177,7 @@ from answer
 join result r1 on r1.user_id = answer.user_id
 where 
 question_word = $1
-and answer_value >= 10
+and answer_value > 5
 union
 select 
 count(answer.user_id) answers
@@ -198,7 +191,6 @@ from answer
 join result r1 on r1.user_id = answer.user_id
 where 
 question_word = $1
-and answer_value <= 10
 ) value_gathering
 order by response_value desc
 `;

@@ -16,11 +16,11 @@ const connection = {
       rejectUnauthorized: false
     }
   };
+
 const port = process.env.PORT || 3000;
 
 
 const queries = require('./sql/chart_queries');
-
 
 
 app.use(bodyParser.json());
@@ -85,7 +85,6 @@ app.get('/charts/topResultsDetailed', (req, res)=>{
     })
 });
 app.post('/charts/resultMostLike', (req, res)=>{
-    console.log(req.body)
     const client = new Client(connection);
     let response;
     client.connect();
