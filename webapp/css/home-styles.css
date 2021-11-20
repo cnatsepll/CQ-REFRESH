@@ -10,14 +10,10 @@
     background: var(--card-background);
     border: 4px solid transparent;
     border-radius: 2px;
-    -webkit-transition: all 0.09s ease-out;
-    transition: all 0.09s ease-in-out;
     filter: drop-shadow(0 .1em .1em var(--card-forground))
 }
 .section-card:hover{
     border: 4px solid var(--action-hover-1);
-    -webkit-transition: all 0.09s ease-in-out;
-    transition: all 0.09s ease-in-out;
     text-shadow: none;
     box-shadow: 
     inset 0 -3em 3em rgba(85,85,85,0.12), 
