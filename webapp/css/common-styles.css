@@ -89,7 +89,6 @@ a h1{
     cursor: pointer;    
 }
 .nav-button{
-    -webkit-user-select: none;
     cursor: pointer; 
     font-family:'Roboto',sans-serif;
     font-size: 1.1em;
@@ -111,7 +110,6 @@ a h1{
 }
 
 .option-button{
-    -webkit-user-select: none;
     cursor: pointer; 
     font-family:'Roboto',sans-serif;
     font-size: 1.1em;
