@@ -76,7 +76,7 @@
 
 #results-section{
     grid-area: results;
-    margin-top: 8vh;
+    margin: 5em 1em 1em 1em;
 }
 #calculate-div{
     margin-top:1em;
