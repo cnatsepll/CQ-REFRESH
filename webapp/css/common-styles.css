@@ -217,3 +217,7 @@ a h1{
     overflow: hidden;
     background-color: #f1f1f1;
   }
+
+  input{
+    -webkit-appearance: none !important;
+  }
