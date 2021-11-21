@@ -21,7 +21,7 @@
 .chart-container{
     display: inline-block;
     position: relative; 
-    height: 45vh; 
+    height: 47vh; 
     min-width: 806px;
     max-width: 80vw;
     margin: auto;
@@ -100,6 +100,7 @@
 .query{
     border-radius: 3px;
     margin-top: .5em;
+    padding: .5em;
     color: darkblue;
     background-color: lightgreen;
 }
