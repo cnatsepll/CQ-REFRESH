@@ -3,7 +3,7 @@
     height: 85vh;
     text-align: center;
     margin: auto;
-    min-width: 55ch;
+    min-width: 50ch;
     max-width: 100ch;
     display: grid;
     grid-template: 
@@ -86,10 +86,10 @@
         flex-direction: column;
     }
     #question{
-        margin: 2em 0 1em 0;
+        margin: 2em 0 1.5em 0;
     }
     .response-button{
-        margin-top: 1em;
-        margin-bottom: 1em;
+        margin-top: .5em;
+        margin-bottom: .5em;
     }
 }
