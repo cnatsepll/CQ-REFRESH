@@ -164,7 +164,7 @@ a h1{
 }
 #headerH1{
     color: var(--nav-button-color);
-    width: 20ch;
+    width: 40ch;
     text-align: center;
 }
 
