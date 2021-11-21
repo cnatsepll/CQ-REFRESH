@@ -3,7 +3,7 @@
     height: 85vh;
     text-align: center;
     margin: auto;
-    min-width: 50ch;
+    min-width: 45ch;
     max-width: 100ch;
     display: grid;
     grid-template: 
@@ -46,7 +46,7 @@
     grid-area: response;
 }
 #quiz-response{
-    margin-top: 6vh;
+    margin-top: 1em;
 }
 .response-button{
     cursor: pointer; 
