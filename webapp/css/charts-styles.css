@@ -97,19 +97,12 @@
     text-align: center;
 }
 
-.query{
-    border-radius: 3px;
-    margin-top: .5em;
-    height: 2em;
-    text-align: center;
-    color: darkblue;
-    background-color: lightgreen;
-}
+
 
 .disabled-button{
         pointer-events: none;
-        color: rgb(206, 206, 206);
-        background-color: rgb(129, 126, 126);
+        color: rgb(211, 211, 211);
+        background-color: rgb(126, 124, 124);
 }
 
 input{
@@ -118,9 +111,18 @@ input{
     cursor: pointer;
     text-decoration: none;
     border: 0.16em solid rgba(255,255,255,0);
-    border-radius: 2px;
+    border-radius: 3px;
     box-sizing: border-box;
     text-align: center;
     padding: 0.2em 0.5em;
     color: var(--nav-button-color)
+}
+
+.query{
+    border-radius: 3px;
+    margin-top: .5em;
+    height: 2em;
+    text-align: center;
+    color: white;
+    background-color: #699969;
 }
