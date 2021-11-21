@@ -3,14 +3,13 @@
     height: 85vh;
     text-align: center;
     margin: auto;
-    min-width: 60ch;
-    max-width: 135ch;
+    min-width: 55ch;
+    max-width: 100ch;
     display: grid;
-    grid-gap: 1rem;
     grid-template: 
-    "info info info info"
-    "left-options response response right-options"
-    "left-options results results right-options"
+    " info info "
+    "response response"
+    " results results"
     ;
     grid-template-rows: 15vh auto;
     grid-template-columns:auto auto;
@@ -18,7 +17,7 @@
 
 #instruction-reminder{
     margin-top: 1em;
-    font-size: 1em;
+    font-size: .9em;
 }
 
 #question{
@@ -47,19 +46,19 @@
     grid-area: response;
 }
 #quiz-response{
-    margin-top: 8vh;
+    margin-top: 6vh;
 }
 .response-button{
     cursor: pointer; 
     font-family:'Roboto',sans-serif;
-    font-size: 1.1em;
+    font-size: 1em;
     text-decoration: none;  
     display:inline-block;
     border:0.16em solid rgba(255,255,255,0);
     border-radius:2px;
     box-sizing: border-box;
     text-align:center;
-    padding:0.3em 1.2em;
+    padding:0.2em 0.5em;
     color: var(--nav-button-color);
 }
 .response-button:hover {
@@ -73,7 +72,7 @@
     border: 3px solid;
     border-radius: 3px;
     height: fit-content;
-    padding: .6em;
+    padding: .5em;
 }
 
 #results-section{

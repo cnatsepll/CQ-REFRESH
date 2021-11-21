@@ -27,6 +27,8 @@ body{
     font-family: 'NotoSans', Arial, sans-serif;
     color: var(--body-text-color);
     background-color: var(--bg-shade);
+    margin: 0;
+    padding: 0;
 }
 
 a{
@@ -97,7 +99,7 @@ a h1{
 .nav-button{
     cursor: pointer; 
     font-family:'Roboto',sans-serif;
-    font-size: .9em;
+    font-size: .8em;
     text-decoration: none;  
     display:inline-block;
     border:0.16em solid rgba(255,255,255,0);
