@@ -66,6 +66,9 @@ a h1{
 .flex{
     display: flex;
 }
+.flex-column{
+    flex-direction: column;
+}
 .flex-start{
     justify-self: start;
 }
@@ -79,7 +82,7 @@ a h1{
     justify-content: space-around;
 }
 .body-margin{
-    padding: 0 8% 0 8%;
+    padding: 0 4% 0 4%;
 }
 
 .margin-bottom-large{
@@ -102,7 +105,7 @@ a h1{
 .nav-button{
     cursor: pointer; 
     font-family:'Roboto',sans-serif;
-    font-size: .8em;
+    font-size: .9em;
     text-decoration: none;  
     display:inline-block;
     border:0.16em solid rgba(255,255,255,0);
