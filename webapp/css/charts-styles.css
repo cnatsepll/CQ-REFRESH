@@ -1,5 +1,6 @@
 
 #chart-page{
+    overflow-x: hidden;
     overflow-y:auto;
     height: 88vh;
 }
@@ -7,16 +8,18 @@
 #chart-group{
     text-align: center;
     margin: auto;
-    display: grid;
-    grid-template-columns:auto;
-    grid-template-rows: auto;
-    grid-gap: 1rem;
+    display: flex;
+    flex-direction: column;
 }
 .chart-container-wrapper{
+    margin: auto;
     max-width: 95%;
     overflow-x: auto;
+    white-space: nowrap; 
+
 }
 .chart-container{
+    display: inline-block;
     position: relative; 
     height: 45vh; 
     min-width: 806px;
