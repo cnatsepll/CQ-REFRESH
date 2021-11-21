@@ -39,36 +39,7 @@
         </section>
 
         <section id="chart-group">      
-            <section>
-                <div class="centered-grid">
-                    <p><h3>Most Popular Colors by User Result</h3></p>
-                </div>
-                <div class="flex flex-center">
-                    <input value="View Top Results" type="button" id="topResults" onclick="getTopResults()">
-                </div>
-                <div class="chart-container-wrapper">
-                    <div class="chart-container">
-                        <canvas id="topResultsChart"></canvas>
-                    </div>
-                </div>
-            </section>
-            <div class="hr-style-bottom"></div>
-            <section>
-                <div class="centered-grid">
-                    <p><b>Displays Percentage of Result Color's Color Pie Slices</b></p>
-                </div>
-                <div class="flex flex-center">
-                    <input value="View Group's ColorPie" type="button" id="resultColorpieSlices" onclick="getColorpieSlices()">
-                    <input type="text" id="resultColorpieSlicesSearch" value="Temur">
-                    <input type="button" id="resultColorpieSlicesRandom" value="Random Color Group" onclick="randomColorGroup(this)">
-                </div>
-                <div class="chart-container-wrapper">
-                    <div class="chart-container-sized"  id="resultColorpieSlicesChartContainer">
-                        <canvas id="resultColorpieSlicesChart"></canvas>
-                    </div>
-                </div>
-            </section> 
-            <div class="hr-style-bottom margin-top-small"></div>
+
             <section>
                 <div class="centered-grid">
                     <p><h3>Percent of User's Result Color Values Who Answered Strongly in Favor With the Question</h3></p>
@@ -81,38 +52,6 @@
                 <div class="chart-container-wrapper">
                     <div class="chart-container-sized" id="fiveColorRadarChartContainer">
                         <canvas id="fiveColorRadarChart"></canvas>
-                    </div>
-                </div>
-            </section>
-            <div class="hr-style-bottom"></div>
-            <section>
-                <div class="centered-grid">
-                    <p><b>Total Users by Color Who Favored the Question Term</b></p>
-                </div>
-                <div class="flex flex-center">
-                    <input value="View Result Profile's favored words"  type="button" id="topWordsForResult" onclick="getTopWordsForResult()">
-                    <input type="text" id="topWordsForResultSearch" value="Jund">
-                    <input type="button" id="topWordsForResultRandom" value="Random Color Group" onclick="randomColorGroup(this)">
-                </div>
-                <div class="chart-container-wrapper">
-                    <div class="chart-container" id="topWordsForResultChartContainer">
-                        <canvas id="topWordsForResultChart"></canvas>
-                    </div>
-                </div>
-            </section>
-            <div class="hr-style-bottom"></div>
-            <section>
-                <div class="centered-grid">
-                    <p><b>Total Users by Color Who Opposed the Question Term</b></p>
-                </div>
-                <div class="flex flex-center">
-                    <input value="View Result Profile's disliked words"  type="button" id="bottomWordsForResult" onclick="getBottomWordsForResult()">
-                    <input type="text" id="bottomWordsForResultSearch" value="Jund">
-                    <input type="button" id="bottomWordsForResultRandom" value="Random Color Group" onclick="randomColorGroup(this)">
-                </div>
-                <div class="chart-container-wrapper">
-                    <div class="chart-container" id="bottomWordsForResultChartContainer">
-                        <canvas id="bottomWordsForResultChart"></canvas>
                     </div>
                 </div>
             </section>
@@ -148,6 +87,72 @@
                     </div>
                 </div>
             </section>
+
+            <section>
+                <div class="centered-grid">
+                    <p><h3>Most Popular Colors by User Result</h3></p>
+                </div>
+                <div class="flex flex-center">
+                    <input value="View Top Results" type="button" id="topResults" onclick="getTopResults()">
+                </div>
+                <div class="chart-container-wrapper">
+                    <div class="chart-container">
+                        <canvas id="topResultsChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <div class="hr-style-bottom"></div>
+            <section>
+                <div class="centered-grid">
+                    <p><b>Displays Percentage of Result Color's Color Pie Slices</b></p>
+                </div>
+                <div class="flex flex-center">
+                    <input value="View Group's ColorPie" type="button" id="resultColorpieSlices" onclick="getColorpieSlices()">
+                    <input type="text" id="resultColorpieSlicesSearch" value="Temur">
+                    <input type="button" id="resultColorpieSlicesRandom" value="Random Color Group" onclick="randomColorGroup(this)">
+                </div>
+                <div class="chart-container-wrapper">
+                    <div class="chart-container-sized"  id="resultColorpieSlicesChartContainer">
+                        <canvas id="resultColorpieSlicesChart"></canvas>
+                    </div>
+                </div>
+            </section> 
+            <div class="hr-style-bottom margin-top-small"></div>
+            
+            <div class="hr-style-bottom"></div>
+            <section>
+                <div class="centered-grid">
+                    <p><b>Total Users by Color Who Favored the Question Term</b></p>
+                </div>
+                <div class="flex flex-center">
+                    <input value="View Result Profile's favored words"  type="button" id="topWordsForResult" onclick="getTopWordsForResult()">
+                    <input type="text" id="topWordsForResultSearch" value="Jund">
+                    <input type="button" id="topWordsForResultRandom" value="Random Color Group" onclick="randomColorGroup(this)">
+                </div>
+                <div class="chart-container-wrapper">
+                    <div class="chart-container" id="topWordsForResultChartContainer">
+                        <canvas id="topWordsForResultChart"></canvas>
+                    </div>
+                </div>
+            </section>
+            <div class="hr-style-bottom"></div>
+            <section>
+                <div class="centered-grid">
+                    <p><b>Total Users by Color Who Opposed the Question Term</b></p>
+                </div>
+                <div class="flex flex-center">
+                    <input value="View Result Profile's disliked words"  type="button" id="bottomWordsForResult" onclick="getBottomWordsForResult()">
+                    <input type="text" id="bottomWordsForResultSearch" value="Jund">
+                    <input type="button" id="bottomWordsForResultRandom" value="Random Color Group" onclick="randomColorGroup(this)">
+                </div>
+                <div class="chart-container-wrapper">
+                    <div class="chart-container" id="bottomWordsForResultChartContainer">
+                        <canvas id="bottomWordsForResultChart"></canvas>
+                    </div>
+                </div>
+            </section>
+           
 
         </section>
     </section>
