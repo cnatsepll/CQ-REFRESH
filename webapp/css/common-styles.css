@@ -103,6 +103,7 @@ a h1{
     cursor: pointer;    
 }
 .nav-button{
+    width: 11ch;
     cursor: pointer; 
     font-family:'Roboto',sans-serif;
     font-size: .8em;
