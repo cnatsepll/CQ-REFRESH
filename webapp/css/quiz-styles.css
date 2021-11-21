@@ -3,7 +3,6 @@
     height: 85vh;
     text-align: center;
     margin: auto;
-    min-width: 45ch;
     max-width: 100ch;
     display: grid;
     grid-template: 
@@ -46,7 +45,7 @@
     grid-area: response;
 }
 #quiz-response{
-    margin-top: 1em;
+    margin: 1em;
 }
 .response-button{
     cursor: pointer; 
@@ -79,7 +78,9 @@
     grid-area: results;
     margin-top: 8vh;
 }
-
+#calculate-div{
+    margin-top:1em;
+}
 
 @media only screen and (max-width:750px) {
     #answerRow{
@@ -87,6 +88,9 @@
     }
     #question{
         margin: 2em 0 1.5em 0;
+    }
+    #quiz-response{
+        margin: 1em;
     }
     .response-button{
         margin-top: .5em;
