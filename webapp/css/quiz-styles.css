@@ -4,14 +4,6 @@
     text-align: center;
     margin: auto;
     max-width: 100ch;
-    display: grid;
-    grid-template: 
-    " info info "
-    "response response"
-    " results results"
-    ;
-    grid-template-rows: 15vh auto;
-    grid-template-columns:auto auto;
 }
 
 #instruction-reminder{
