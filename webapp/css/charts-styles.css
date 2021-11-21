@@ -26,6 +26,13 @@
     max-width: 80vw;
     margin: auto;
 }
+.chart-container-sized{
+    display: inline-block;
+    position: relative; 
+    height: 45vh; 
+    max-width: 80vw;
+    margin: auto;
+}
 
 #selectors{
     margin: auto;
