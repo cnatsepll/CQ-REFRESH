@@ -9,7 +9,7 @@
 }
 
 :root{
-    --bg-shade: rgb(250 250 250);
+    --bg-shade: rgb(249 249 248);
     --body-text-color: rgb(110 110 110);
     --nav-button-color: rgb(95 95 95);
     --action-hover-1: rgba(75 75 75 / 75%);
@@ -197,7 +197,7 @@ a h1{
 }
 
 .collapsible {
-    background-color: #777;
+    background-color: #838383;
     color: white;
     cursor: pointer;
     padding: 18px;
