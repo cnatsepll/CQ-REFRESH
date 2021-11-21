@@ -176,7 +176,7 @@ function getResultMostLike(){
             data: {
               labels: resultColor,
               datasets: [{
-                  label: 'Dataset 1',
+                  label: 'question_word',
                   backgroundColor: "rgb(0,0,255)",
                   borderColor: "rgb(0,0,255)",
                   borderWidth: 1,
@@ -235,7 +235,7 @@ function getResultLeastLike(){
             data: {
               labels: resultColor,
               datasets: [{
-                  label: 'Dataset 1',
+                  label: 'question_word',
                   backgroundColor: "rgb(0,255,0)",
                   borderColor: "rgb(0,255,0)",
                   borderWidth: 1,
@@ -307,7 +307,7 @@ function getTopWordsForResult(){
             data: {
               labels: resultColor,
               datasets: [{
-                  label: 'Dataset 1',
+                  label: question_word,
                   backgroundColor: barColor,
                   borderColor: "black",
                   borderWidth: 1,
@@ -378,7 +378,7 @@ function getBottomWordsForResult(){
             data: {
               labels: resultColor,
               datasets: [{
-                  label: 'Dataset 1',
+                  label: 'question_word',
                   backgroundColor: barColor,
                   borderColor: "black",
                   borderWidth: 1,

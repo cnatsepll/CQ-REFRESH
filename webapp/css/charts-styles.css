@@ -109,7 +109,7 @@
 .disabled-button{
         pointer-events: none;
         color: rgb(206, 206, 206);
-        background-color: rgb(143, 140, 140);
+        background-color: rgb(129, 126, 126);
 }
 
 input{
