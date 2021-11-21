@@ -28,7 +28,7 @@
 }
 .chart-container-sized{
     position: relative; 
-    height: 45vh; 
+    height: 50vh; 
     max-width: 80vw;
     margin: auto;
 }
@@ -99,15 +99,15 @@
 
 
 input{
-    margin: .5em;
-    font-size: 1em;
+    margin: .3em;
+    font-size: .9em;
     cursor: pointer;
     text-decoration: none;
     border: 0.16em solid rgba(255,255,255,0);
     border-radius: 3px;
     box-sizing: border-box;
     text-align: center;
-    padding: 0.2em 0.5em;
+    padding: 0.2em 0.4em;
     color: var(--nav-button-color)
 }
 
