@@ -100,14 +100,19 @@
 .query{
     border-radius: 3px;
     margin-top: .5em;
-    padding: .5em;
+    height: 2em;
+    text-align: center;
     color: darkblue;
     background-color: lightgreen;
 }
 
 .disabled-button{
-    cursor: not-allowed;
+    
         pointer-events: none;
         color: white;
         background-color: gray;
+}
+
+input[type=button]{
+    cursor: pointer;
 }
