@@ -25,23 +25,20 @@
             </div>
         </nav>    
     </section>
+
     <section id="chart-page">
         <section id="selectors">
-            <div  class="centered-text">
-                <b>Question Word - Word Bank</b>
-            </div>
-            <div id="word-bank">
+            <button type="button" class="centered-text collapsible">Question Word - Word Bank</button>
+            <div id="word-bank" class="collapsible-content">
                 <div id="question-words"></div>
             </div>
-            <div  class="centered-text">
-                <b>Result Color - Word Bank</b>
-            </div>
-            <div id="group-bank">
+            <button type="button" class="centered-text collapsible">Result Color - Word Bank</button>
+            <div id="group-bank" class="collapsible-content">
                 <div id="color-groups"></div>
             </div>
         </section>
+
         <section id="chart-group">      
-            <div class="hr-style-bottom margin-top-small"></div>
             <section>
                 <div class="centered-grid">
                     <p><h3>Most Popular Colors by User Result</h3></p>
@@ -49,8 +46,10 @@
                 <div class="flex flex-center">
                     <input value="View Top Results" type="button" id="topResults" onclick="getTopResults()">
                 </div>
-                <div class="chart-container">
-                    <canvas id="topResultsChart"></canvas>
+                <div class="chart-container-wrapper">
+                    <div class="chart-container">
+                        <canvas id="topResultsChart"></canvas>
+                    </div>
                 </div>
             </section>
             <div class="hr-style-bottom"></div>
@@ -145,5 +144,5 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
 <script src="/js/charts.js"></script>
-
+<script src="/js/common.js"></script>
 </html>

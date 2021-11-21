@@ -1,7 +1,7 @@
 
 #chart-page{
-    overflow-y:scroll;
-    height: 85vh;
+    overflow-y:auto;
+    height: 88vh;
 }
 
 #chart-group{
@@ -12,10 +12,15 @@
     grid-template-rows: auto;
     grid-gap: 1rem;
 }
+.chart-container-wrapper{
+    max-width: 95%;
+    overflow-x: auto;
+}
 .chart-container{
     position: relative; 
-    height: 40vh; 
-    width: 80vw;
+    height: 45vh; 
+    min-width: 806px;
+    max-width: 80vw;
     margin: auto;
 }
 
@@ -27,8 +32,7 @@
 #word-bank{
     background: var(--card-accent);
     overflow-y: auto;
-    height: 15vh;
-    margin: 0 5vh 5vh 5vh;
+    height: 20vh;
     padding: 2em 2em 5em 2em;
 }
 #question-words{
@@ -58,8 +62,7 @@
 #group-bank{
     overflow-y: auto;
     background: var(--card-accent);
-    height: 12vh;
-    margin: 0 5vh 5vh 5vh;
+    height: 15vh;
     padding: 2em 2em 5em 2em;
 }
 #color-groups{

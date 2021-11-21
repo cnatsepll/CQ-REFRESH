@@ -53,6 +53,10 @@
     grid-area: about;
 }
 #home-block{
+    overflow-y:auto;
+    height: 85vh;
+}
+#home-cards{
     margin: 10vh auto auto auto;
     min-width: 60ch;
     max-width: 125ch;
@@ -64,21 +68,4 @@
     "start charts"
     "start results"
     "start about";
-}
-
-
-@media only screen and (max-width:750px) {
-    #home-block{
-        min-width: 30ch;
-        max-width: 40ch;
-        grid-template-columns:auto;
-        grid-template: 
-        "start"
-        "charts"
-        "results"
-        "about";
-    }
-    .section-card-border-wrap {
-        max-width: 100%;
-  }
 }

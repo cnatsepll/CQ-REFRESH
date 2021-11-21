@@ -1,5 +1,6 @@
 #quiz-block{
-    height: 90vh;
+    overflow-y:auto;
+    height: 85vh;
     text-align: center;
     margin: auto;
     min-width: 60ch;
