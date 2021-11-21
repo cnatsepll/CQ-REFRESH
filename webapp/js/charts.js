@@ -121,7 +121,7 @@ function getTopResults(){
             data: {
               labels: resultColor,
               datasets: [{
-                  label: 'color total',
+                  label: 'Total Results',
                   backgroundColor: "rgb(255,0,0)",
                   borderColor: "rgb(255,0,0)",
                   borderWidth: 1,
@@ -176,7 +176,7 @@ function getResultMostLike(){
             data: {
               labels: resultColor,
               datasets: [{
-                  label: 'question_word',
+                  label: question_word,
                   backgroundColor: "rgb(0,0,255)",
                   borderColor: "rgb(0,0,255)",
                   borderWidth: 1,
@@ -235,7 +235,7 @@ function getResultLeastLike(){
             data: {
               labels: resultColor,
               datasets: [{
-                  label: 'question_word',
+                  label: question_word,
                   backgroundColor: "rgb(0,255,0)",
                   borderColor: "rgb(0,255,0)",
                   borderWidth: 1,
@@ -378,7 +378,7 @@ function getBottomWordsForResult(){
             data: {
               labels: resultColor,
               datasets: [{
-                  label: 'question_word',
+                  label: question_word,
                   backgroundColor: barColor,
                   borderColor: "black",
                   borderWidth: 1,
@@ -441,7 +441,7 @@ function getfiveColorRadar(){
             data: {
               labels: ['White', 'Blue', 'Black', 'Red', 'Green'],
               datasets: [{
-                  label: 'Percentage of Result',
+                  label: question_word,
                   backgroundColor: colorCounterArray[0].name,
                   borderColor: colorCounterArray[1].name,
                   borderWidth: 3,
@@ -523,7 +523,7 @@ function getColorpieSlices(){
                 backgroundColor: [colorCounterArray[0].name, colorCounterArray[1].name, colorCounterArray[2].name, colorCounterArray[3].name, colorCounterArray[4].name],
                 borderColor: 'black',
                 borderWidth: 3,
-                  label: 'Percentage of Result',
+                  label: question_word,
                   data: [`${(colorCounterArray[0].count*100).toFixed(1)}`, `${(colorCounterArray[1].count*100).toFixed(1)}`, `${(colorCounterArray[2].count*100).toFixed(1)}`, `${(colorCounterArray[3].count*100).toFixed(1)}`, `${(colorCounterArray[4].count*100).toFixed(1)}`]
               }]
               // second dataset to show the percentage of the result color popularity
