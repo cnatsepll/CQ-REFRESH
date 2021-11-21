@@ -146,9 +146,8 @@ a h1{
 }
 
 #header{
-    height: 10vh;
-    display: grid;
-    grid-template-columns: 1fr auto;
+    height: 8vh;
+    display: flex;
     justify-items: left;
     align-items: center;
     margin-bottom: 5px;

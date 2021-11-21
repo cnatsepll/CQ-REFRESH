@@ -69,3 +69,19 @@
     "start results"
     "start about";
 }
+
+@media only screen and (max-width:750px) {
+    #home-block{
+        min-width: 30ch;
+        max-width: 40ch;
+        grid-template-columns:auto;
+        grid-template: 
+        "start"
+        "charts"
+        "results"
+        "about";
+    }
+    .section-card-border-wrap {
+        max-width: 100%;
+  }
+}
