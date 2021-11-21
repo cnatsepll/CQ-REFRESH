@@ -43,7 +43,7 @@
     background: var(--card-accent);
     overflow-y: auto;
     height: 20vh;
-    padding: 2em 2em 5em 2em;
+    padding: 1em 0em 5em 0em;
 }
 #question-words{
     display: grid;
@@ -73,7 +73,7 @@
     overflow-y: auto;
     background: var(--card-accent);
     height: 15vh;
-    padding: 2em 2em 5em 2em;
+    padding: 1em 0em 5em 0em;
 }
 #color-groups{
     display: grid;
