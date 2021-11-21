@@ -101,10 +101,12 @@ window.onload = ()=>{
 //     })
 // }
 function getTopResults(){
+    buttonToggle();
     fetch('/charts/topResults')
     .then(response => response.json())
     .then(data => {topResults = data;})
     .then(()=>{
+        buttonToggle();
         let count = [];
         let resultColor =[];
         let totalUsers = [];
@@ -140,16 +142,10 @@ function getTopResults(){
         })
     })
 }
-function getTopResultsDetailed(){
-    fetch('/charts/topResultsDetailed')
-    .then(response => response.json())
-    .then(data => {topResults = data;})
-    .then(()=>{
-    })
-}
 
 const resultMostLikeSearch = { question_word: '' };
 function getResultMostLike(){
+    buttonToggle();
     const question_word = document.getElementById('resultMostLikeSearch').value;
     resultMostLikeSearch.question_word = question_word;
     document.getElementById('resultMostLikeChart').remove(); 
@@ -167,6 +163,7 @@ function getResultMostLike(){
     .then(response => response.json())
     .then(data => {resultMostLike = data;})
     .then(()=>{
+        buttonToggle();
         let count = [];
         let resultColor =[];
         for(let i = 0; i<resultMostLike.rows.length; i+=1){
@@ -207,6 +204,7 @@ function getResultMostLike(){
 }
 let resultLeastLikeSearch = { question_word: '' };
 function getResultLeastLike(){
+    buttonToggle();
     const question_word = document.getElementById('resultLeastLikeSearch').value;
     resultLeastLikeSearch.question_word = question_word;
     document.getElementById('resultLeastLikeChart').remove(); 
@@ -224,6 +222,7 @@ function getResultLeastLike(){
     .then(response => response.json())
     .then(data => {resultLeastLike = data;})
     .then(()=>{
+        buttonToggle();
         let count = [];
         let resultColor =[];
         for(let i = 0; i<resultLeastLike.rows.length; i+=1){
@@ -261,6 +260,7 @@ function getResultLeastLike(){
 
 let topWordsForResultSearch = { question_word: '' };
 function getTopWordsForResult(){
+    buttonToggle();
     const question_word = document.getElementById('topWordsForResultSearch').value;
     topWordsForResultSearch.question_word = question_word;
     document.getElementById('topWordsForResultChart').remove(); 
@@ -278,6 +278,7 @@ function getTopWordsForResult(){
     .then(response => response.json())
     .then(data => {topWordsForResult = data;})
     .then(()=>{
+        buttonToggle();
         let count = [];
         let resultColor = [];
         let barColor = [];
@@ -330,6 +331,7 @@ function getTopWordsForResult(){
 }
 let bottomWordsForResultSearch = { question_word: '' };
 function getBottomWordsForResult(){
+    buttonToggle();
     const question_word = document.getElementById('bottomWordsForResultSearch').value;
     bottomWordsForResultSearch.question_word = question_word;
     document.getElementById('bottomWordsForResultChart').remove(); 
@@ -347,6 +349,7 @@ function getBottomWordsForResult(){
     .then(response => response.json())
     .then(data => {bottomWordsForResult = data;})
     .then(()=>{
+        buttonToggle();
         let count = [];
         let resultColor =[];
         let barColor = [];
@@ -400,6 +403,7 @@ function getBottomWordsForResult(){
 let fiveColorRadarSearch = { question_word: '' };
 let responseObject;
 function getfiveColorRadar(){
+    buttonToggle();
     const question_word = document.getElementById('fiveColorRadarSearch').value;
     fiveColorRadarSearch.question_word = question_word;
     document.getElementById('fiveColorRadarChart').remove(); 
@@ -415,12 +419,9 @@ function getfiveColorRadar(){
         body: JSON.stringify(fiveColorRadarSearch)
     })
     .then(response => response.json())
-    .then(data => {fiveColorRadar = data;
-        // let white_counter = (fiveColorRadar.rows[0].white_counter / (parseInt(fiveColorRadar.rows[1].white_counter) + parseInt(fiveColorRadar.rows[0].white_counter))).toFixed(3);
-        // let blue_counter = (fiveColorRadar.rows[0].blue_counter / (parseInt(fiveColorRadar.rows[1].blue_counter) + parseInt(fiveColorRadar.rows[0].blue_counter))).toFixed(3);
-        // let black_counter = (fiveColorRadar.rows[0].black_counter / (parseInt(fiveColorRadar.rows[1].black_counter) + parseInt(fiveColorRadar.rows[0].black_counter))).toFixed(3);
-        // let red_counter = (fiveColorRadar.rows[0].red_counter / (parseInt(fiveColorRadar.rows[1].red_counter) + parseInt(fiveColorRadar.rows[0].red_counter))).toFixed(3);
-        // let green_counter = (fiveColorRadar.rows[0].green_counter / (parseInt(fiveColorRadar.rows[1].green_counter) + parseInt(fiveColorRadar.rows[0].green_counter))).toFixed(3);
+    .then(data => {
+        buttonToggle();
+        fiveColorRadar = data;
         let white_counter = (fiveColorRadar.rows[0].white_counter / (parseInt(fiveColorRadar.rows[1].white_counter)));
         let blue_counter = (fiveColorRadar.rows[0].blue_counter / (parseInt(fiveColorRadar.rows[1].blue_counter)));
         let black_counter = (fiveColorRadar.rows[0].black_counter / (parseInt(fiveColorRadar.rows[1].black_counter)));
@@ -480,6 +481,7 @@ function getfiveColorRadar(){
 }
 let colorpieSlicesSearch = { question_word: '' };
 function getColorpieSlices(){
+    buttonToggle();
     const question_word = document.getElementById('resultColorpieSlicesSearch').value;
     colorpieSlicesSearch.question_word = question_word;
     document.getElementById('resultColorpieSlicesChart').remove(); 
@@ -496,6 +498,7 @@ function getColorpieSlices(){
     })
     .then(response => response.json())
     .then(data => {
+        buttonToggle();
         let colorpieSlices = data;
         let white_counter = (colorpieSlices.rows[0].white_counter / colorpieSlices.rows[0].total_counter).toFixed(3);
         let blue_counter = (colorpieSlices.rows[0].blue_counter / colorpieSlices.rows[0].total_counter).toFixed(3);
@@ -580,3 +583,20 @@ function compareValues(key, order = 'asc') {
       );
     };
   }
+
+
+
+const buttons = document.querySelectorAll(".query");
+// for (let i = 0; i < buttons.length; i++) {
+//     buttons[i].addEventListener("click", function() {
+//         console.log(this)
+//     buttonToggle();
+//     });
+// }
+function buttonToggle(){
+    for (let i = 0; i < buttons.length; i++) {
+        buttons[i].classList.toggle("disabled-button");
+    }
+}
+
+//

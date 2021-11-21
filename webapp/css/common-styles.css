@@ -23,7 +23,7 @@
 }
 
 html {
-    font-size: 15px;
+    font-size: 16px;
   }
 
 body{
@@ -99,8 +99,11 @@ a h1{
     margin: 0 1em 0 1em;
 }
 
-.nav-button-div{
+#header-button-row div{
     cursor: pointer;    
+    border:0.15em solid rgba(255,255,255,0);
+    border-radius:2px;
+    box-sizing: border-box;
 }
 .nav-button{
     width: 33%;
@@ -109,18 +112,15 @@ a h1{
     font-size: .8em;
     text-decoration: none;  
     display:inline-block;
-    border:0.15em solid rgba(255,255,255,0);
-    border-radius:2px;
-    box-sizing: border-box;
     text-align:center;
     padding:0.3em .6em;
     margin:0 0.1em 0.1em 0;
     color: var(--nav-button-color);
 }
-.nav-button:hover {
+#header-button-row div:hover {
     border-color: var(--action-hover-1);
 }
-.nav-button:active{
+#header-button-row div:active{
     border-color: var(--action-hover-2);
 }
 
@@ -166,7 +166,7 @@ a h1{
 #headerH1{
     color: var(--nav-button-color);
     width: 33ch;
-    text-align: center;
+    text-align: left;
 }
 
 

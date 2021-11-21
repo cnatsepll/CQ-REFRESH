@@ -27,7 +27,6 @@
     margin: auto;
 }
 .chart-container-sized{
-    display: inline-block;
     position: relative; 
     height: 45vh; 
     max-width: 80vw;
@@ -43,7 +42,7 @@
     background: var(--card-accent);
     overflow-y: auto;
     height: 20vh;
-    padding: 1em 0em 5em 0em;
+    padding: 1em 0em 3em 0em;
 }
 #question-words{
     display: grid;
@@ -72,8 +71,7 @@
 #group-bank{
     overflow-y: auto;
     background: var(--card-accent);
-    height: 15vh;
-    padding: 1em 0em 5em 0em;
+    padding: 1em 0em 3em 0em;
 }
 #color-groups{
     display: grid;
@@ -97,4 +95,18 @@
     font-weight: bold;
     color: var(--hr-line);
     text-align: center;
+}
+
+.query{
+    border-radius: 3px;
+    margin-top: .5em;
+    color: darkblue;
+    background-color: lightgreen;
+}
+
+.disabled-button{
+    cursor: not-allowed;
+        pointer-events: none;
+        color: white;
+        background-color: gray;
 }
