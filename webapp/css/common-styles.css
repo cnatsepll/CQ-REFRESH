@@ -157,14 +157,14 @@ a h1{
     height: 8vh;
     display: flex;
     justify-content: flex-end;
-    justify-items: left;
+    justify-items: center;
     align-items: center;
     margin-bottom: 5px;
     max-width: 80ch;
 }
 #headerH1{
     color: var(--nav-button-color);
-    width: 15ch;
+    width: 20ch;
     text-align: center;
 }
 
@@ -173,7 +173,7 @@ a h1{
     width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: right;
+    justify-content: space-between;
     align-items: center;
 }
 
