@@ -85,7 +85,11 @@
     #answerRow{
         flex-direction: column;
     }
-    .section-card-border-wrap {
-        max-width: 100%;
-  }
+    #question{
+        margin: 2em 0 1em 0;
+    }
+    .response-button{
+        margin-top: 1em;
+        margin-bottom: 1em;
+    }
 }
