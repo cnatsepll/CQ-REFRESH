@@ -23,7 +23,7 @@
     position: relative; 
     height: 55vh; 
     min-width: 806px;
-    max-width: 1800px;    
+    width: 1800px;    
     margin: auto;
 }
 .chart-container-sized{
