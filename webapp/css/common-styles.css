@@ -155,13 +155,13 @@ a h1{
 }
 
 #header{
-    height: 8vh;
+    height: 7ch;
     display: flex;
     justify-content: flex-end;
     justify-items: center;
     align-items: center;
-    margin-bottom: 5px;
     max-width: 80ch;
+    margin: auto;
 }
 #headerH1{
     color: var(--nav-button-color);
@@ -220,4 +220,9 @@ a h1{
 
   input{
     -webkit-appearance: none !important;
+  }
+
+  .button-green{
+      background-color: #516d51;
+      color: white;
   }

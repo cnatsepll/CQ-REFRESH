@@ -167,7 +167,7 @@ function getResultMostLike(){
         let count = [];
         let resultColor =[];
         for(let i = 0; i<resultMostLike.rows.length; i+=1){
-            count.push(resultMostLike.rows[i].percent_difference);
+            count.push((resultMostLike.rows[i].percent_difference * 100).toFixed(1));
             resultColor.push(resultMostLike.rows[i].quick_name);
         }
         var ctx = document.getElementById('resultMostLikeChart').getContext('2d');
@@ -226,7 +226,7 @@ function getResultLeastLike(){
         let count = [];
         let resultColor =[];
         for(let i = 0; i<resultLeastLike.rows.length; i+=1){
-            count.push(resultLeastLike.rows[i].percent_difference);
+            count.push((resultLeastLike.rows[i].percent_difference * 100).toFixed(1));
             resultColor.push(resultLeastLike.rows[i].quick_name);
         }
         var ctx = document.getElementById('resultLeastLikeChart').getContext('2d');
@@ -283,7 +283,7 @@ function getTopWordsForResult(){
         let resultColor = [];
         let barColor = [];
         for(let i = 0; i<topWordsForResult.rows.length; i+=1){
-            count.push(topWordsForResult.rows[i].sum);
+            count.push((topWordsForResult.rows[i].percentage * 100).toFixed(1));
             resultColor.push(topWordsForResult.rows[i].question_word);
             if(topWordsForResult.rows[i].color_type_key == 'w'){
                 barColor.push('white')
@@ -354,7 +354,7 @@ function getBottomWordsForResult(){
         let resultColor =[];
         let barColor = [];
         for(let i = 0; i<bottomWordsForResult.rows.length; i+=1){
-            count.push(bottomWordsForResult.rows[i].sum);
+            count.push((bottomWordsForResult.rows[i].percentage * 100).toFixed(1));
             resultColor.push(bottomWordsForResult.rows[i].question_word);
             if(bottomWordsForResult.rows[i].color_type_key == 'w'){
                 barColor.push('white')
@@ -422,11 +422,16 @@ function getfiveColorRadar(){
     .then(data => {
         buttonToggle();
         fiveColorRadar = data;
-        let white_counter = (fiveColorRadar.rows[0].white_counter / (parseInt(fiveColorRadar.rows[1].white_counter)));
-        let blue_counter = (fiveColorRadar.rows[0].blue_counter / (parseInt(fiveColorRadar.rows[1].blue_counter)));
-        let black_counter = (fiveColorRadar.rows[0].black_counter / (parseInt(fiveColorRadar.rows[1].black_counter)));
-        let red_counter = (fiveColorRadar.rows[0].red_counter / (parseInt(fiveColorRadar.rows[1].red_counter)));
-        let green_counter = (fiveColorRadar.rows[0].green_counter / (parseInt(fiveColorRadar.rows[1].green_counter)));
+        // let white_counter = (fiveColorRadar.rows[0].white_counter / (parseInt(fiveColorRadar.rows[1].white_counter)));
+        // let blue_counter = (fiveColorRadar.rows[0].blue_counter / (parseInt(fiveColorRadar.rows[1].blue_counter)));
+        // let black_counter = (fiveColorRadar.rows[0].black_counter / (parseInt(fiveColorRadar.rows[1].black_counter)));
+        // let red_counter = (fiveColorRadar.rows[0].red_counter / (parseInt(fiveColorRadar.rows[1].red_counter)));
+        // let green_counter = (fiveColorRadar.rows[0].green_counter / (parseInt(fiveColorRadar.rows[1].green_counter)));
+        let white_counter = (fiveColorRadar.rows[4].percentage);
+        let blue_counter = (fiveColorRadar.rows[1].percentage);
+        let black_counter = (fiveColorRadar.rows[0].percentage);
+        let red_counter = (fiveColorRadar.rows[3].percentage);
+        let green_counter = (fiveColorRadar.rows[2].percentage);
         let colorCounterArray = [
             {name: 'white', count: white_counter},
             {name: 'blue', count: blue_counter},
@@ -459,9 +464,13 @@ function getfiveColorRadar(){
                     display: true,
                     text: `${question_word} Radar Graph`
                 },
-                scale: {
-                    pointLabels :{
-                       fontStyle: "bold",
+                scales: {
+                    r: {
+                        angleLines: {
+                            display: false
+                        },
+                        // suggestedMin: 0,
+                        // suggestedMax: 100
                     }
                 },
                 plugins:{
