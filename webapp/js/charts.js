@@ -492,8 +492,8 @@ function getfiveColorRadar(){
                         angleLines: {
                             display: false
                         },
-                        suggestedMin: 20,
-                        suggestedMax: 90
+                        // suggestedMin: 20,
+                        // suggestedMax: 90
                     }
                 },
                 plugins:{
