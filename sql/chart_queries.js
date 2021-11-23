@@ -1,13 +1,9 @@
 const totalResults = `
-SELECT reltuples::bigint AS estimate
-FROM   pg_class
-WHERE  oid = 'public.result'::regclass;
+SELECT 100 * count(*) AS estimate FROM result TABLESAMPLE SYSTEM (1);
 `;
 
 const totalAnswers = `
-SELECT reltuples::bigint AS estimate
-FROM   pg_class
-WHERE  oid = 'public.answer'::regclass;
+SELECT 100 * count(*) AS estimate FROM answer TABLESAMPLE SYSTEM (1);
 `;
 
 
