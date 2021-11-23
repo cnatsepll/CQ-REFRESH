@@ -53,13 +53,13 @@ window.onload = ()=>{
     .then(response => response.json())
     .then(response => {results = response.rows;})
     .then(()=>{
-        document.querySelector('#total-results').textContent = `Total Results Given:  ${results[0].count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`
+        document.querySelector('#total-results').textContent = `Total Results Given:   ${results[0].count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`
     });
     fetch('/charts/getTotalAnswers')
     .then(response => response.json())
     .then(response => {answers = response.rows;})
     .then(()=>{
-        document.querySelector('#total-answers').textContent = `Total Questions Answered:  ${answers[0].count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`
+        document.querySelector('#total-answers').textContent = `Total Questions Answered:   ${answers[0].count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`
     });
 }
 
@@ -492,8 +492,8 @@ function getfiveColorRadar(){
                         angleLines: {
                             display: false
                         },
-                        // suggestedMin: 0,
-                        // suggestedMax: 100
+                        suggestedMin: 0,
+                        suggestedMax: 100
                     }
                 },
                 plugins:{
