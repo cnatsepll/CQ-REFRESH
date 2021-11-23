@@ -134,11 +134,18 @@ input{
 }
 #totals{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     margin: auto;
     max-width: 100ch;
     justify-content: center;
     flex-wrap: wrap;
     align-content: center;
     height: 8ch;
+}
+
+@media only screen and (max-width:750px) {
+    #totals{
+        display: flex;
+        flex-direction: row;
+    }
 }
