@@ -1,9 +1,13 @@
 const totalResults = `
-select count(user_id) from result;
+SELECT reltuples::bigint AS estimate
+FROM   pg_class
+WHERE  oid = 'public.result'::regclass;
 `;
 
 const totalAnswers = `
-select count(user_id) from answer;
+SELECT reltuples::bigint AS estimate
+FROM   pg_class
+WHERE  oid = 'public.answer'::regclass;
 `;
 
 
