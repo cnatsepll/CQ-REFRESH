@@ -43,7 +43,25 @@ app.get('/about', (req, res)=> {
 });
 
 
-
+app.get('/charts/getTotalResults', (req, res)=>{
+    const client = new Client(connection);
+    let response;
+    client.connect();
+    client.query(queries.totalResults, (err, data) => {
+      err ? err.stack : response = data;
+      client.end();
+      res.send(response);
+    })
+});app.get('/charts/getTotalAnswers', (req, res)=>{
+    const client = new Client(connection);
+    let response;
+    client.connect();
+    client.query(queries.totalAnswers, (err, data) => {
+      err ? err.stack : response = data;
+      client.end();
+      res.send(response);
+    })
+});
 app.get('/charts/listAllQuestionWords', (req, res)=>{
     const client = new Client(connection);
     let response;

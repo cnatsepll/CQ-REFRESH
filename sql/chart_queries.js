@@ -1,3 +1,12 @@
+const totalResults = `
+select count(user_id) from result;
+`;
+
+const totalAnswers = `
+select count(user_id) from answer;
+`;
+
+
 const listAllQuestionWords = `
 select * from (
 	select substring(question_word from 2) question, upper(substring(question_word from 1 for 1))cd_color
@@ -19,7 +28,7 @@ order by question
 `;
 
 const listAllColorGroups = `
-select quick_name, color_group from color_definitions;
+select quick_name, color_group from color_definitions order by quick_name asc;
 `;
 
 
@@ -355,6 +364,9 @@ select count(answer.user_id) answers
 from answer
 join result r1 on r1.user_id = answer.user_id
 `;
+
+exports.totalResults = totalResults;
+exports.totalAnswers = totalAnswers;
 
 exports.mostFavoredColors = mostFavoredColors;
 

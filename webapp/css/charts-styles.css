@@ -119,8 +119,15 @@ input{
     color: white;
     background-color: #699969;
 }
-
+.query:hover{
+    background-color: #7ab37a;
+}
 .disabled-button{
+    pointer-events: none;
+    color: rgb(211, 211, 211);
+    background-color: rgb(126, 124, 124);
+}
+.disabled-button:hover{
     pointer-events: none;
     color: rgb(211, 211, 211);
     background-color: rgb(126, 124, 124);

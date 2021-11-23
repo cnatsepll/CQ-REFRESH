@@ -30,7 +30,7 @@ window.onload = ()=>{
     .then(response => response.json())
     .then(response => {colorGroups = response.rows;})
     .then(()=>{
-        colorGroups.sort(compareValues('quick_name', 'desc'));
+        colorGroups.sort(compareValues('quick_name', 'asc'));
         for(let i = 0; i < colorGroups.length; i+=1){
             let resultDiv = document.createElement('div');
             let colorArrayDiv = document.createElement('div');
@@ -48,58 +48,66 @@ window.onload = ()=>{
             document.getElementById('color-groups').appendChild(resultContainer);
         }
     });
+
+    fetch('/charts/getTotalResults')
+    .then(response => response.json())
+    .then(response => {results = response.rows;})
+    .then(()=>{
+        document.querySelector('#total-results').textContent = `Total Results Given:  ${results[0].count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`
+    });
+    fetch('/charts/getTotalAnswers')
+    .then(response => response.json())
+    .then(response => {answers = response.rows;})
+    .then(()=>{
+        document.querySelector('#total-answers').textContent = `Total Questions Answered:  ${answers[0].count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}`
+    });
+}
+
+  let orderedColors = {
+        Abzan: "darkolivegreen",
+        Azorius: "lightskyblue", 
+        Bant: "lightseagreen", 
+        Boros: "lightcoral", 
+        Dimir: "darkblue", 
+        Esper: "lightslategray", 
+        Golgari: "darkolivegreen",
+        Grixis: "darkorchid",
+        Gruul: "peru",
+        Izzet: "mediumslateblue",
+        Jeskai: "lavender",
+        Jund: "sienna",
+        Mardu: "brown",
+        MonoBlack: "black",
+        MonoBlue: "blue",
+        MonoGreen: "green",
+        MonoRed: "red",
+        MonoWhite: "white",
+        Multicolored: "grey",
+        Naya: "goldenrod",
+        Orzhov: "darkgrey",
+        Rakdos: "maroon",
+        Selesnya: "palegreen",
+        Simic: "mediumaquamarine",
+        Sultai: "darkslategrey",
+        Temur: "silver"
+    }
+
+
+let colorScheme = [];
+
+function orderColors(chartColors){
+    colorScheme = [];
+    for(let i =0 ; i < chartColors.length ; i++){
+        colorScheme.push(orderedColors[chartColors[i]])
+    }
 }
 
 // most / least popular words
 // most / least defining words
 // most / least aligned words
+// most / least popular colors
 // box and whisker plot of color type value averages for each result color
 
-// function mostPopularColors(){
-//     fetch('/charts/colorPopularity')
-//     .then(response => response.json())
-//     .then(data=>{
-//         let count = [];
-//         let resultColor =[];
-//         let totalUsers = [];
-//         for(let i = 0; i<data.rows.length; i+=1){
-//             count.push(data.rows[i].user_count);
-//             resultColor.push(data.rows[i].quick_name);
-//             totalUsers.push(data.rows[i].total_users)
-//         }
-//         var ctx = document.getElementById('colorPopularity').getContext('2d');
-//         window.colorPopularity = new Chart(ctx, {
-//             type: 'bar',
-//             data: {
-//               labels: resultColor,
-//               datasets: [{
-//                   label: 'Most Popular Colors',
-//                   borderWidth: 1,
-//                   data: count
-//               }
-//             ]
-//           },
-//           options: {
-//             plugins: {
-//               title: {
-//                 display: true,
-//                 text: 'Chart.js Bar Chart - Stacked'
-//               },
-//             },
-//             responsive: true,
-//             maintainAspectRatio: false,
-//             scales: {
-//               x: {
-//                 stacked: true,
-//               },
-//               y: {
-//                 stacked: true
-//               }
-//             }
-//         }
-//         })
-//     })
-// }
 function getTopResults(){
     buttonToggle();
     fetch('/charts/topResults')
@@ -110,11 +118,16 @@ function getTopResults(){
         let count = [];
         let resultColor =[];
         let totalUsers = [];
+        let chartColors = [];
         for(let i = 0; i<topResults.rows.length; i+=1){
             count.push(topResults.rows[i].user_count);
             resultColor.push(topResults.rows[i].quick_name);
-            totalUsers.push(topResults.rows[i].total_users)
+            totalUsers.push(topResults.rows[i].total_users);
+
+            chartColors.push((topResults.rows[i].quick_name).replace(/\s/g, ''));
         }
+        orderColors(chartColors);
+
         var ctx = document.getElementById('topResultsChart').getContext('2d');
         window.topResults = new Chart(ctx, {
             type: 'bar',
@@ -122,8 +135,8 @@ function getTopResults(){
               labels: resultColor,
               datasets: [{
                   label: 'Total Results',
-                  backgroundColor: "rgb(255,0,0)",
-                  borderColor: "rgb(255,0,0)",
+                  backgroundColor: colorScheme,
+                  borderColor: 'black',
                   borderWidth: 1,
                   data: count
               }
@@ -166,10 +179,15 @@ function getResultMostLike(){
         buttonToggle();
         let count = [];
         let resultColor =[];
+        let chartColors = [];
         for(let i = 0; i<resultMostLike.rows.length; i+=1){
             count.push((resultMostLike.rows[i].percent_difference * 100).toFixed(1));
             resultColor.push(resultMostLike.rows[i].quick_name);
+            
+            chartColors.push((resultMostLike.rows[i].quick_name).replace(/\s/g, ''));
         }
+        orderColors(chartColors);
+
         var ctx = document.getElementById('resultMostLikeChart').getContext('2d');
         window.resultMostLike = new Chart(ctx, {
             type: 'bar',
@@ -177,8 +195,8 @@ function getResultMostLike(){
               labels: resultColor,
               datasets: [{
                   label: question_word,
-                  backgroundColor: "rgb(0,0,255)",
-                  borderColor: "rgb(0,0,255)",
+                  backgroundColor: colorScheme,
+                  borderColor: "black",
                   borderWidth: 1,
                   data: count
               }]
@@ -225,10 +243,15 @@ function getResultLeastLike(){
         buttonToggle();
         let count = [];
         let resultColor =[];
+        let chartColors = [];
         for(let i = 0; i<resultLeastLike.rows.length; i+=1){
             count.push((resultLeastLike.rows[i].percent_difference * 100).toFixed(1));
             resultColor.push(resultLeastLike.rows[i].quick_name);
+            
+            chartColors.push((resultLeastLike.rows[i].quick_name).replace(/\s/g, ''));
         }
+        orderColors(chartColors);
+
         var ctx = document.getElementById('resultLeastLikeChart').getContext('2d');
         window.resultLeastLike = new Chart(ctx, {
             type: 'bar',
@@ -236,8 +259,8 @@ function getResultLeastLike(){
               labels: resultColor,
               datasets: [{
                   label: question_word,
-                  backgroundColor: "rgb(0,255,0)",
-                  borderColor: "rgb(0,255,0)",
+                  backgroundColor: colorScheme,
+                  borderColor: "black",
                   borderWidth: 1,
                   data: count
               }]
