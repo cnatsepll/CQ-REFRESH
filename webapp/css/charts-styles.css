@@ -132,7 +132,7 @@ input{
     color: rgb(211, 211, 211);
     background-color: rgb(126, 124, 124);
 }
-.totals{
+#totals{
     display: flex;
     flex-direction: column;
     margin: auto;
@@ -140,4 +140,5 @@ input{
     justify-content: center;
     flex-wrap: wrap;
     align-content: center;
+    height: 8ch;
 }
