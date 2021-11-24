@@ -33,7 +33,7 @@
     display: inline-block;
     position: relative;
     height: 55vh;
-    min-width: 850px;
+    min-width: 900px;
     margin: auto;
 }
 .chart-container-sized{
@@ -117,17 +117,19 @@ input{
     border-radius: 3px;
     box-sizing: border-box;
     text-align: center;
-    padding: 0.2em 0.4em;
-    color: var(--nav-button-color)
+    padding: 0.2em 0.6em;
+    color: var(--nav-button-color);
+    height: 5ch;
 }
 
 .query{
     border-radius: 3px;
     margin-top: .5em;
-    height: 2em;
     text-align: center;
     color: white;
     background-color: #699969;
+    flex-basis: 100px;
+    flex-grow: 2;
 }
 .query:hover{
     background-color: #7ab37a;
@@ -160,6 +162,13 @@ input{
 
 .query-button-row{
     display: flex;
+    max-width: 800px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
 }
 
 
@@ -169,20 +178,21 @@ input{
         flex-direction: row;
     }
 }
-@media only screen and (orientation: landscape)  {
+@media only screen and (max-height:550px)  {
     #charts-container section{
         height: 100%;
     }
 }
-@media only screen and (min-width:1400px) {
+@media only screen and (min-width:1200px) {
     #charts-container{
+        align-items: baseline;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         margin: 0;
     }
     #charts-container section{
-        flex-basis: 850px;
+        flex-basis: 900px;
         flex-grow: 1;
         margin: 1em;
     }
