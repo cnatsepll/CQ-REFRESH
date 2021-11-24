@@ -171,7 +171,7 @@ join
 on table1.question_word = table2.qw
 )table3
 order by percentage desc
-limit 25
+limit 35
 `;
 
 const bottomWordsForResult = 
@@ -256,7 +256,7 @@ join
 on table1.question_word = table2.qw
 )table3
 order by percentage desc
-limit 25
+limit 35
 `;
 
 const fiveColorRadar =

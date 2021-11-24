@@ -186,13 +186,11 @@ a h1{
 .hr-style-top{
     border-top: solid var(--hr-line) 3px;
     filter: drop-shadow(0 .1em .1em var(--card-forground));
-    width: 100%;
     margin: auto;
 }
 .hr-style-bottom{
     border-bottom: solid var(--hr-line) 3px;
     filter: drop-shadow(0 .1em .1em var(--card-forground));
-    width: 85vw;
     margin: auto;
 }
 
@@ -226,3 +224,8 @@ a h1{
       background-color: #516d51;
       color: white;
   }
+
+  .emphasis{
+      font-weight: bold;
+  }
+

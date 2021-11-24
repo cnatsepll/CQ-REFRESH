@@ -38,27 +38,21 @@
             </div>
         </section>
 
-        <br>
         <section id="totals">
-            <div id="total-results"></div>
-            <div id="total-answers"></div>
+            <div class="totals-row"><span class="emphasis">Total Results Given: </span><span id="total-results"></span></div>
+            <div class="totals-row"><span class="emphasis">Total Questions Answered: </span><span id="total-answers"></span></div>
         </section>
 
-        <br>
-        <section id="chart-group">      
-            <div class="hr-style-bottom"></div>
-            <section>
+        <section id="charts-container" id="chart-group">      
+            <section class="chart-section">
+                <div class="hr-style-bottom"></div>
                 <div class="centered-grid">
-                    <p><b>Percent of Users Who Answered Strongly in Favor With the Question Word</b></p>
+                    <p class="centered-text"><b>Percent of Users Who Answered Strongly in Favor With the Question Word</b></p>
                 </div>
-                <div class="flex flex-column flex-center">
-                    <div class="flex flex-center">
-                        <input type="button" id="fiveColorRadarRandom" value="Random Word" onclick="randomQuestionWord(this)">
-                        <input type="text" id="fiveColorRadarSearch" value="Uninhibited">
-                    </div>
-                    <div>
-                        <input class="query"  value="View Question Word Radar Graph" type="button" id="fiveColorRadar" onclick="getfiveColorRadar()">
-                    </div>
+                <div class="flex flex-center query-button-row">
+                    <input type="button" id="fiveColorRadarRandom" value="Random Word" onclick="randomQuestionWord(this)">
+                    <input type="text" id="fiveColorRadarSearch" value="Uninhibited">
+                    <input class="query"  value="Pull Results" type="button" id="fiveColorRadar" onclick="getfiveColorRadar()">
                 </div>
                 <div class="chart-container-wrapper">
                     <div class="chart-container-sized" id="fiveColorRadarChartContainer">
@@ -67,22 +61,15 @@
                 </div>
             </section>
 
-        
-            <div class="hr-style-bottom"></div>
-            <section>
+            <section class="chart-section" >
+                <div class="hr-style-bottom"></div>
                 <div class="centered-grid">
-                    <p><b>Total Users by Color Who Favored the Question Term</b></p>
+                    <p class="centered-text"><b>Total Users by Color Who Favored the Question Term</b></p>
                 </div>
-                
-                    <div class="flex flex-column flex-center">
-                    <div class="flex flex-center">
-                        <input type="button" id="topWordsForResultRandom" value="Random Color Group" onclick="randomColorGroup(this)">
-                        <input type="text" id="topWordsForResultSearch" value="Jund">
-                    </div>
-                    <div>
-                        <input class="query"  value="View Result Profile's favored words"  type="button" id="topWordsForResult" onclick="getTopWordsForResult()">
-                    </div>
-                    </div>
+                <div class="flex flex-center">
+                    <input type="button" id="topWordsForResultRandom" value="Random Color" onclick="randomColorGroup(this)">
+                    <input type="text" id="topWordsForResultSearch" value="Jund">
+                    <input class="query"  value="Pull Results"  type="button" id="topWordsForResult" onclick="getTopWordsForResult()">
                 </div>
                 <div class="chart-container-wrapper">
                     <div class="chart-container" id="topWordsForResultChartContainer">
@@ -90,20 +77,17 @@
                     </div>
                 </div>
             </section>
-            <div class="hr-style-bottom"></div>
-            <section>
+            
+            <section class="chart-section" >
+                <div class="hr-style-bottom"></div>
                 <div class="centered-grid">
-                    <p><b>Total Users by Color Who Opposed the Question Term</b></p>
+                    <p class="centered-text"><b>Total Users by Color Who Opposed the Question Term</b></p>
                 </div>
-                <div class="flex flex-column flex-center">                
                 <div class="flex flex-center">
-                    <input type="button" id="bottomWordsForResultRandom" value="Random Color Group" onclick="randomColorGroup(this)">
+                    <input type="button" id="bottomWordsForResultRandom" value="Random Color" onclick="randomColorGroup(this)">
                     <input type="text" id="bottomWordsForResultSearch" value="Jund">
+                    <input class="query"  value="Pull Results"  type="button" id="bottomWordsForResult" onclick="getBottomWordsForResult()">
                 </div>
-                <div>
-                    <input class="query"  value="View Result Profile's disliked words"  type="button" id="bottomWordsForResult" onclick="getBottomWordsForResult()">
-                </div>
-            </div>
                 <div class="chart-container-wrapper">
                     <div class="chart-container" id="bottomWordsForResultChartContainer">
                         <canvas id="bottomWordsForResultChart"></canvas>
@@ -111,19 +95,16 @@
                 </div>
             </section>
 
-            <div class="hr-style-bottom"></div>
-            <section>
+            
+            <section class="chart-section" >
+                <div class="hr-style-bottom"></div>
                 <div class="centered-grid">
-                    <p><b>Percentage of Result Color's Users That Favored the Question Term</b></p>
+                    <p class="centered-text"><b>Percentage of Result Color's Users That Favored the Question Term</b></p>
                 </div>
-                <div class="flex flex-column flex-center">
-                    <div class="flex flex-center">
-                        <input type="button" id="resultMostLikeRandom" value="Random Word" onclick="randomQuestionWord(this)">
-                        <input type="text" id="resultMostLikeSearch" value="Honor">
-                    </div>
-                    <div>
-                        <input class="query"  value="Groups in favor of question word" type="button" id="resultMostLike" onclick="getResultMostLike()">
-                    </div>
+                <div class="flex flex-center">
+                    <input type="button" id="resultMostLikeRandom" value="Random Word" onclick="randomQuestionWord(this)">
+                    <input type="text" id="resultMostLikeSearch" value="Honor">
+                    <input class="query"  value="Pull Results" type="button" id="resultMostLike" onclick="getResultMostLike()">
                 </div>
                 <div class="chart-container-wrapper">
                     <div class="chart-container" id="resultMostLikeChartContainer">
@@ -131,19 +112,16 @@
                     </div>
                 </div>
             </section>
-            <div class="hr-style-bottom"></div>
-            <section>
+            
+            <section class="chart-section" >
+                <div class="hr-style-bottom"></div>
                 <div class="centered-grid">
-                    <p><b>Percentage of Result Color's Users That Disagreed With the Given Word</b></p>
+                    <p class="centered-text"><b>Percentage of Result Color's Users That Disagreed With the Given Word</b></p>
                 </div>
-                    <div class="flex flex-column flex-center">
-                    <div class="flex flex-center">
-                        <input type="button" id="resultLeastLikeRandom" value="Random Word" onclick="randomQuestionWord(this)">
-                        <input type="text" id="resultLeastLikeSearch" value="Honor">
-                    </div>
-                    <div>
-                        <input class="query"  value="Groups who disliked a question word" type="button" id="resultLeastLike" onclick="getResultLeastLike()">
-                    </div>
+                <div class="flex flex-center">
+                    <input type="button" id="resultLeastLikeRandom" value="Random Word" onclick="randomQuestionWord(this)">
+                    <input type="text" id="resultLeastLikeSearch" value="Honor">
+                    <input class="query"  value="Pull Results" type="button" id="resultLeastLike" onclick="getResultLeastLike()">
                 </div>
                 <div class="chart-container-wrapper">
                     <div class="chart-container" id="resultLeastLikeChartContainer">
@@ -152,13 +130,13 @@
                 </div>
             </section>
 
-            <div class="hr-style-bottom"></div>
-            <section>
+            <section class="chart-section" >
+                <div class="hr-style-bottom"></div>
                 <div class="centered-grid">
-                    <p><b>Most Popular Colors by User Result</b></p>
+                    <p class="centered-text"><b>Most Popular Colors by User Result</b></p>
                 </div>
                 <div class="flex flex-center">
-                    <input  class="query"  value="View Top Results" type="button" id="topResults" onclick="getTopResults()">
+                    <input  class="query"  value="Pull Results" type="button" id="topResults" onclick="getTopResults()">
                 </div>
                 <div class="chart-container-wrapper">
                     <div class="chart-container">
@@ -167,31 +145,22 @@
                 </div>
             </section>
 
-            <div class="hr-style-bottom"></div>
-            <section>
+            <section class="chart-section" >
+                <div class="hr-style-bottom"></div>
                 <div class="centered-grid">
-                    <p><b>Displays Percentage of Result Color's Color Pie Slices</b></p>
-                </div>
-                <div class="flex flex-column flex-center">
-                    
-                    <div class="flex flex-center">
-                        <input type="button" id="resultColorpieSlicesRandom" value="Random Color Group" onclick="randomColorGroup(this)">
-                        <input type="text" id="resultColorpieSlicesSearch" value="Temur">
-
-                    </div>
-                    <div>
-                        <input class="query" value="View Group's ColorPie" type="button" id="resultColorpieSlices" onclick="getColorpieSlices()">
-                    </div>
-                    
+                    <p class="centered-text"><b>Displays Percentage of Result Color's Color Pie Slices</b></p>
+                </div>                    
+                <div class="flex flex-center query-button-row">
+                    <input type="button" id="resultColorpieSlicesRandom" value="Random Color" onclick="randomColorGroup(this)">
+                    <input type="text" id="resultColorpieSlicesSearch" value="Temur">
+                    <input class="query" value="Pull Results" type="button" id="resultColorpieSlices" onclick="getColorpieSlices()">
                 </div>
                 <div class="chart-container-wrapper">
                     <div class="chart-container-sized"  id="resultColorpieSlicesChartContainer">
                         <canvas id="resultColorpieSlicesChart"></canvas>
                     </div>
                 </div>
-            </section> 
-            
-
+            </section>  
         </section>
     </section>
 </body>
