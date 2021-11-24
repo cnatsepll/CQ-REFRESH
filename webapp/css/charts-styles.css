@@ -122,18 +122,7 @@ input{
     height: 5ch;
 }
 
-.query{
-    border-radius: 3px;
-    margin-top: .5em;
-    text-align: center;
-    color: white;
-    background-color: #699969;
-    flex-basis: 100px;
-    flex-grow: 2;
-}
-.query:hover{
-    background-color: #7ab37a;
-}
+
 .disabled-button{
     pointer-events: none;
     color: rgb(211, 211, 211);
@@ -172,6 +161,22 @@ input{
 }
 .text-display-input{
     flex-basis: 155px;
+    flex-grow: 1;
+}
+.query{
+    border-radius: 3px;
+    margin-top: .5em;
+    text-align: center;
+    color: white;
+    background-color: #699969;
+    flex-basis: 100px;
+    flex-grow: 2;
+}
+.query:hover{
+    background-color: #7ab37a;
+}
+.random{
+    flex-basis: 100px;
     flex-grow: 1;
 }
 
