@@ -54,7 +54,7 @@
 }
 #home-block{
     overflow-y:auto;
-    height: 91vh;
+    height: calc(100vh - 6ch);
 }
 #home-cards{
     margin: 10vh auto auto auto;

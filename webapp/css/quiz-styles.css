@@ -1,6 +1,6 @@
 #quiz-block{
     overflow-y:auto;
-    height: 85vh;
+    height: calc(100vh - 6ch);
     text-align: center;
     margin: auto;
     max-width: 100ch;

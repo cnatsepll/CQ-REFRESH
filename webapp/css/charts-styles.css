@@ -2,7 +2,7 @@
 #chart-page{
     overflow-x: hidden;
     overflow-y:auto;
-    height: 90vh;
+    height: calc(100vh - 6ch);
 }
 
 #chart-group{
