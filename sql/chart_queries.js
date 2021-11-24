@@ -90,33 +90,6 @@ order by percent_difference desc`;
 
 
 const topWordsForResult = 
-// `
-// select count(answer.user_id), question_word, sum(answer_value), color_type_key
-// from answer
-// join result on answer.user_id = result.user_id
-// where 
-// question_word in (
-// select substring(question_word from 2)
-// from black_questions
-// union
-// select substring(question_word from 2)
-// from blue_questions
-// union
-// select substring(question_word from 2)
-// from green_questions
-// union
-// select substring(question_word from 2)
-// from red_questions
-// union
-// select substring(question_word from 2)
-// from white_questions
-// )
-// and 
-// result_color like concat('%',$1::text,'%')
-// group by question_word, color_type_key
-// order by sum desc
-// limit 30
-// `;
 `
 select *, (yes_count::decimal / total_count) as percentage
 from (
@@ -175,33 +148,6 @@ limit 35
 `;
 
 const bottomWordsForResult = 
-// `
-// select count(answer.user_id), question_word, sum(answer_value), color_type_key
-// from answer
-// join result on answer.user_id = result.user_id
-// where 
-// question_word in (
-// select substring(question_word from 2)
-// from black_questions
-// union
-// select substring(question_word from 2)
-// from blue_questions
-// union
-// select substring(question_word from 2)
-// from green_questions
-// union
-// select substring(question_word from 2)
-// from red_questions
-// union
-// select substring(question_word from 2)
-// from white_questions
-// )
-// and 
-// result_color like concat('%',$1::text,'%')
-// group by question_word, color_type_key
-// order by sum asc 
-// limit 30
-// `;
 `
 select *, (yes_count::decimal / total_count) as percentage
 from (
@@ -260,37 +206,6 @@ limit 35
 `;
 
 const fiveColorRadar =
-// `
-// select * from
-// (
-// select count(answer.user_id) answers
-// , sum(white_counter) white_counter 
-// , sum(blue_counter) blue_counter
-// , sum(black_counter) black_counter
-// , sum(red_counter) red_counter
-// , sum(green_counter) green_counter
-// , 'positive' response_value
-// from answer
-// join result r1 on r1.user_id = answer.user_id
-// where 
-// question_word = $1
-// and answer_value > 5
-// union
-// select 
-// count(answer.user_id) answers
-// , sum(white_counter) white_counter 
-// , sum(blue_counter) blue_counter
-// , sum(black_counter) black_counter
-// , sum(red_counter) red_counter
-// , sum(green_counter) green_counter
-// ,'negative' response_value
-// from answer
-// join result r1 on r1.user_id = answer.user_id
-// where 
-// question_word = $1
-// ) value_gathering
-// order by response_value desc
-// `;
 `
 select *, (yes_count::decimal / total_count) as percentage
 from (

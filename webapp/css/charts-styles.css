@@ -15,19 +15,19 @@
     margin: 10px;
     }
 #charts-container section{
-    margin-top: 1em;
-    margin-bottom: 1em;
+    margin-top: 2em;
+    margin-bottom: 2em;
 }
-.chart-section{
-    background-color: white;
-}
+
 .chart-container-wrapper{
     margin: auto;
     overflow-x: auto;
     white-space: nowrap; 
-    width: 95%;
+    width: 100%;
     display: flex;
     max-width: 1000px;
+    background-color: white;
+    border-radius: 3px;
 }
 .chart-container{
     display: inline-block;
@@ -123,16 +123,7 @@ input{
 }
 
 
-.disabled-button{
-    pointer-events: none;
-    color: rgb(211, 211, 211);
-    background-color: rgb(126, 124, 124);
-}
-.disabled-button:hover{
-    pointer-events: none;
-    color: rgb(211, 211, 211);
-    background-color: rgb(126, 124, 124);
-}
+
 #totals{
     display: flex;
     flex-direction: row;
@@ -153,15 +144,23 @@ input{
     display: flex;
     max-width: 800px;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: none;
     align-content: center;
     justify-content: center;
     align-items: center;
     margin: auto;
 }
-.text-display-input{
-    flex-basis: 155px;
+
+.random{
+    background-color: #cccccd;
+    flex-basis: 120px;
     flex-grow: 1;
+    max-width: 20ch;
+}
+.text-display-input{
+    flex-basis: 200px;
+    flex-grow: 1;
+    max-width: 30ch;
 }
 .query{
     border-radius: 3px;
@@ -170,15 +169,23 @@ input{
     color: white;
     background-color: #699969;
     flex-basis: 100px;
-    flex-grow: 2;
+    flex-grow: 3;
+    max-width: 40ch;
 }
 .query:hover{
     background-color: #7ab37a;
 }
-.random{
-    flex-basis: 100px;
-    flex-grow: 1;
+.disabled-button{
+    pointer-events: none;
+    color: rgb(211, 211, 211);
+    background-color: rgb(126, 124, 124);
 }
+.disabled-button:hover{
+    pointer-events: none;
+    color: rgb(211, 211, 211);
+    background-color: rgb(126, 124, 124);
+}
+
 
 @media only screen and (max-width:750px) {
     #totals{
@@ -191,7 +198,7 @@ input{
         height: 100%;
     }
 }
-@media only screen and (min-width:1200px) {
+@media only screen and (min-width:1875px) {
     #charts-container{
         align-items: baseline;
         display: flex;

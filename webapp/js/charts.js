@@ -111,7 +111,6 @@ function orderColors(chartColors){
 // box and whisker plot of color type value averages for each result color
 
 function getTopResults(){
-    buttonToggle();
     fetch('/charts/topResults')
     .then(response => response.json())
     .then(data => {topResults = data;})
@@ -160,7 +159,6 @@ function getTopResults(){
 
 const resultMostLikeSearch = { question_word: '' };
 function getResultMostLike(){
-    buttonToggle();
     const question_word = document.getElementById('resultMostLikeSearch').value;
     resultMostLikeSearch.question_word = question_word;
     document.getElementById('resultMostLikeChart').remove(); 
@@ -224,7 +222,6 @@ function getResultMostLike(){
 }
 let resultLeastLikeSearch = { question_word: '' };
 function getResultLeastLike(){
-    buttonToggle();
     const question_word = document.getElementById('resultLeastLikeSearch').value;
     resultLeastLikeSearch.question_word = question_word;
     document.getElementById('resultLeastLikeChart').remove(); 
@@ -285,7 +282,6 @@ function getResultLeastLike(){
 
 let topWordsForResultSearch = { question_word: '' };
 function getTopWordsForResult(){
-    buttonToggle();
     const question_word = document.getElementById('topWordsForResultSearch').value;
     topWordsForResultSearch.question_word = question_word;
     document.getElementById('topWordsForResultChart').remove(); 
@@ -356,7 +352,6 @@ function getTopWordsForResult(){
 }
 let bottomWordsForResultSearch = { question_word: '' };
 function getBottomWordsForResult(){
-    buttonToggle();
     const question_word = document.getElementById('bottomWordsForResultSearch').value;
     bottomWordsForResultSearch.question_word = question_word;
     document.getElementById('bottomWordsForResultChart').remove(); 
@@ -428,7 +423,6 @@ function getBottomWordsForResult(){
 let fiveColorRadarSearch = { question_word: '' };
 let responseObject;
 function getfiveColorRadar(){
-    buttonToggle();
     const question_word = document.getElementById('fiveColorRadarSearch').value;
     fiveColorRadarSearch.question_word = question_word;
     document.getElementById('fiveColorRadarChart').remove(); 
@@ -515,7 +509,6 @@ function getfiveColorRadar(){
 }
 let colorpieSlicesSearch = { question_word: '' };
 function getColorpieSlices(){
-    buttonToggle();
     const question_word = document.getElementById('resultColorpieSlicesSearch').value;
     colorpieSlicesSearch.question_word = question_word;
     document.getElementById('resultColorpieSlicesChart').remove(); 
@@ -621,16 +614,12 @@ function compareValues(key, order = 'asc') {
 
 
 const buttons = document.querySelectorAll(".query");
-// for (let i = 0; i < buttons.length; i++) {
-//     buttons[i].addEventListener("click", function() {
-//         console.log(this)
-//     buttonToggle();
-//     });
-// }
+for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", function(){buttonToggle()});
+}
 function buttonToggle(){
     for (let i = 0; i < buttons.length; i++) {
+        console.log("button")
         buttons[i].classList.toggle("disabled-button");
     }
 }
-
-//
