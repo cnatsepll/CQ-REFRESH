@@ -12,8 +12,12 @@
     flex-direction: column;
 }
 #charts-container{
-    margin: 5px;
+    margin: 10px;
     }
+#charts-container section{
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
 .chart-section{
     background-color: white;
 }
@@ -29,13 +33,14 @@
     display: inline-block;
     position: relative;
     height: 55vh;
-    min-width: 920px;
+    min-width: 850px;
     margin: auto;
 }
 .chart-container-sized{
     position: relative;
     height: 55vh;
     margin: auto;
+    width: 100%;
 }
 
 #selectors{
@@ -141,6 +146,7 @@ input{
     display: flex;
     flex-direction: row;
     margin: auto;
+    margin-top: 1ch;
     max-width: 100ch;
     justify-content: center;
     flex-wrap: wrap;
@@ -153,7 +159,7 @@ input{
 }
 
 .query-button-row{
-    flex: 1 1 20em;
+    display: flex;
 }
 
 
@@ -163,19 +169,24 @@ input{
         flex-direction: row;
     }
 }
-
-@media only screen and (min-width:1200px) {
+@media only screen and (orientation: landscape)  {
+    #charts-container section{
+        height: 100%;
+    }
+}
+@media only screen and (min-width:1400px) {
     #charts-container{
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
+        margin: 0;
     }
     #charts-container section{
-        flex-basis: 890px;
+        flex-basis: 850px;
         flex-grow: 1;
         margin: 1em;
     }
-    .chart-container-sized{
+    .chart-container{
         display: inline-block;
         position: relative;
         height: 55vh;

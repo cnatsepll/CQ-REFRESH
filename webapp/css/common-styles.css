@@ -155,7 +155,7 @@ a h1{
 }
 
 #header{
-    height: 7ch;
+    height: 6ch;
     display: flex;
     justify-content: flex-end;
     justify-items: center;
