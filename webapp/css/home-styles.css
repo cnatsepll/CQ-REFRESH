@@ -39,6 +39,9 @@
     justify-self: start;
 }
 
+#home-container{
+    padding: 3em;
+}
 
 #home-start{
     grid-area: start;

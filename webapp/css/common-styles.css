@@ -106,15 +106,13 @@ a h1{
     box-sizing: border-box;
 }
 .nav-button{
-    width: 33%;
-    cursor: pointer; 
-    font-family:'Roboto',sans-serif;
-    font-size: .8em;
-    text-decoration: none;  
-    display:inline-block;
-    text-align:center;
-    padding:0.3em .6em;
-    margin:0 0.1em 0.1em 0;
+    cursor: pointer;
+    font-family: 'Roboto',sans-serif;
+    font-size: .85em;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+    padding: 0.5em 1em;
     color: var(--nav-button-color);
 }
 #header-button-row div:hover {

@@ -14,65 +14,55 @@
           <a href="/html/home.html"><h1>Color Quiz</h1></a>
         </div>
         <nav id="header-button-row">
-            <div>
-                <a style="text-decoration: underline;" href="/html/quiz.html" class="nav-button">QUIZ</a>
-            </div>
-            <div>
-                <a href="/html/charts.html" class="nav-button">CHARTS</a>
-            </div>
-            <div>
-                <a href="/html/about.html" class="nav-button">RESULTS</a>
-            </div>
+            <a href="/html/quiz.html"><div style="text-decoration: underline;" class="nav-button">QUIZ</div></a>
+            <a href="/html/charts.html"><div class="nav-button">CHARTS</div></a>
+            <a href="/html/about.html"><div class="nav-button">RESULTS</div></a> 
         </nav>    
     </section>
     <section id="quiz-block">
-
-        <section id="quiz-info-box" class="flex flex-space-around">
-            <div id="scoreboard">
-                <div id="counter"></div>
-                <div id="max-questions"></div>    
-            </div>     
-            <div id="quiz-options">
-                <div class="option-button" onclick="resetQuiz()">
-                    Reset Quiz
-                </div>
-            </div>
-        </section>
-        <section id="response-block">
-            <div id="quiz-response" class="section-card">
-                <div id="instruction-reminder">How closely do you align yourself with the word or phrase shown below?</div>
-                <div id="question"></div>
-                <div id="answerRow" class="flex flex-space-around">
-                    <div class="response-button padding-sides-medium" onclick="selected(1)">
-                        Not at all
-                    </div>
-                    <div class="response-button padding-sides-medium" onclick="selected(2)">
-                        A little bit
-                    </div>
-                    <div class="response-button padding-sides-medium" onclick="selected(5)">
-                        Some
-                    </div>
-                    <div class="response-button padding-sides-medium" onclick="selected(10)">
-                        Very Strongly
-                    </div>
-                    <div class="response-button padding-sides-medium" onclick="selected(20)">
-                        That's me
+        <section id="quiz-container">
+            <section id="quiz-info-box" class="flex flex-space-around">
+                <div id="scoreboard">
+                    <div id="counter"></div>
+                    <div id="max-questions"></div>    
+                </div>     
+                <div id="quiz-options">
+                    <div class="option-button" onclick="resetQuiz()">
+                        Reset Quiz
                     </div>
                 </div>
-                <div id="actionsRow"></div>
-            </div>
-        
-            <div id="calcluate-div">
-                <input type="button" onclick="calculateResult()" class="response-button" value="Calculate Result">
-            </div>
-            
-
-        </section>
-
-
-        <section id="results-section" class="section-card hiddenElement">
-            <div id="totals"></div>
-            <div id="results"></div>
+            </section>
+            <section id="response-block">
+                <div id="quiz-response" class="section-card">
+                    <div id="instruction-reminder">How closely do you align yourself with the word or phrase shown below?</div>
+                    <div id="question"></div>
+                    <div id="answerRow" class="flex flex-space-around">
+                        <div class="response-button padding-sides-medium" onclick="selected(1)">
+                            Not at all
+                        </div>
+                        <div class="response-button padding-sides-medium" onclick="selected(2)">
+                            A little bit
+                        </div>
+                        <div class="response-button padding-sides-medium" onclick="selected(5)">
+                            Some
+                        </div>
+                        <div class="response-button padding-sides-medium" onclick="selected(10)">
+                            Very Strongly
+                        </div>
+                        <div class="response-button padding-sides-medium" onclick="selected(20)">
+                            That's me
+                        </div>
+                    </div>
+                    <div id="actionsRow"></div>
+                </div>
+                <div id="calcluate-div">
+                    <input type="button" onclick="calculateResult()" class="response-button" value="Calculate Result">
+                </div>
+            </section>
+            <section id="results-section" class="section-card hiddenElement">
+                <div id="totals"></div>
+                <div id="results"></div>
+            </section>
         </section>
     </section>
 </body>
