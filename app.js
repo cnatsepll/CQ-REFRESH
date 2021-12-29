@@ -3,19 +3,19 @@ const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
 const { Pool, Client } = require('pg');
-const connection = {
-    user: 'postgres',
-    host: 'localhost',
-    database: 'color_quiz',
-    password: 'admin',
-    port: 5432
-};
 // const connection = {
-//     connectionString: process.env.DATABASE_URL,
-//     ssl: {
-//       rejectUnauthorized: false
-//     }
-//   };
+//     user: 'postgres',
+//     host: 'localhost',
+//     database: 'color_quiz',
+//     password: 'admin',
+//     port: 5432
+// };
+const connection = {
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+      rejectUnauthorized: false
+    }
+  };
 
 const port = process.env.PORT || 3000;
 
