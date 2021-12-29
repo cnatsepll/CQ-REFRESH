@@ -1,5 +1,5 @@
 #quiz-block{
-    overflow-y:auto;
+    overflow-y:scroll;
     height: calc(100vh - 6ch);
     text-align: center;
 }

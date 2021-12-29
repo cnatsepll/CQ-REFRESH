@@ -46,6 +46,7 @@
 #selectors{
     margin: auto;
     max-width: 240ch;
+    padding: 2em;
 }
 
 #word-bank{
@@ -70,11 +71,12 @@
     border-bottom: 2px rgba(128 128 128 / 78%) solid;
 }
 .question-word-div{
+    font-weight: bold;
     color: var(--darker-text);
 }
 .color-type-div{
-    font-weight: bold;
-    color: var(--hr-line);
+    
+    color: var(--darker-text);
     text-align: center;
 }
 
@@ -99,11 +101,11 @@
     border-bottom: 2px rgba(128 128 128 / 78%) solid;
 }
 .result-group-div{
+    font-weight: bold;
     color: var(--darker-text);
 }
 .color-array-div{
-    font-weight: bold;
-    color: var(--hr-line);
+    color: var(--darker-text);
     text-align: center;
 }
 

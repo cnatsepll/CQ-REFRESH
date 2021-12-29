@@ -97,7 +97,7 @@ const fetchQuestions = ()=>
 const setQuestion = ()=>{
     let questionDiv = document.querySelector("#question");
     questionWords = JSON.parse(localStorage.getItem("questions"));
-    questionDiv.textContent = `${questionWords[questionCounter].question} :: ${questionWords[questionCounter].cd_color}`;
+    questionDiv.textContent = `${questionWords[questionCounter].question}`;
 };
 
 const setMaxQuestionsDiv = ()=>{

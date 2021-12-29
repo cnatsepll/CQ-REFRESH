@@ -37,28 +37,18 @@
                     <div id="instruction-reminder">How closely do you align yourself with the word or phrase shown below?</div>
                     <div id="question"></div>
                     <div id="answerRow" class="flex flex-space-around">
-                        <div class="response-button padding-sides-medium" onclick="selected(1)">
-                            Not at all
-                        </div>
-                        <div class="response-button padding-sides-medium" onclick="selected(2)">
-                            A little bit
-                        </div>
-                        <div class="response-button padding-sides-medium" onclick="selected(5)">
-                            Some
-                        </div>
-                        <div class="response-button padding-sides-medium" onclick="selected(10)">
-                            Very Strongly
-                        </div>
-                        <div class="response-button padding-sides-medium" onclick="selected(20)">
-                            That's me
-                        </div>
+                        <input type="button" value="Not at all" class="response-button padding-sides-medium" onclick="selected(1)"/>
+                        <input type="button" value="A little bit" class="response-button padding-sides-medium" onclick="selected(2)"/>
+                        <input type="button" value="Some" class="response-button padding-sides-medium" onclick="selected(5)"/>
+                        <input type="button" value="Very Strongly" class="response-button padding-sides-medium" onclick="selected(10)"/>
+                        <input type="button" value="That's me" class="response-button padding-sides-medium" onclick="selected(20)"/>
                     </div>
                     <div id="actionsRow"></div>
                 </div>
-                <div id="calcluate-div">
-                    <input type="button" onclick="calculateResult()" class="response-button" value="Calculate Result">
-                </div>
             </section>
+            <div id="calcluate-div">
+                <input type="button" onclick="calculateResult()" class="response-button" value="Calculate Result">
+            </div>
             <section id="results-section" class="section-card hiddenElement">
                 <div id="totals"></div>
                 <div id="results"></div>
