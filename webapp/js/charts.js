@@ -9,8 +9,8 @@ let selectorsColorGroups = document.getElementById('color-groups');
 window.onload = ()=>{
     fetch('/charts/listAllQuestionWords')
     .then(response => response.json())
-    .then(response => {questionWords = response.rows;})
-    .then(()=>{
+    .then(response =>{
+        questionWords = response;       
         for(let i = 0; i < questionWords.length; i+=1){
             let wordDiv = document.createElement('div');
             let colorDiv = document.createElement('div');
@@ -28,8 +28,8 @@ window.onload = ()=>{
     
     fetch('/charts/listAllColorGroups')
     .then(response => response.json())
-    .then(response => {colorGroups = response.rows;})
-    .then(()=>{
+    .then(response => {
+        colorGroups = response;
         colorGroups.sort(compareValues('quick_name', 'asc'));
         for(let i = 0; i < colorGroups.length; i+=1){
             let resultDiv = document.createElement('div');
@@ -49,18 +49,19 @@ window.onload = ()=>{
         }
     });
 
-    fetch('/charts/getTotalResults')
-    .then(response => response.json())
-    .then(response => {results = response.rows;})
-    .then(()=>{
-        document.querySelector('#total-results').textContent = results[0].estimate.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    });
-    fetch('/charts/getTotalAnswers')
-    .then(response => response.json())
-    .then(response => {answers = response.rows;})
-    .then(()=>{
-        document.querySelector('#total-answers').textContent = answers[0].estimate.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-    });
+
+    // fetch('/charts/getTotalResults')
+    // .then(response => response.json())
+    // .then(response => {results = response.rows;})
+    // .then(()=>{
+    //     document.querySelector('#total-results').textContent = results[0].estimate.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    // });
+    // fetch('/charts/getTotalAnswers')
+    // .then(response => response.json())
+    // .then(response => {answers = response.rows;})
+    // .then(()=>{
+    //     document.querySelector('#total-answers').textContent = answers[0].estimate.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    // });
 }
 
 Chart.defaults.font.size = 13;

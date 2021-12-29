@@ -1,38 +1,3 @@
-const totalResults = `
-SELECT 100 * count(*) AS estimate FROM result TABLESAMPLE SYSTEM (1);
-`;
-
-const totalAnswers = `
-SELECT 100 * count(*) AS estimate FROM answer TABLESAMPLE SYSTEM (1);
-`;
-
-
-const listAllQuestionWords = `
-select * from (
-	select substring(question_word from 2) question, upper(substring(question_word from 1 for 1))cd_color
-	from black_questions where substring(question_word from 2) != 'No Limits'
-	union
-	select substring(question_word from 2) question, upper(substring(question_word from 1 for 1)) cd_color
-	from blue_questions where substring(question_word from 2) != 'Predicting Patterns'
-	union
-	select substring(question_word from 2) question, upper(substring(question_word from 1 for 1)) cd_color
-	from green_questions where substring(question_word from 2) != 'Might'
-	union
-	select substring(question_word from 2) question, upper(substring(question_word from 1 for 1)) cd_color
-	from red_questions where substring(question_word from 2) != 'Confidence'
-	union
-	select substring(question_word from 2) question, upper(substring(question_word from 1 for 1)) cd_color
-	from white_questions where substring(question_word from 2) != 'Credibility'
-) innerTable
-order by question
-`;
-
-const listAllColorGroups = `
-select quick_name, color_group from color_definitions order by quick_name asc;
-`;
-
-
-
 const topResultsDetailed = `
 SELECT COUNT(result.user_id) user_count, result_color, color_group, quick_name
 ,(SELECT count(user_id) FROM result)total_users
@@ -280,13 +245,8 @@ from answer
 join result r1 on r1.user_id = answer.user_id
 `;
 
-exports.totalResults = totalResults;
-exports.totalAnswers = totalAnswers;
 
 exports.mostFavoredColors = mostFavoredColors;
-
-exports.listAllQuestionWords = listAllQuestionWords;
-exports.listAllColorGroups = listAllColorGroups;
 
 exports.topResult = topResult;
 exports.topResultsDetailed = topResultsDetailed;

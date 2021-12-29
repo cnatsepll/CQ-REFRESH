@@ -3,25 +3,25 @@ const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
 const { Pool, Client } = require('pg');
-// const connection = {
-//     user: 'postgres',
-//     host: 'localhost',
-//     database: 'color_quiz',
-//     password: 'admin',
-//     port: 5432
-// };
 const connection = {
-    connectionString: process.env.DATABASE_URL,
-    ssl: {
-      rejectUnauthorized: false
-    }
-  };
+    user: 'postgres',
+    host: 'localhost',
+    database: 'color_quiz',
+    password: 'admin',
+    port: 5432
+};
+// const connection = {
+//     connectionString: process.env.DATABASE_URL,
+//     ssl: {
+//       rejectUnauthorized: false
+//     }
+//   };
 
 const port = process.env.PORT || 3000;
 
 
 const queries = require('./sql/chart_queries');
-
+const wordBank = require('./sql/word_bank');
 
 app.use(bodyParser.json());
 app.use(express.static("webapp"))
@@ -63,24 +63,12 @@ app.get('/charts/getTotalResults', (req, res)=>{
     })
 });
 app.get('/charts/listAllQuestionWords', (req, res)=>{
-    const client = new Client(connection);
-    let response;
-    client.connect();
-    client.query(queries.listAllQuestionWords, (err, data) => {
-      err ? err.stack : response = data;
-      client.end();
-      res.send(response);
-    })
+    let response = wordBank.listAllQuestionWords;
+    res.send(response);
 });
 app.get('/charts/listAllColorGroups', (req, res)=>{
-    const client = new Client(connection);
-    let response;
-    client.connect();
-    client.query(queries.listAllColorGroups, (err, data) => {
-      err ? err.stack : response = data;
-      client.end();
-      res.send(response);
-    })
+    let response = wordBank.listAllColorGroups;
+    res.send(response);
 });
 app.get('/charts/topResults', (req, res)=>{
     const client = new Client(connection);
