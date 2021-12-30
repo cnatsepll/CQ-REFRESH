@@ -90,7 +90,7 @@ Chart.defaults.font.size = 13;
 
 let colorScheme = [];
 
-function orderColors(chartColors){
+const orderColors=(chartColors)=>{
     colorScheme = [];
     for(let i =0 ; i < chartColors.length ; i++){
         colorScheme.push(orderedColors[chartColors[i]])
@@ -119,20 +119,24 @@ const checkStorage = (name, question_word) =>{
     let storageItem = JSON.parse(localStorage.getItem(name));
     let storageReturn;
     if(!!storageItem){
-        for(let i=0; i < storageItem.length; i +=1){
-            if(storageItem[i].question_word === question_word){
-                storageReturn = storageItem[i];
-                break;
+        if(name === "topResults"){
+            storageReturn = storageItem[0];
+        } 
+        else {
+            for(let i=0; i < storageItem.length; i +=1){
+                if(storageItem[i].question_word === question_word){
+                    storageReturn = storageItem[i];
+                    break;
+                }
             }
         }
     }
-    console.log(storageReturn)
     return storageReturn;
 }
 
 let fiveColorRadarSearch = { question_word: '' };
 let responseObject;
-function getfiveColorRadar(){
+const getfiveColorRadar=()=>{
     const question_word = document.getElementById('fiveColorRadarSearch').value;
     let storageReturn = checkStorage("fiveColorRadar", question_word);
     if(storageReturn){
@@ -151,13 +155,13 @@ function getfiveColorRadar(){
         .then(response => response.json())
         .then(data => {
             buttonToggle();
-            fiveColorRadar = data.rows;
-            fiveColorRadarData = {
-                data: fiveColorRadar,
+            let chartData = data.rows;
+            let chartObject = {
+                data: chartData,
                 question_word: question_word
             }
-            storeResult("fiveColorRadar", fiveColorRadarData);
-            buildFiveColorRadar(fiveColorRadar, question_word);
+            storeResult("fiveColorRadar", chartObject);
+            buildFiveColorRadar(chartData, question_word);
         })
     }
 }
@@ -227,25 +231,44 @@ const buildFiveColorRadar = (fiveColorRadar, question_word) =>{
     })
 }
 
-function getTopResults(){
+const getTopResults=()=>{
+    let storageReturn = checkStorage("topResults", "all");
+    if(storageReturn){
+        buttonToggle();
+        buildTopResults(storageReturn.data, storageReturn.question_word)
+    }else{
     fetch('/charts/topResults')
     .then(response => response.json())
-    .then(data => {topResults = data;})
-    .then(()=>{
+    .then(data => {
         buttonToggle();
+            let chartData = data.rows;
+            let chartObject = {
+                data: chartData,
+                question_word: "all"
+            }
+            storeResult("topResults", chartObject);
+            
+            buildTopResults(chartData);
+        })
+    }
+}
+const buildTopResults=(topResults)=>{
+    document.getElementById('topResultsChart').remove(); 
+    let canvas = document.createElement('canvas');
+    canvas.id = 'topResultsChart';
+    document.getElementById('topResultsChartContainer').append(canvas);
         let count = [];
         let resultColor =[];
         let totalUsers = [];
         let chartColors = [];
-        for(let i = 0; i<topResults.rows.length; i+=1){
-            count.push(topResults.rows[i].user_count);
-            resultColor.push(topResults.rows[i].quick_name);
-            totalUsers.push(topResults.rows[i].total_users);
+        for(let i = 0; i<topResults.length; i+=1){
+            count.push(topResults[i].user_count);
+            resultColor.push(topResults[i].quick_name);
+            totalUsers.push(topResults[i].total_users);
 
-            chartColors.push((topResults.rows[i].quick_name).replace(/\s/g, ''));
+            chartColors.push((topResults[i].quick_name).replace(/\s/g, ''));
         }
         orderColors(chartColors);
-
         var ctx = document.getElementById('topResultsChart').getContext('2d');
         window.topResults = new Chart(ctx, {
             type: 'bar',
@@ -271,40 +294,54 @@ function getTopResults(){
                 }
             }
         })
-    })
-}
+    }
 
 const resultMostLikeSearch = { question_word: '' };
-function getResultMostLike(){
+const getResultMostLike=()=>{
     const question_word = document.getElementById('resultMostLikeSearch').value;
-    resultMostLikeSearch.question_word = question_word;
+    let storageReturn = checkStorage("resultsMostLike", question_word);
+    if(storageReturn){
+        buttonToggle();
+        buildResultMostLike(storageReturn.data, storageReturn.question_word)
+    }else{
+        resultMostLikeSearch.question_word = question_word;
+        
+        fetch('/charts/resultMostLike',{
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(resultMostLikeSearch)
+        })
+        .then(response => response.json())
+        .then(data => {
+            buttonToggle();
+            let chartData = data.rows;
+            let chartObject = {
+                data: chartData,
+                question_word: question_word
+            }
+            storeResult("resultsMostLike", chartObject);
+            buildResultMostLike(chartData, question_word);
+        })
+    }
+}
+const buildResultMostLike=(resultMostLike, question_word)=>{
     document.getElementById('resultMostLikeChart').remove(); 
     let canvas = document.createElement('canvas');
     canvas.id = 'resultMostLikeChart';
     document.getElementById('resultMostLikeChartContainer').append(canvas);
-    fetch('/charts/resultMostLike',{
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(resultMostLikeSearch)
-      })
-    .then(response => response.json())
-    .then(data => {resultMostLike = data;})
-    .then(()=>{
-        buttonToggle();
-        let count = [];
+    let count = [];
         let resultColor =[];
         let chartColors = [];
-        for(let i = 0; i<resultMostLike.rows.length; i+=1){
-            count.push((resultMostLike.rows[i].percent_difference * 100).toFixed(1));
-            resultColor.push(resultMostLike.rows[i].quick_name);
+        for(let i = 0; i<resultMostLike.length; i+=1){
+            count.push((resultMostLike[i].percent_difference * 100).toFixed(1));
+            resultColor.push(resultMostLike[i].quick_name);
             
-            chartColors.push((resultMostLike.rows[i].quick_name).replace(/\s/g, ''));
+            chartColors.push((resultMostLike[i].quick_name).replace(/\s/g, ''));
         }
         orderColors(chartColors);
-
         var ctx = document.getElementById('resultMostLikeChart').getContext('2d');
         window.resultMostLike = new Chart(ctx, {
             type: 'bar',
@@ -331,11 +368,6 @@ function getResultMostLike(){
                 }
             }
         })
-        window.resultMostLike.update()
-    })
-    .catch((error) => {
-        console.error('Error:', error);
-      })
 }
 let resultLeastLikeSearch = { question_word: '' };
 function getResultLeastLike(){

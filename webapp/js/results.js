@@ -6,6 +6,7 @@ const loadDescriptionContainers = ()=>{
     let containers = document.querySelectorAll(".description-container")
     for(let i = 0; i < containers.length; i+=1){
         let container = containers[i]
+        container.appendChild(document.createElement("br"));
         let descriptionArray = shortDescriptions[container.id]();
         console.log(!!descriptionArray)
         if(!!descriptionArray){
@@ -16,6 +17,7 @@ const loadDescriptionContainers = ()=>{
                 container.appendChild(document.createElement("br"));
             }
         }
+        container.appendChild(document.createElement("hr"));
     }    
 }
 

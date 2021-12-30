@@ -3,3 +3,10 @@
     overflow-y:auto;
     height: calc(100vh - 6ch);
 }
+#text-dump{
+    padding: 3em;
+}
+.result-header{
+    font-weight: bold;
+    font-size: 1.3em;
+}

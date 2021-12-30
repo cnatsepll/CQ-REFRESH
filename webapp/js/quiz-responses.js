@@ -10,6 +10,7 @@ let red;
 let green;
 let placed;
 let sortedAnswersArray = {};
+let codedAnswerValues = {};
 
 const calculateResult = () =>{   
     let resultsSection = document.querySelector("#results-section");
@@ -19,21 +20,12 @@ const calculateResult = () =>{
     totalsDiv.textContent = "";
     resultsDiv.textContent = "";
     let ansObj = answers;
-    let newTest = {};
-
-    white = ansObj['W'];
-    blue = ansObj['U'];
-    black = ansObj['B'];
-    red = ansObj['R'];
-    green = ansObj['G'];
-
-    newTest.W = [ansObj.W, "White"];
-    newTest.U = [ansObj.U, "Blue"];
-    newTest.B = [ansObj.B, "Black"];
-    newTest.R = [ansObj.R, "Red"];
-    newTest.G = [ansObj.G, "Green"];
-
-    sortedAnswersArray = Object.entries(newTest).sort((a,b) => b[1][0]-a[1][0]);
+    codedAnswerValues.W = [ansObj.W, "White"];
+    codedAnswerValues.U = [ansObj.U, "Blue"];
+    codedAnswerValues.B = [ansObj.B, "Black"];
+    codedAnswerValues.R = [ansObj.R, "Red"];
+    codedAnswerValues.G = [ansObj.G, "Green"];
+    sortedAnswersArray = Object.entries(codedAnswerValues).sort((a,b) => b[1][0]-a[1][0]);
     first = sortedAnswersArray[0];
     second = sortedAnswersArray[1];
     third = sortedAnswersArray[2];
@@ -97,7 +89,45 @@ const setResult = (result)=>{
     let resultsSection = document.querySelector("#results-section");
     let totalsDiv = document.querySelector("#totals");
     let resultsDiv = document.querySelector("#results");
-    totalsDiv.textContent = JSON.stringify(answers);
+
+	let totalScore = parseInt(answers.W)+parseInt(answers.U)+parseInt(answers.B)+parseInt(answers.R)+parseInt(answers.G);
+	console.log(totalScore)
+	let Wpercent =()=>{
+		if(answers.W > 0){
+			 return ((parseFloat(answers.W) / totalScore)* 100).toFixed(1)
+		}else{
+			return 0
+		}
+	}
+	let Upercent =()=>{
+		if(answers.U > 0){
+			 return ((parseFloat(answers.U) / totalScore)* 100).toFixed(1)
+		}else{
+			return 0
+		}
+	}
+	let Bpercent =()=>{
+		if(answers.B > 0){
+			 return ((parseFloat(answers.B) / totalScore)* 100).toFixed(1)
+		}else{
+			return 0
+		}
+	}
+	let Rpercent =()=>{
+		if(answers.R > 0){
+			 return ((parseFloat(answers.R) / totalScore)* 100).toFixed(1)
+		}else{
+			return 0
+		}
+	}
+	let Gpercent =()=>{
+		if(answers.G > 0){
+			 return ((parseFloat(answers.G) / totalScore)* 100).toFixed(1)
+		}else{
+			return 0
+		}
+	}
+    totalsDiv.textContent = `| White: ${Wpercent()}% | Blue: ${Upercent()}% | Black: ${Bpercent()}% | Red: ${Rpercent()}% | Green: ${Gpercent()}% | `;
     for(let i = 0 ; i < result.length ; i+=1){
         let newDiv = document.createElement("div");
         newDiv.innerText = result[i];
@@ -141,7 +171,7 @@ const triColor = (result)=>{
     else if(result === "BGW"){setResult(descriptions.abzan());}
 }
 const twoColor = (result)=>{
-    if (result === "UW"){azorious();}
+    if (result === "UW"){setResult(descriptions.azorious());}
     else if (result === "BW"){setResult(descriptions.orzhov());}
     else if (result === "RW"){setResult(descriptions.boros());}
     else if (result === "GW"){setResult(descriptions.selesnya());}
