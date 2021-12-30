@@ -370,13 +370,14 @@ const buildResultMostLike=(resultMostLike, question_word)=>{
         })
 }
 let resultLeastLikeSearch = { question_word: '' };
-function getResultLeastLike(){
+const getResultLeastLike=()=>{
     const question_word = document.getElementById('resultLeastLikeSearch').value;
+    let storageReturn = checkStorage("resultsLeastLike", question_word);
+    if(storageReturn){
+        buttonToggle();
+        buildResultLeastLike(storageReturn.data, storageReturn.question_word)
+    }else{
     resultLeastLikeSearch.question_word = question_word;
-    document.getElementById('resultLeastLikeChart').remove(); 
-    let canvas = document.createElement('canvas');
-    canvas.id = 'resultLeastLikeChart';
-    document.getElementById('resultLeastLikeChartContainer').append(canvas);
     fetch('/charts/resultLeastLike',{
         method: 'POST',
         mode: 'cors',
@@ -384,90 +385,116 @@ function getResultLeastLike(){
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(resultLeastLikeSearch)
-    })
-    .then(response => response.json())
-    .then(data => {resultLeastLike = data;})
-    .then(()=>{
-        buttonToggle();
-        let count = [];
-        let resultColor =[];
-        let chartColors = [];
-        for(let i = 0; i<resultLeastLike.rows.length; i+=1){
-            count.push((resultLeastLike.rows[i].percent_difference * 100).toFixed(1));
-            resultColor.push(resultLeastLike.rows[i].quick_name);
-            
-            chartColors.push((resultLeastLike.rows[i].quick_name).replace(/\s/g, ''));
-        }
-        orderColors(chartColors);
-
-        var ctx = document.getElementById('resultLeastLikeChart').getContext('2d');
-        window.resultLeastLike = new Chart(ctx, {
-            type: 'bar',
-            data: {
-              labels: resultColor,
-              datasets: [{
-                  label: question_word,
-                  backgroundColor: colorScheme,
-                  borderColor: "black",
-                  borderWidth: 1,
-                  data: count
-              }]
-              // second dataset to show the percentage of the result color popularity
-          },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                legend: {
-                    position: 'top',
-                },
-                title: {
-                    display: true,
-                    text: `Results least like "${question_word}"`
-                }
-            }
         })
+        .then(response => response.json())
+        .then(data => {
+            buttonToggle();
+            let chartData = data.rows;
+            let chartObject = {
+                data: chartData,
+                question_word: question_word
+            }
+            storeResult("resultsLeastLike", chartObject);
+            buildResultLeastLike(chartData, question_word);
+        })
+    }
+}
+const buildResultLeastLike=(resultLeastLike, question_word)=>{
+    document.getElementById('resultLeastLikeChart').remove(); 
+    let canvas = document.createElement('canvas');
+    canvas.id = 'resultLeastLikeChart';
+    document.getElementById('resultLeastLikeChartContainer').append(canvas);
+    let count = [];
+    let resultColor =[];
+    let chartColors = [];
+    for(let i = 0; i<resultLeastLike.length; i+=1){
+        count.push((resultLeastLike[i].percent_difference * 100).toFixed(1));
+        resultColor.push(resultLeastLike[i].quick_name);
+        
+        chartColors.push((resultLeastLike[i].quick_name).replace(/\s/g, ''));
+    }
+    orderColors(chartColors);
+    var ctx = document.getElementById('resultLeastLikeChart').getContext('2d');
+    window.resultLeastLike = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: resultColor,
+          datasets: [{
+              label: question_word,
+              backgroundColor: colorScheme,
+              borderColor: "black",
+              borderWidth: 1,
+              data: count
+          }]
+          // second dataset to show the percentage of the result color popularity
+      },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: `Results least like "${question_word}"`
+            }
+        }
     })
 }
-
 let topWordsForResultSearch = { question_word: '' };
-function getTopWordsForResult(){
+const getTopWordsForResult=()=>{
     const question_word = document.getElementById('topWordsForResultSearch').value;
-    topWordsForResultSearch.question_word = question_word;
+    let storageReturn = checkStorage("topWordsForResult", question_word);
+    if(storageReturn){
+        buttonToggle();
+        buildTopWordsForResult(storageReturn.data, storageReturn.question_word)
+    }else{
+        topWordsForResultSearch.question_word = question_word;
+        fetch('/charts/topWordsForResult',{
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+            'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(topWordsForResultSearch)
+        })
+        .then(response => response.json())
+        .then(data => {
+            buttonToggle();
+            let chartData = data.rows;
+            let chartObject = {
+                data: chartData,
+                question_word: question_word
+            }
+            storeResult("topWordsForResult", chartObject);
+            buildTopWordsForResult(chartData, question_word);
+        })
+    }
+}
+const buildTopWordsForResult=(topWordsForResult, question_word)=>{
     document.getElementById('topWordsForResultChart').remove(); 
     let canvas = document.createElement('canvas');
     canvas.id = 'topWordsForResultChart';
     document.getElementById('topWordsForResultChartContainer').append(canvas);
-    fetch('/charts/topWordsForResult',{
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(topWordsForResultSearch)
-    })
-    .then(response => response.json())
-    .then(data => {topWordsForResult = data;})
-    .then(()=>{
-        buttonToggle();
-        let count = [];
+    let count = [];
         let resultColor = [];
         let barColor = [];
-        for(let i = 0; i<topWordsForResult.rows.length; i+=1){
-            count.push((topWordsForResult.rows[i].percentage * 100).toFixed(1));
-            resultColor.push(topWordsForResult.rows[i].question_word);
-            if(topWordsForResult.rows[i].color_type_key == 'w'){
+        for(let i = 0; i<topWordsForResult.length; i+=1){
+            count.push((topWordsForResult[i].percentage * 100).toFixed(1));
+            resultColor.push(topWordsForResult[i].question_word);
+            if(topWordsForResult[i].color_type_key == 'w'){
                 barColor.push('white')
             }
-            if(topWordsForResult.rows[i].color_type_key == 'u'){
+            if(topWordsForResult[i].color_type_key == 'u'){
                 barColor.push('blue')
             }
-            if(topWordsForResult.rows[i].color_type_key == 'b'){
+            if(topWordsForResult[i].color_type_key == 'b'){
                 barColor.push('black')
             }
-            if(topWordsForResult.rows[i].color_type_key == 'r'){
+            if(topWordsForResult[i].color_type_key == 'r'){
                 barColor.push('red')
             }
-            if(topWordsForResult.rows[i].color_type_key == 'g'){
+            if(topWordsForResult[i].color_type_key == 'g'){
                 barColor.push('green')
             }
         }
@@ -497,143 +524,167 @@ function getTopWordsForResult(){
                 }
             }
         })
-    })
 }
 let bottomWordsForResultSearch = { question_word: '' };
-function getBottomWordsForResult(){
+const getBottomWordsForResult=()=>{
     const question_word = document.getElementById('bottomWordsForResultSearch').value;
-    bottomWordsForResultSearch.question_word = question_word;
+    let storageReturn = checkStorage("bottomWordsForResult", question_word);
+    if(storageReturn){
+        buttonToggle();
+        buildBottomWordsForResult(storageReturn.data, storageReturn.question_word)
+    }else{
+        bottomWordsForResultSearch.question_word = question_word;
+        fetch('/charts/bottomWordsForResult',{
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+            'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(bottomWordsForResultSearch)
+        })
+        .then(response => response.json())
+        .then(data => {
+            buttonToggle();
+            let chartData = data.rows;
+            let chartObject = {
+                data: chartData,
+                question_word: question_word
+            }
+            storeResult("bottomWordsForResult", chartObject);
+            buildBottomWordsForResult(chartData, question_word);
+        })
+    }
+}
+const buildBottomWordsForResult=(bottomWordsForResult, question_word)=>{
     document.getElementById('bottomWordsForResultChart').remove(); 
     let canvas = document.createElement('canvas');
     canvas.id = 'bottomWordsForResultChart';
     document.getElementById('bottomWordsForResultChartContainer').append(canvas);
-    fetch('/charts/bottomWordsForResult',{
-        method: 'POST',
-        mode: 'cors',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(bottomWordsForResultSearch)
-    })
-    .then(response => response.json())
-    .then(data => {bottomWordsForResult = data;})
-    .then(()=>{
-        buttonToggle();
-        let count = [];
-        let resultColor =[];
-        let barColor = [];
-        for(let i = 0; i<bottomWordsForResult.rows.length; i+=1){
-            count.push((bottomWordsForResult.rows[i].percentage * 100).toFixed(1));
-            resultColor.push(bottomWordsForResult.rows[i].question_word);
-            if(bottomWordsForResult.rows[i].color_type_key == 'w'){
-                barColor.push('white')
-            }
-            if(bottomWordsForResult.rows[i].color_type_key == 'u'){
-                barColor.push('blue')
-            }
-            if(bottomWordsForResult.rows[i].color_type_key == 'b'){
-                barColor.push('black')
-            }
-            if(bottomWordsForResult.rows[i].color_type_key == 'r'){
-                barColor.push('red')
-            }
-            if(bottomWordsForResult.rows[i].color_type_key == 'g'){
-                barColor.push('green')
+    let count = [];
+    let resultColor =[];
+    let barColor = [];
+    for(let i = 0; i<bottomWordsForResult.length; i+=1){
+        count.push((bottomWordsForResult[i].percentage * 100).toFixed(1));
+        resultColor.push(bottomWordsForResult[i].question_word);
+        if(bottomWordsForResult[i].color_type_key == 'w'){
+            barColor.push('white')
+        }
+        if(bottomWordsForResult[i].color_type_key == 'u'){
+            barColor.push('blue')
+        }
+        if(bottomWordsForResult[i].color_type_key == 'b'){
+            barColor.push('black')
+        }
+        if(bottomWordsForResult[i].color_type_key == 'r'){
+            barColor.push('red')
+        }
+        if(bottomWordsForResult[i].color_type_key == 'g'){
+            barColor.push('green')
+        }
+    }
+    var ctx = document.getElementById('bottomWordsForResultChart').getContext('2d');
+    window.bottomWordsForResult = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: resultColor,
+          datasets: [{
+              label: question_word,
+              backgroundColor: barColor,
+              borderColor: "black",
+              borderWidth: 1,
+              data: count
+          }]
+          // second dataset to show the percentage of the result color popularity
+      },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: `${question_word} Profile Bottom Words`
             }
         }
-        var ctx = document.getElementById('bottomWordsForResultChart').getContext('2d');
-        window.bottomWordsForResult = new Chart(ctx, {
-            type: 'bar',
-            data: {
-              labels: resultColor,
-              datasets: [{
-                  label: question_word,
-                  backgroundColor: barColor,
-                  borderColor: "black",
-                  borderWidth: 1,
-                  data: count
-              }]
-              // second dataset to show the percentage of the result color popularity
-          },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                legend: {
-                    position: 'top',
-                },
-                title: {
-                    display: true,
-                    text: `${question_word} Profile Bottom Words`
-                }
-            }
-        })
     })
 }
-
-
 let colorpieSlicesSearch = { question_word: '' };
-function getColorpieSlices(){
+const getColorpieSlices=()=>{
     const question_word = document.getElementById('resultColorpieSlicesSearch').value;
     colorpieSlicesSearch.question_word = question_word;
-    document.getElementById('resultColorpieSlicesChart').remove(); 
-    let canvas = document.createElement('canvas');
-    canvas.id = 'resultColorpieSlicesChart';
-    document.getElementById('resultColorpieSlicesChartContainer').append(canvas);
+    let storageReturn = checkStorage("colorpieSlices", question_word);
+    if(storageReturn){
+        buttonToggle();
+        buildColorPieSlices(storageReturn.data, storageReturn.question_word)
+    }else{
     fetch('/charts/resultColorpieSlices',{
         method: 'POST',
         mode: 'cors',
         headers: {
-          'Content-Type': 'application/json',
+        'Content-Type': 'application/json',
         },
         body: JSON.stringify(colorpieSlicesSearch)
     })
     .then(response => response.json())
-    .then(data => {
-        buttonToggle();
-        let colorpieSlices = data;
-        let white_counter = (colorpieSlices.rows[0].white_counter / colorpieSlices.rows[0].total_counter).toFixed(3);
-        let blue_counter = (colorpieSlices.rows[0].blue_counter / colorpieSlices.rows[0].total_counter).toFixed(3);
-        let black_counter = (colorpieSlices.rows[0].black_counter / colorpieSlices.rows[0].total_counter).toFixed(3);
-        let red_counter = (colorpieSlices.rows[0].red_counter / colorpieSlices.rows[0].total_counter).toFixed(3);
-        let green_counter = (colorpieSlices.rows[0].green_counter / colorpieSlices.rows[0].total_counter).toFixed(3);
-
-        let colorCounterArray = [
-            {name: 'white', count: white_counter},
-            {name: 'blue', count: blue_counter},
-            {name: 'black', count: black_counter},
-            {name: 'red', count: red_counter},
-            {name: 'green', count: green_counter}
-        ];
-        colorCounterArray.sort((a,b)=> b.count - a.count);
-        var ctx = document.getElementById('resultColorpieSlicesChart').getContext('2d');
-        window.colorpieSlices = new Chart(ctx, {
-            type: 'pie',
-            data: {
-              labels: [colorCounterArray[0].name, colorCounterArray[1].name, colorCounterArray[2].name, colorCounterArray[3].name, colorCounterArray[4].name],
-              datasets: [{
-                backgroundColor: [colorCounterArray[0].name, colorCounterArray[1].name, colorCounterArray[2].name, colorCounterArray[3].name, colorCounterArray[4].name],
-                borderColor: 'black',
-                borderWidth: 3,
-                  label: question_word,
-                  data: [`${(colorCounterArray[0].count*100).toFixed(1)}`, `${(colorCounterArray[1].count*100).toFixed(1)}`, `${(colorCounterArray[2].count*100).toFixed(1)}`, `${(colorCounterArray[3].count*100).toFixed(1)}`, `${(colorCounterArray[4].count*100).toFixed(1)}`]
-              }]
-              // second dataset to show the percentage of the result color popularity
-          },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                legend: {
-                    position: 'top',
-                },
-                title: {
-                    display: true,
-                    text: `${question_word} Radar Graph`
-                }
+        .then(data => {
+            buttonToggle();
+            let chartData = data.rows;
+            let chartObject = {
+                data: chartData,
+                question_word: question_word
             }
+            storeResult("colorpieSlices", chartObject);
+            buildColorPieSlices(chartData, question_word);
         })
+    }
+}
+const buildColorPieSlices=(colorpieSlices, question_word)=>{
+    document.getElementById('resultColorpieSlicesChart').remove(); 
+    let canvas = document.createElement('canvas');
+    canvas.id = 'resultColorpieSlicesChart';
+    document.getElementById('resultColorpieSlicesChartContainer').append(canvas);
+    let white_counter = (colorpieSlices[0].white_counter / colorpieSlices[0].total_counter).toFixed(3);
+    let blue_counter = (colorpieSlices[0].blue_counter / colorpieSlices[0].total_counter).toFixed(3);
+    let black_counter = (colorpieSlices[0].black_counter / colorpieSlices[0].total_counter).toFixed(3);
+    let red_counter = (colorpieSlices[0].red_counter / colorpieSlices[0].total_counter).toFixed(3);
+    let green_counter = (colorpieSlices[0].green_counter / colorpieSlices[0].total_counter).toFixed(3);
+
+    let colorCounterArray = [
+        {name: 'white', count: white_counter},
+        {name: 'blue', count: blue_counter},
+        {name: 'black', count: black_counter},
+        {name: 'red', count: red_counter},
+        {name: 'green', count: green_counter}
+    ];
+    colorCounterArray.sort((a,b)=> b.count - a.count);
+    var ctx = document.getElementById('resultColorpieSlicesChart').getContext('2d');
+    window.colorpieSlices = new Chart(ctx, {
+        type: 'pie',
+        data: {
+          labels: [colorCounterArray[0].name, colorCounterArray[1].name, colorCounterArray[2].name, colorCounterArray[3].name, colorCounterArray[4].name],
+          datasets: [{
+            backgroundColor: [colorCounterArray[0].name, colorCounterArray[1].name, colorCounterArray[2].name, colorCounterArray[3].name, colorCounterArray[4].name],
+            borderColor: 'black',
+            borderWidth: 3,
+              label: question_word,
+              data: [`${(colorCounterArray[0].count*100).toFixed(1)}`, `${(colorCounterArray[1].count*100).toFixed(1)}`, `${(colorCounterArray[2].count*100).toFixed(1)}`, `${(colorCounterArray[3].count*100).toFixed(1)}`, `${(colorCounterArray[4].count*100).toFixed(1)}`]
+          }]
+          // second dataset to show the percentage of the result color popularity
+      },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+                position: 'top',
+            },
+            title: {
+                display: true,
+                text: `${question_word} Color Pie`
+            }
+        }
     })
 }
-
 
 
 

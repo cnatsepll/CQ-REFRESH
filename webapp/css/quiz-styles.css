@@ -40,6 +40,9 @@
 #quiz-response{
     margin: 1em;
 }
+#totals{
+    margin: 1em;
+}
 .response-button{
     cursor: pointer; 
     font-family:'Roboto',sans-serif;
@@ -70,6 +73,7 @@
 #results-section{
     grid-area: results;
     margin: 5em 1em 1em 1em;
+    padding: 1.5em;
 }
 #calculate-div{
     margin-top:1em;

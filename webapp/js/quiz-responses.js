@@ -127,13 +127,24 @@ const setResult = (result)=>{
 			return 0
 		}
 	}
-    totalsDiv.textContent = `| White: ${Wpercent()}% | Blue: ${Upercent()}% | Black: ${Bpercent()}% | Red: ${Rpercent()}% | Green: ${Gpercent()}% | `;
+	let percentsObj = {
+		W: Wpercent(),
+		U: Upercent(),
+		B: Bpercent(),
+		R: Rpercent(),
+		G: Gpercent()
+	}
+    totalsDiv.textContent = `| White: ${percentsObj.W}% | Blue: ${percentsObj.U}% | Black: ${percentsObj.B}% | Red: ${percentsObj.R}% | Green: ${percentsObj.G}% | `;
     for(let i = 0 ; i < result.length ; i+=1){
         let newDiv = document.createElement("div");
         newDiv.innerText = result[i];
         resultsDiv.appendChild(newDiv);
         resultsDiv.appendChild(document.createElement("br"));
     }
+	let chartDiv = document.createElement("div");
+	chartDiv.id = "chartResults"
+	resultsDiv.appendChild(chartDiv);
+	addChart(percentsObj);
     resultsSection.classList.remove("hiddenElement");
 }
 
@@ -183,6 +194,55 @@ const twoColor = (result)=>{
     else if (result === "GR"){setResult(descriptions.gruul());}
 }
 
+
+
+const addChart=(percentsObj)=>{
+	let canvas = document.createElement('canvas');
+    canvas.id = 'resultColorpieSlicesChart';
+	let chartDiv = document.querySelector("#chartResults");
+	chartDiv.appendChild(canvas)
+        let white_counter = percentsObj.W;
+        let blue_counter = percentsObj.U;
+        let black_counter = percentsObj.B;
+        let red_counter = percentsObj.R;
+        let green_counter = percentsObj.G;
+
+        let colorCounterArray = [
+            {name: 'white', count: white_counter},
+            {name: 'blue', count: blue_counter},
+            {name: 'black', count: black_counter},
+            {name: 'red', count: red_counter},
+            {name: 'green', count: green_counter}
+        ];
+        colorCounterArray.sort((a,b)=> b.count - a.count);
+        var ctx = canvas.getContext('2d');
+        window.colorpieSlices = new Chart(ctx, {
+            type: 'pie',
+            data: {
+              labels: [colorCounterArray[0].name, colorCounterArray[1].name, colorCounterArray[2].name, colorCounterArray[3].name, colorCounterArray[4].name],
+              datasets: [{
+                backgroundColor: [colorCounterArray[0].name, colorCounterArray[1].name, colorCounterArray[2].name, colorCounterArray[3].name, colorCounterArray[4].name],
+                borderColor: 'black',
+                borderWidth: 3,
+                  label: "Your Color Pie Results",
+                  data: [`${colorCounterArray[0].count}`, `${colorCounterArray[1].count}`, `${colorCounterArray[2].count}`, `${colorCounterArray[3].count}`, `${colorCounterArray[4].count}`]
+              }]
+              // second dataset to show the percentage of the result color popularity
+          },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: `Results`
+                }
+            }
+        })
+	
+}
 
 let descriptions = {};
 descriptions.gruul = ()=>{
