@@ -46,6 +46,14 @@ window.onload = ()=>{
             select.add(option);
         }
     }
+    for(let i=0; i < colorSelects.length; i+=1){
+        let select = colorSelects[i];
+        for(let i = 0; i < colorGroups.length; i+=1){
+            option  = document.createElement("option");
+            option.text = `${colorGroups[i].quick_name}`;
+            select.add(option);
+        }
+    }
 }
 
 Chart.defaults.font.size = 13;

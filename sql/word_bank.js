@@ -1,10 +1,10 @@
-const totalResults = `
-SELECT 100 * count(*) AS estimate FROM result TABLESAMPLE SYSTEM (1);
-`;
+// const totalResults = `
+// SELECT 100 * count(*) AS estimate FROM result TABLESAMPLE SYSTEM (1);
+// `;
 
-const totalAnswers = `
-SELECT 100 * count(*) AS estimate FROM answer TABLESAMPLE SYSTEM (1);
-`;
+// const totalAnswers = `
+// SELECT 100 * count(*) AS estimate FROM answer TABLESAMPLE SYSTEM (1);
+// `;
 
 
 // select * from (
@@ -36,5 +36,5 @@ const listAllColorGroups = `
 
 exports.listAllQuestionWords = listAllQuestionWords;
 exports.listAllColorGroups = listAllColorGroups;
-exports.totalResults = totalResults;
-exports.totalAnswers = totalAnswers;
+// exports.totalResults = totalResults;
+// exports.totalAnswers = totalAnswers;
