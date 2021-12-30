@@ -1,7 +1,6 @@
 let pgQuestionWords;
 let questionWords;
 let questionWordsStringified;
-const quizStorage = localStorage;
 let questionCounter;
 let answers;
 
@@ -69,23 +68,12 @@ const resetQuestionWords = () =>{
 const fetchQuestions = ()=>
     new Promise((resolve, reject) => {
         fetch("/charts/listAllQuestionWords")
-        .then(response => {
-            console.log('fetch');
-            return response.json();
-        })
-        .then(response => {
-            console.log('response');
-            pgQuestionWords = response.rows;
-            return pgQuestionWords;
-        })
-        .then((response)=>{
-            console.log('store');
-            questionWords = pgQuestionWords;
+        .then(response => response.json())
+        .then(questionWords => {
             shuffle(questionWords);
             questionWordsStringified = JSON.stringify(questionWords);
             localStorage.setItem("questions", questionWordsStringified);
             setQuestion();
-            console.log(response);
         }).then(()=>{
             resolve(console.log('questions success'));
         })

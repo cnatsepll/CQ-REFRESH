@@ -38,10 +38,12 @@ app.get('/charts', (req, res)=> {
     res.sendFile(path.join(__dirname + '/webapp/html/charts.html'));
 });
 
+app.get('/results', (req, res)=> {
+    res.sendFile(path.join(__dirname + '/webapp/html/results.html'));
+});
 app.get('/about', (req, res)=> {
     res.sendFile(path.join(__dirname + '/webapp/html/about.html'));
 });
-
 
 app.get('/charts/getTotalResults', (req, res)=>{
     const client = new Client(connection);

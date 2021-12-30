@@ -16,40 +16,45 @@
         <nav id="header-button-row">
             <a href="/html/quiz.html"><div class="nav-button">QUIZ</div></a>
             <a href="/html/charts.html"><div class="nav-button">CHARTS</div></a>
-            <a href="/html/about.html"><div class="nav-button">RESULTS</div></a> 
+            <a href="/html/results.html"><div class="nav-button">RESULTS</div></a> 
         </nav>    
     </section>
     
     <section id="home-block">
         <section id="home-container">
             <section id="home-cards">
-                <section id="home-start" class="section-card section-card-main" onclick="toQuiz()">
-                    <article>
-                        <h2>TAKE THE QUIZ</h2>
-                        <p>CHOOSE HOW MANY QUESTIONS TO TAKE</p>
-                    </article>
-                </section>
-            
-                <section id="home-charts" class="section-card section-card-sub" onclick="toCharts()">
-                    <article>
-                        <h2>VIEW THE CHARTS</h2>
-                        <p>TAKE A LOOK AT WHAT OTHER PEOPLE HAVE GOTTEN</p>
-                    </article>
-                </section>
-            
-                <section id="home-results" class="section-card section-card-sub" onclick="clicked(this)">
-                    <article>
-                        <h2>VIEW POSSIBLE RESULTS</h2>
-                        <p>SEE ALL THE POSSBILE RESULTS IN ONE PLACE</p>
-                    </article>
-                </section>
-            
-                <section id="home-about" class="section-card section-card-sub" onclick="clicked(this)">
-                    <article>
-                        <h2>ABOUT THE QUIZ</h2>
-                        <p>WHATS GOING ON AND WHY </p>
-                    </article>
-                </section>
+                <a id="home-start" class="section-card section-card-main" href="/html/quiz.html">
+                    <div>
+                        <article>
+                            <h2>TAKE THE QUIZ</h2>
+                            <p>CHOOSE HOW MANY QUESTIONS TO TAKE</p>
+                        </article>
+                    </div>
+                </a>
+                <a class="section-card section-card-sub" href="/html/charts.html">
+                    <div id="home-charts">
+                        <article>
+                            <h2>VIEW THE CHARTS</h2>
+                            <p>TAKE A LOOK AT WHAT OTHER PEOPLE HAVE GOTTEN</p>
+                        </article>
+                    </div>
+                </a>
+                <a id="home-results" class="section-card section-card-sub" href="/html/results.html">
+                    <div>
+                        <article>
+                            <h2>VIEW POSSIBLE RESULTS</h2>
+                            <p>SEE ALL THE POSSBILE RESULTS IN ONE PLACE</p>
+                        </article>
+                    </div>
+                </a>
+                <a id="home-about" class="section-card section-card-sub" href="/html/about.html">
+                    <div>
+                        <article>
+                            <h2>ABOUT THE QUIZ</h2>
+                            <p>WHATS GOING ON AND WHY </p>
+                        </article>
+                    </div>
+                </a>
             </section>
             <br>
             <br>

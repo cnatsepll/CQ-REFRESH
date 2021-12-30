@@ -46,6 +46,10 @@ a h1{
     font-size: 1em;
 }
 
+.block{
+    display: block;
+}
+
 .hiddenElement{
     display: none;
 }
