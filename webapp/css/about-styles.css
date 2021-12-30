@@ -3,3 +3,6 @@
     overflow-y:auto;
     height: calc(100vh - 6ch);
 }
+#about{
+    padding: 3em;
+}
