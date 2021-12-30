@@ -8,7 +8,6 @@ const loadDescriptionContainers = ()=>{
         let container = containers[i]
         container.appendChild(document.createElement("br"));
         let descriptionArray = shortDescriptions[container.id]();
-        console.log(!!descriptionArray)
         if(!!descriptionArray){
             for(let i = 0 ; i < descriptionArray.length; i+=1){
                 let newDiv = document.createElement("div");
