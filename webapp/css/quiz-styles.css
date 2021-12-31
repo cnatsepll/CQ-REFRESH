@@ -56,12 +56,15 @@
     padding:0.2em 0.5em;
     color: var(--nav-button-color);
 }
-.response-button:hover {
-    border-color: var(--action-hover-1);
+@media(hover: hover) {
+    .response-button:hover {
+        border-color: var(--action-hover-1);
+    }
+    /* .response-button:active{
+        border-color: var(--action-hover-2);
+    } */
 }
-/* .response-button:active{
-    border-color: var(--action-hover-2);
-} */
+
 
 .section-card{
     border: 3px solid;
