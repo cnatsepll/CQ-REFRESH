@@ -37,29 +37,31 @@
     --green-bold:#7ab37a;
 }
 .white{background-color: var(--white);}
-.white:hover{
-    background-color: var(--white-hover);
-    border: 4px solid var(--white);
-}
 .blue{background-color: var(--blue);}
-.blue:hover{
-    background-color: var(--blue-hover);
-    border: 4px solid var(--blue);
-}
 .black{background-color: var(--black);}
-.black:hover{
-    background-color: var(--black-hover);
-    border: 4px solid var(--black);
-}
 .red{background-color: var(--red);}
-.red:hover{
-    background-color: var(--red-hover);
-    border: 4px solid var(--red);
-}
 .green{background-color: var(--green);}
-.green:hover{
-    background-color: var(--green-hover);
-    border: 4px solid var(--green);
+@media(hover: hover) {
+    .white:hover{
+        background-color: var(--white-hover);
+        border: 4px solid var(--white);
+    }
+    .blue:hover{
+        background-color: var(--blue-hover);
+        border: 4px solid var(--blue);
+    }
+    .black:hover{
+        background-color: var(--black-hover);
+        border: 4px solid var(--black);
+    }
+    .red:hover{
+        background-color: var(--red-hover);
+        border: 4px solid var(--red);
+    }
+    .green:hover{
+        background-color: var(--green-hover);
+        border: 4px solid var(--green);
+    }
 }
 html {
     font-size: 16px;
