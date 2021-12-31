@@ -10,18 +10,57 @@
 
 :root{
     --bg-shade: rgb(249 249 248);
-    --body-text-color: rgb(110 110 110);
-    --nav-button-color: rgb(95 95 95);
+    --body-text-color: rgb(80 80 80);
+    --nav-button-color: rgb(80 80 80);
     --action-hover-1: rgba(75 75 75 / 75%);
     --action-hover-2: rgb(241 241 241);
-    --card-background: rgba(165 165 165 / 90%);
+    --card-background: #668a66;
     --card-forground: rgba(82 82 82 / 70%);
     --card-shadow: rgba(85 85 85 / 85%);
     --card-accent: rgba(82 82 82 / 15%);
     --hr-line: rgba(97 185 145 / 20%);
     --darker-text: rgba(96 96 96 / 100%);
+    --white: #f9f9f8;
+    --white-hover: white;
+    --white-bold: white;
+    --blue:#698199;
+    --blue-hover:#7a99b3;
+    --blue-bold:#7a99b3;
+    --black:#6c6c6c;
+    --black-hover:#919191;
+    --black-bold:#919191;
+    --red:#8a6666;
+    --red-hover:#b37a7a;
+    --red-bold:#b37a7a;
+    --green:#699969;
+    --green-hover:#7ab37a;
+    --green-bold:#7ab37a;
 }
-
+.white{background-color: var(--white);}
+.white:hover{
+    background-color: var(--white-hover);
+    border: 4px solid var(--white);
+}
+.blue{background-color: var(--blue);}
+.blue:hover{
+    background-color: var(--blue-hover);
+    border: 4px solid var(--blue);
+}
+.black{background-color: var(--black);}
+.black:hover{
+    background-color: var(--black-hover);
+    border: 4px solid var(--black);
+}
+.red{background-color: var(--red);}
+.red:hover{
+    background-color: var(--red-hover);
+    border: 4px solid var(--red);
+}
+.green{background-color: var(--green);}
+.green:hover{
+    background-color: var(--green-hover);
+    border: 4px solid var(--green);
+}
 html {
     font-size: 16px;
   }
@@ -206,29 +245,37 @@ a h1{
     border: none;
     outline: none;
     font-size: 15px;
-  }
-  
-  .active, .collapsible:hover {
-    background-color: #668a66;
-  }
-  
-  .collapsible-content {
+}
+
+/* .active, .collapsible:hover {
+    background-color: #5a895a;
+} */
+
+.collapsible-content {
     padding: 0 18px;
     display: none;
     overflow: hidden;
     background-color: #f1f1f1;
-  }
+}
 
-  input{
+input{
     -webkit-appearance: none !important;
-  }
+}
 
-  .button-green{
-      background-color: #516d51;
-      color: white;
-  }
+.button-green{
+    background-color: #668a66;
+    color: white;
+}
+.button-green:hover{
+    background-color: #7ab37a;
+}
+.button-blue{
+    background-color: #698199;
+    color: white;
+}
+.emphasis{
+    font-weight: bold;
+}
 
-  .emphasis{
-      font-weight: bold;
-  }
+
 

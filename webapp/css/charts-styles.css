@@ -32,13 +32,13 @@
 .chart-container{
     display: inline-block;
     position: relative;
-    height: 50vh;
+    height: 45vh;
     min-width: 900px;
     margin: auto;
 }
 .chart-container-sized{
     position: relative;
-    height: 50vh;
+    height: 45vh;
     margin: auto;
     width: 100%;
 }

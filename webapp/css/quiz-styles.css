@@ -59,9 +59,9 @@
 .response-button:hover {
     border-color: var(--action-hover-1);
 }
-.response-button:active{
+/* .response-button:active{
     border-color: var(--action-hover-2);
-}
+} */
 
 .section-card{
     border: 3px solid;
@@ -77,6 +77,11 @@
 }
 #calculate-div{
     margin-top:1em;
+}
+#answerRow{
+    flex-direction: row;
+    max-width: 80ch;
+    margin: auto;
 }
 
 @media only screen and (max-width:750px) {

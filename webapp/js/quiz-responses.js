@@ -89,7 +89,6 @@ const setResult = (result)=>{
     let resultsSection = document.querySelector("#results-section");
     let totalsDiv = document.querySelector("#totals");
     let resultsDiv = document.querySelector("#results");
-
 	let totalScore = parseInt(answers.W)+parseInt(answers.U)+parseInt(answers.B)+parseInt(answers.R)+parseInt(answers.G);
 	console.log(totalScore)
 	let Wpercent =()=>{
@@ -100,32 +99,20 @@ const setResult = (result)=>{
 		}
 	}
 	let Upercent =()=>{
-		if(answers.U > 0){
-			 return ((parseFloat(answers.U) / totalScore)* 100).toFixed(1)
-		}else{
-			return 0
-		}
+		if(answers.U > 0){return ((parseFloat(answers.U) / totalScore)* 100).toFixed(1)
+		}else{return 0}
 	}
 	let Bpercent =()=>{
-		if(answers.B > 0){
-			 return ((parseFloat(answers.B) / totalScore)* 100).toFixed(1)
-		}else{
-			return 0
-		}
+		if(answers.B > 0){return ((parseFloat(answers.B) / totalScore)* 100).toFixed(1)
+		}else{return 0}
 	}
 	let Rpercent =()=>{
-		if(answers.R > 0){
-			 return ((parseFloat(answers.R) / totalScore)* 100).toFixed(1)
-		}else{
-			return 0
-		}
+		if(answers.R > 0){return ((parseFloat(answers.R) / totalScore)* 100).toFixed(1)
+		}else{return 0}
 	}
 	let Gpercent =()=>{
-		if(answers.G > 0){
-			 return ((parseFloat(answers.G) / totalScore)* 100).toFixed(1)
-		}else{
-			return 0
-		}
+		if(answers.G > 0){return ((parseFloat(answers.G) / totalScore)* 100).toFixed(1)
+		}else{return 0}
 	}
 	let percentsObj = {
 		W: Wpercent(),
@@ -143,7 +130,7 @@ const setResult = (result)=>{
     }
 	let chartDiv = document.createElement("div");
 	chartDiv.id = "chartResults"
-	resultsDiv.appendChild(chartDiv);
+	totalsDiv.appendChild(chartDiv);
 	addChart(percentsObj);
     resultsSection.classList.remove("hiddenElement");
 }
@@ -219,7 +206,6 @@ const addChart=(percentsObj)=>{
         window.colorpieSlices = new Chart(ctx, {
             type: 'pie',
             data: {
-              labels: [colorCounterArray[0].name, colorCounterArray[1].name, colorCounterArray[2].name, colorCounterArray[3].name, colorCounterArray[4].name],
               datasets: [{
                 backgroundColor: [colorCounterArray[0].name, colorCounterArray[1].name, colorCounterArray[2].name, colorCounterArray[3].name, colorCounterArray[4].name],
                 borderColor: 'black',
