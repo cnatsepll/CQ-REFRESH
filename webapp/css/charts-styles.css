@@ -32,13 +32,13 @@
 .chart-container{
     display: inline-block;
     position: relative;
-    height: 45vh;
+    height: 40vh;
     min-width: 900px;
     margin: auto;
 }
 .chart-container-sized{
     position: relative;
-    height: 45vh;
+    height: 40vh;
     margin: auto;
     width: 100%;
 }
@@ -129,7 +129,7 @@ select{
     cursor: pointer;
     text-decoration: none;
     border: 0.16em solid rgba(255,255,255,0);
-    border-radius: 3px;
+    border-radius: 4px;
     box-sizing: border-box;
     text-align: left;
     padding: 0.2em 0.6em;
@@ -142,12 +142,14 @@ select{
     display: flex;
     flex-direction: row;
     margin: auto;
-    margin-top: 1ch;
-    max-width: 100ch;
+    margin-top: .5em;
+    margin-bottom: 5em;
+    max-width: 70ch;
     justify-content: center;
     flex-wrap: wrap;
     align-content: center;
     height: 6ch;
+    background-color: var(--content-block);
 }
 
 .totals-row{
@@ -210,6 +212,10 @@ select{
     }
     #selectors{
         padding: 0;
+    }    
+    #charts-container section {
+        margin-top: 4em;
+        margin-bottom: 4em;
     }
 }
 @media only screen and (max-height:550px)  {
@@ -233,13 +239,13 @@ select{
     .chart-container{
         display: inline-block;
         position: relative;
-        height: 55vh;
+        height: 40vh;
         margin: auto;
     }
     .chart-container-sized{
         display: inline-block;
         position: relative;
-        height: 55vh;
+        height: 40vh;
         margin: auto;
     }
 }

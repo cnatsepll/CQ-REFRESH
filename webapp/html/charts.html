@@ -22,11 +22,11 @@
 
     <section id="chart-page">
         <section id="selectors">
-            <button type="button" class="centered-text collapsible green">Question Word - Word Bank</button>
+            <button type="button" class="centered-text collapsible blue">Question Word - Word Bank</button>
             <div id="word-bank" class="collapsible-content">
                 <div id="question-words"></div>
             </div>
-            <button type="button" class="centered-text collapsible green">Result Color - Word Bank</button>
+            <button type="button" class="centered-text collapsible blue">Result Color - Word Bank</button>
             <div id="group-bank" class="collapsible-content">
                 <div id="color-groups"></div>
             </div>
@@ -39,9 +39,8 @@
 
         <section id="charts-container" id="chart-group">      
             <section class="chart-section">
-                <div class="hr-style-bottom"></div>
                 <div class="centered-grid">
-                    <p class="centered-text"><b>Radar Graph of Color's Tendency to Favor the Question Word</b></p>
+                    <div class="centered-text"><b>Radar Graph of Color's Tendency to Favor the Question Word</b></div>
                 </div>
                 <div class="flex query-button-row">
                     <input class="random" type="button" id="fiveColorRadarRandom" value="Random Word" onclick="randomQuestionWord(this)">
@@ -53,12 +52,13 @@
                         <canvas id="fiveColorRadarChart"></canvas>
                     </div>
                 </div>
+                <div class="hr-style-bottom"></div>
+
             </section>
 
             <section class="chart-section" >
-                <div class="hr-style-bottom"></div>
                 <div class="centered-grid">
-                    <p class="centered-text"><b>Top Words for Color by Percentage of Favorable Responses</b></p>
+                    <div class="centered-text"><b>Top Words for Color by Percentage of Favorable Responses</b></div>
                 </div>
                 <div class="flex query-button-row">
                     <input class="random" type="button" id="topWordsForResultRandom" value="Random Color" onclick="randomColorGroup(this)">
@@ -70,12 +70,13 @@
                         <canvas id="topWordsForResultChart"></canvas>
                     </div>
                 </div>
+                <div class="hr-style-bottom"></div>
+
             </section>
             
             <section class="chart-section" >
-                <div class="hr-style-bottom"></div>
                 <div class="centered-grid">
-                    <p class="centered-text"><b>Top Words for Color by Percentage of Opposing Responses</b></p>
+                    <div class="centered-text"><b>Top Words for Color by Percentage of Opposing Responses</b></div>
                 </div>
                 <div class="flex query-button-row">
                     <input class="random" type="button" id="bottomWordsForResultRandom" value="Random Color" onclick="randomColorGroup(this)">
@@ -87,13 +88,14 @@
                         <canvas id="bottomWordsForResultChart"></canvas>
                     </div>
                 </div>
+                <div class="hr-style-bottom"></div>
+
             </section>
 
             
             <section class="chart-section" >
-                <div class="hr-style-bottom"></div>
                 <div class="centered-grid">
-                    <p class="centered-text"><b>Colors by Percentage of Results in Favor of the Word</b></p>
+                    <div class="centered-text"><b>Colors by Percentage of Results in Favor of the Word</b></div>
                 </div>
                 <div class="flex query-button-row">
                     <input class="random" type="button" id="resultMostLikeRandom" value="Random Word" onclick="randomQuestionWord(this)">
@@ -105,12 +107,13 @@
                         <canvas id="resultMostLikeChart"></canvas>
                     </div>
                 </div>
+                <div class="hr-style-bottom"></div>
+
             </section>
             
             <section class="chart-section" >
-                <div class="hr-style-bottom"></div>
                 <div class="centered-grid">
-                    <p class="centered-text"><b>Colors by Percentage of Results in Opposition of the Word</b></p>
+                    <div class="centered-text"><b>Colors by Percentage of Results in Opposition of the Word</b></div>
                 </div>
                 <div class="flex query-button-row">
                     <input class="random" type="button" id="resultLeastLikeRandom" value="Random Word" onclick="randomQuestionWord(this)">
@@ -122,12 +125,13 @@
                         <canvas id="resultLeastLikeChart"></canvas>
                     </div>
                 </div>
+                <div class="hr-style-bottom"></div>
+
             </section>
 
             <section class="chart-section" >
-                <div class="hr-style-bottom"></div>
                 <div class="centered-grid">
-                    <p class="centered-text"><b>Most Popular Colors by User Result</b></p>
+                    <div class="centered-text"><b>Most Popular Colors by User Result</b></div>
                 </div>
                 <div class="flex query-button-row">
                     <input  class="query"  value="Pull Results" type="button" id="topResults" onclick="getTopResults()">
@@ -137,12 +141,13 @@
                         <canvas id="topResultsChart"></canvas>
                     </div>
                 </div>
+                <div class="hr-style-bottom"></div>
+
             </section>
 
             <section class="chart-section" >
-                <div class="hr-style-bottom"></div>
                 <div class="centered-grid">
-                    <p class="centered-text"><b>Percentage of Result Color's Color Pie Slices</b></p>
+                    <div class="centered-text"><b>Percentage of Result Color's Color Pie Slices</b></div>
                 </div>                    
                 <div class="flex query-button-row">
                     <input type="button" id="resultColorpieSlicesRandom" value="Random Color" onclick="randomColorGroup(this)">
@@ -154,6 +159,8 @@
                         <canvas id="resultColorpieSlicesChart"></canvas>
                     </div>
                 </div>
+                <div class="hr-style-bottom"></div>
+
             </section>  
         </section>
     </section>

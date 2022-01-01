@@ -78,6 +78,7 @@ const calculateResult = () =>{
     } else {
         console.log('no result');
     }
+	resultsSection.scrollIntoView({behavior: "smooth", block: "nearest"});
 }
 
 const setResult = (result, name)=>{

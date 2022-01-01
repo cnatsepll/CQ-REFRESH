@@ -85,6 +85,9 @@
         "results"
         "about";
     }
+    #home-container{
+        padding: 3em 3em 6em 3em;
+    }
     .section-card-border-wrap {
         max-width: 100%;
   }

@@ -21,14 +21,14 @@
     </section>
     <section id="quiz-block">
         <section id="quiz-container">
-            <section id="quiz-info-box" class="flex flex-space-around">
-                <div id="scoreboard">
+            <section id="quiz-info-box" class="flex">
+                <div id="quiz-options" class="info-item">
+                    <input id="reset-button" class="black" type="button" value="Reset Quiz" onclick="resetQuiz()"/>
+                </div>
+                <div id="scoreboard" class="info-item">
                     <div id="counter"></div>
                     <div id="max-questions"></div>    
                 </div>     
-                <div id="quiz-options">
-                    <input type="button" value="Reset Quiz" class="option-button" onclick="resetQuiz()"/>
-                </div>
             </section>
             <section id="response-block">
                 <div id="quiz-response" class="section-card">
@@ -44,8 +44,8 @@
                     <div id="actionsRow"></div>
                 </div>
             </section>
-            <div id="calcluate-div">
-                <input type="button" onclick="calculateResult()" class="response-button" value="Calculate Result">
+            <div id="calculate-div">
+                <input id="calculate-button" class="green" type="button" onclick="calculateResult()" value="Calculate Result">
             </div>
             <section id="results-section" class="hiddenElement">
                 <div id="results"></div>

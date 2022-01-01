@@ -9,13 +9,13 @@
 }
 #instruction-reminder{
     margin-top: 1em;
-    font-size: .9em;
+    font-size: 1em;
 }
 
 #question{
     margin: 8% 0 8% 0;
     font-weight: bold;
-    font-size: 1.8em;
+    font-size: 1.7em;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
@@ -42,6 +42,7 @@
     padding: 1.5em;
     margin: 1em;
     border-color: var(--blue-bold);
+    background-color: #91afcd26;
 }
 #totals{
     margin: 1em;
@@ -49,25 +50,40 @@
 .response-button{
     cursor: pointer; 
     font-family:'Roboto',sans-serif;
-    font-size: 1em;
+    font-size: 1.1em;
     text-decoration: none;  
     display:inline-block;
     border:0.16em solid rgba(255,255,255,0);
+    border-color: var(--black-hover);
     border-radius:2px;
     box-sizing: border-box;
     text-align:center;
     padding:0.2em 0.5em;
     color: var(--nav-button-color);
 }
+#reset-button{
+    font-size: 1em;
+    cursor: pointer;
+    color: white;
+    border-radius: 4px;
+}
+#calculate-button{
+    font-size: 1.2em;
+    cursor: pointer;
+    color: white;
+    border-radius: 4px;
+    padding: .5em 2em;
+}
 @media(hover: hover) {
     .response-button:hover {
-        border-color: var(--action-hover-1);
+        border-color: var(--blue-bold);
+        color: var(--blue-bold);
     }
-    /* .response-button:active{
-        border-color: var(--action-hover-2);
-    } */
 }
 
+.info-item{
+    margin-left: 1em;
+}
 
 .section-card{
     border: 3px solid;
@@ -83,7 +99,7 @@
     background-color: var(--content-block);
 }
 #calculate-div{
-    margin-top:1em;
+    margin-top: 5em;
 }
 #answerRow{
     flex-direction: row;
@@ -100,9 +116,5 @@
     }
     #quiz-response{
         margin: 1em;
-    }
-    .response-button{
-        margin-top: .5em;
-        margin-bottom: .5em;
     }
 }

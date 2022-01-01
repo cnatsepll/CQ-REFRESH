@@ -2,12 +2,15 @@
     overflow-x: hidden;
     overflow-y:scroll;
     height: calc(100vh - 6ch);
-    background-color: var(--content-block);
+}
+#results-container{
+    max-width: 180ch;
+    margin: auto;
 }
 #text-dump{
-    padding: 0 3em;
-    max-width: 200ch;
-    margin: auto;
+    margin: 0 1em;
+    padding: 1em 1em 10em 1em;
+    background-color: var(--content-block);
 }
 .result-header{
     font-weight: bold;

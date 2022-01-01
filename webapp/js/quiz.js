@@ -3,7 +3,15 @@ let questionWords;
 let questionWordsStringified;
 let questionCounter;
 let answers;
-
+let question;
+let questionColor;
+let colorsAsked = {
+    "W" : 0,
+    "U" : 0,
+    "B" : 0,
+    "R" : 0,
+    "G" : 0
+};
 
 window.onload = function(){ 
     checkQuizHistory();
@@ -23,7 +31,12 @@ const checkForCounter = ()=>{
         console.log('counter reset');
         } else {
         questionCounter = parseInt(localStorage.getItem("counter"));
-        setCounter();
+            if(questionCounter > 174){
+                let counterDiv = document.querySelector("#counter");
+                counterDiv.textContent = 175;
+            }else{
+                setCounter();
+            }
         console.log('counter found');
         }
         
@@ -31,12 +44,14 @@ const checkForCounter = ()=>{
     
 const checkForAnswerValues = ()=>{
     console.log('answer check');
-    if(!localStorage.getItem("answers")){
+    if(!localStorage.getItem("answers") && !localStorage.getItem("colorsAsked")){
         clearAnswers();
         console.log('answers reset');
         localStorage.setItem("answers", JSON.stringify(answers));
+        localStorage.setItem("colorsAsked", JSON.stringify(colorsAsked));
      } else {
         answers = JSON.parse(localStorage.getItem("answers"));
+        colorsAsked = JSON.parse(localStorage.getItem("colorsAsked"));
         console.log('answers found');
      }
      
@@ -83,9 +98,25 @@ const fetchQuestions = ()=>
 
 const nextQuestion =()=>{
     questionWords = JSON.parse(localStorage.getItem("questions"));
-    let nextQuestion = questionWords[questionCounter].question;
-    return nextQuestion;
+    let nextQuestion;
+    if(questionCounter === 0){
+        nextQuestion = questionWords[0];
+        questionColor = nextQuestion.cd_color;
+        clearResult();
+    }else if(questionCounter < 175){
+        let scoreArray = [colorsAsked.W, colorsAsked.U, colorsAsked.B, colorsAsked.R, colorsAsked.G]
+        let scoreArrayDesc = scoreArray.sort((a,b)=>{return b - a});
+        nextQuestion = questionWords[questionCounter];
+        questionColor = nextQuestion.cd_color;
+        clearResult();
+    } else {
+        nextQuestion ={question: "Quiz Complete!"}
+    }
+
+    question = nextQuestion.question;
+    return question;
 }
+
 const setQuestion = ()=>{
     let questionDiv = document.querySelector("#question");
     questionDiv.textContent = nextQuestion();
@@ -93,7 +124,7 @@ const setQuestion = ()=>{
 
 const setMaxQuestionsDiv = ()=>{
     let maxQuestionsDiv = document.querySelector("#max-questions");
-    maxQuestionsDiv.textContent = questionWords.length;
+    maxQuestionsDiv.textContent = 175;
 };
 
 const resetQuiz = ()=>{
@@ -120,25 +151,25 @@ const clearAnswers = ()=>{
         "R" : 0,
         "G" : 0
     };
+    colorsAsked = {
+        "W" : 0,
+        "U" : 0,
+        "B" : 0,
+        "R" : 0,
+        "G" : 0
+    };
     localStorage.setItem("answers", JSON.stringify(answers));
+    localStorage.setItem("colorsAsked", JSON.stringify(colorsAsked));
 };
 
 const addAnswer = (key, responseValue)=>{
     answers[key] += parseInt(responseValue);
+    colorsAsked[key] += 1;
     console.log(JSON.stringify(answers));
     localStorage.setItem("answers", JSON.stringify(answers));
+    localStorage.setItem("colorsAsked", JSON.stringify(colorsAsked));
 };
 
-const increaseCounter = ()=>{
-    if(questionCounter < questionWords.length -1){
-        questionCounter += 1;
-        setCounter();
-        return true
-    } else {
-        return false
-    }
-    
-};
 
 const clearCounter = ()=>{
     questionCounter = 0;
@@ -153,16 +184,26 @@ const setCounter = ()=>{
 };
 
 const selected = (responseValue) => {
-    let question = questionWords[questionCounter].question;
-    let questionColor = questionWords[questionCounter].cd_color;
     let questionValue = responseValue;
-    if(questionCounter < questionWords.length -1){
+    if(questionCounter < 174){
+        questionCounter += 1;
+        setCounter();
         addAnswer(questionColor, questionValue);
-        increaseCounter();
+        setQuestion();
+    }else if (questionCounter === 174){
+        questionCounter += 1;
+        localStorage.setItem("counter", questionCounter);
+        addAnswer(questionColor, questionValue);
+        let counterDiv = document.querySelector("#counter");
+        counterDiv.textContent = 175;
+        setQuestion();
+    } else {
+        questionCounter += 1;
+        localStorage.setItem("counter", questionCounter);
+        let counterDiv = document.querySelector("#counter");
+        counterDiv.textContent = 175;
     }
-    storeAnswerResponse(question, questionColor, questionValue);
-    setQuestion();
-};
+}
 
 
 const storeAnswerResponse = (question, questionColor, questionValue)=>{
