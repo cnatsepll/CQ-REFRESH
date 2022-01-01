@@ -50,7 +50,6 @@
 }
 
 #word-bank{
-    background: var(--card-accent);
     overflow-y: auto;
     height: 20vh;
     padding: 1em 0em 1em 0em;
@@ -82,7 +81,6 @@
 
 #group-bank{
     overflow-y: auto;
-    background: var(--card-accent);
     padding: 1em 0em 1em 0em;
 }
 #color-groups{
