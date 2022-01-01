@@ -2,9 +2,15 @@ let pgQuestionWords;
 let questionWords;
 let questionWordsStringified;
 let questionCounter;
-let answers;
 let question;
 let questionColor;
+let answers = {
+    "W" : 0,
+    "U" : 0,
+    "B" : 0,
+    "R" : 0,
+    "G" : 0
+};
 let colorsAsked = {
     "W" : 0,
     "U" : 0,
@@ -128,6 +134,10 @@ const setMaxQuestionsDiv = ()=>{
 };
 
 const resetQuiz = ()=>{
+    localStorage.removeItem("questions");
+    localStorage.removeItem("colorsAsked");
+    localStorage.removeItem("counter");
+    localStorage.removeItem("answers");
     clearResult();
     clearCounter();
     clearAnswers();
