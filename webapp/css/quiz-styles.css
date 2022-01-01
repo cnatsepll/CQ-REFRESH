@@ -66,6 +66,7 @@
     cursor: pointer;
     color: white;
     border-radius: 4px;
+    text-shadow: 0px 1px 3px black;
 }
 #calculate-button{
     font-size: 1.2em;
@@ -73,6 +74,7 @@
     color: white;
     border-radius: 4px;
     padding: .5em 2em;
+    text-shadow: 0px 1px 3px black;
 }
 @media(hover: hover) {
     .response-button:hover {
@@ -95,7 +97,7 @@
 #results-section{
     grid-area: results;
     margin: 5em 1em 5em 1em;
-    padding: 3em 1em 3em 1em;
+    padding: 4em 1em 4em 1em;
     background-color: var(--content-block);
 }
 #calculate-div{
@@ -113,8 +115,8 @@
         max-width: 25ch;
     }
     #question{
-        margin: 2em 0 1.5em 0;
-        font-size: 1.6em;
+        margin: 1.5em 0 1.5em 0;
+        font-size: 1.5em;
     }
     #quiz-response{
         margin: 1em;
