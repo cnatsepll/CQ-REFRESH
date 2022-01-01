@@ -134,15 +134,36 @@ const checkStorage = (name, question_word) =>{
     return storageReturn;
 }
 
+const loadingToggle =(container)=>{
+    let loaded = container.querySelector(".loading");
+    if(!!loaded){
+        loaded.remove();
+    }else{
+        let loading = document.createElement("div");
+        loading.className = "loading";
+        let spinner = document.createElement("div");
+        spinner.className = "lds-spinner";
+        for(let i = 0; i < 12; i+=1){
+            let spoke = document.createElement("div")
+            spinner.appendChild(spoke);
+        }
+        loading.appendChild(spinner);
+        container.appendChild(loading);
+    }
+}
+
 let fiveColorRadarSearch = { question_word: '' };
 let responseObject;
 const getfiveColorRadar=()=>{
+    document.getElementById('fiveColorRadarChart').remove(); 
+    let container = document.getElementById('fiveColorRadarChartContainer').parentElement;
     const question_word = document.getElementById('fiveColorRadarSearch').value;
     let storageReturn = checkStorage("fiveColorRadar", question_word);
     if(storageReturn){
-        buttonToggle();
         buildFiveColorRadar(storageReturn.data, storageReturn.question_word)
     }else{
+        buttonToggle("fiveColorRadar");
+        loadingToggle(container);
         fiveColorRadarSearch.question_word = question_word;
         fetch('/charts/fiveColorRadar',{
             method: 'POST',
@@ -155,6 +176,7 @@ const getfiveColorRadar=()=>{
         .then(response => response.json())
         .then(data => {
             buttonToggle();
+            loadingToggle(container);
             let chartData = data.rows;
             let chartObject = {
                 data: chartData,
@@ -166,7 +188,6 @@ const getfiveColorRadar=()=>{
     }
 }
 const buildFiveColorRadar = (fiveColorRadar, question_word) =>{
-    document.getElementById('fiveColorRadarChart').remove(); 
     let canvas = document.createElement('canvas');
     canvas.id = 'fiveColorRadarChart';
     document.getElementById('fiveColorRadarChartContainer').append(canvas);
@@ -233,27 +254,29 @@ const buildFiveColorRadar = (fiveColorRadar, question_word) =>{
 
 const getTopResults=()=>{
     let storageReturn = checkStorage("topResults", "all");
+    document.getElementById('topResultsChart').remove(); 
+    let container = document.getElementById('topResultsChartContainer').parentElement;
     if(storageReturn){
-        buttonToggle();
         buildTopResults(storageReturn.data, storageReturn.question_word)
     }else{
-    fetch('/charts/topResults')
-    .then(response => response.json())
-    .then(data => {
         buttonToggle();
-            let chartData = data.rows;
-            let chartObject = {
-                data: chartData,
-                question_word: "all"
-            }
-            storeResult("topResults", chartObject);
-            
-            buildTopResults(chartData);
-        })
+        loadingToggle(container);
+        fetch('/charts/topResults')
+        .then(response => response.json())
+        .then(data => {
+            buttonToggle();
+            loadingToggle(container);
+                let chartData = data.rows;
+                let chartObject = {
+                    data: chartData,
+                    question_word: "all"
+                }
+                storeResult("topResults", chartObject);
+                buildTopResults(chartData);
+            })
     }
 }
 const buildTopResults=(topResults)=>{
-    document.getElementById('topResultsChart').remove(); 
     let canvas = document.createElement('canvas');
     canvas.id = 'topResultsChart';
     document.getElementById('topResultsChartContainer').append(canvas);
@@ -299,13 +322,15 @@ const buildTopResults=(topResults)=>{
 const resultMostLikeSearch = { question_word: '' };
 const getResultMostLike=()=>{
     const question_word = document.getElementById('resultMostLikeSearch').value;
+    document.getElementById('resultMostLikeChart').remove(); 
+    let container = document.getElementById('resultMostLikeChartContainer').parentElement;
     let storageReturn = checkStorage("resultsMostLike", question_word);
     if(storageReturn){
-        buttonToggle();
         buildResultMostLike(storageReturn.data, storageReturn.question_word)
     }else{
         resultMostLikeSearch.question_word = question_word;
-        
+        buttonToggle();
+        loadingToggle(container);
         fetch('/charts/resultMostLike',{
             method: 'POST',
             mode: 'cors',
@@ -317,6 +342,7 @@ const getResultMostLike=()=>{
         .then(response => response.json())
         .then(data => {
             buttonToggle();
+            loadingToggle(container);
             let chartData = data.rows;
             let chartObject = {
                 data: chartData,
@@ -328,7 +354,6 @@ const getResultMostLike=()=>{
     }
 }
 const buildResultMostLike=(resultMostLike, question_word)=>{
-    document.getElementById('resultMostLikeChart').remove(); 
     let canvas = document.createElement('canvas');
     canvas.id = 'resultMostLikeChart';
     document.getElementById('resultMostLikeChartContainer').append(canvas);
@@ -372,12 +397,15 @@ const buildResultMostLike=(resultMostLike, question_word)=>{
 let resultLeastLikeSearch = { question_word: '' };
 const getResultLeastLike=()=>{
     const question_word = document.getElementById('resultLeastLikeSearch').value;
+    document.getElementById('resultLeastLikeChart').remove(); 
+    let container = document.getElementById('resultLeastLikeChartContainer').parentElement;
     let storageReturn = checkStorage("resultsLeastLike", question_word);
     if(storageReturn){
-        buttonToggle();
         buildResultLeastLike(storageReturn.data, storageReturn.question_word)
     }else{
     resultLeastLikeSearch.question_word = question_word;
+    buttonToggle();
+    loadingToggle(container);
     fetch('/charts/resultLeastLike',{
         method: 'POST',
         mode: 'cors',
@@ -389,6 +417,7 @@ const getResultLeastLike=()=>{
         .then(response => response.json())
         .then(data => {
             buttonToggle();
+            loadingToggle(container);
             let chartData = data.rows;
             let chartObject = {
                 data: chartData,
@@ -400,7 +429,6 @@ const getResultLeastLike=()=>{
     }
 }
 const buildResultLeastLike=(resultLeastLike, question_word)=>{
-    document.getElementById('resultLeastLikeChart').remove(); 
     let canvas = document.createElement('canvas');
     canvas.id = 'resultLeastLikeChart';
     document.getElementById('resultLeastLikeChartContainer').append(canvas);
@@ -444,11 +472,14 @@ const buildResultLeastLike=(resultLeastLike, question_word)=>{
 let topWordsForResultSearch = { question_word: '' };
 const getTopWordsForResult=()=>{
     const question_word = document.getElementById('topWordsForResultSearch').value;
+    document.getElementById('topWordsForResultChart').remove(); 
     let storageReturn = checkStorage("topWordsForResult", question_word);
+    let container = document.getElementById('topWordsForResultChartContainer').parentElement;
     if(storageReturn){
-        buttonToggle();
         buildTopWordsForResult(storageReturn.data, storageReturn.question_word)
     }else{
+        buttonToggle();
+        loadingToggle(container);
         topWordsForResultSearch.question_word = question_word;
         fetch('/charts/topWordsForResult',{
             method: 'POST',
@@ -461,6 +492,7 @@ const getTopWordsForResult=()=>{
         .then(response => response.json())
         .then(data => {
             buttonToggle();
+            loadingToggle(container);
             let chartData = data.rows;
             let chartObject = {
                 data: chartData,
@@ -472,7 +504,6 @@ const getTopWordsForResult=()=>{
     }
 }
 const buildTopWordsForResult=(topWordsForResult, question_word)=>{
-    document.getElementById('topWordsForResultChart').remove(); 
     let canvas = document.createElement('canvas');
     canvas.id = 'topWordsForResultChart';
     document.getElementById('topWordsForResultChartContainer').append(canvas);
@@ -527,12 +558,15 @@ const buildTopWordsForResult=(topWordsForResult, question_word)=>{
 }
 let bottomWordsForResultSearch = { question_word: '' };
 const getBottomWordsForResult=()=>{
+    document.getElementById('bottomWordsForResultChart').remove(); 
+    let container =document.getElementById('bottomWordsForResultChartContainer').parentElement;
     const question_word = document.getElementById('bottomWordsForResultSearch').value;
     let storageReturn = checkStorage("bottomWordsForResult", question_word);
     if(storageReturn){
-        buttonToggle();
         buildBottomWordsForResult(storageReturn.data, storageReturn.question_word)
     }else{
+        buttonToggle();
+        loadingToggle(container);
         bottomWordsForResultSearch.question_word = question_word;
         fetch('/charts/bottomWordsForResult',{
             method: 'POST',
@@ -545,6 +579,7 @@ const getBottomWordsForResult=()=>{
         .then(response => response.json())
         .then(data => {
             buttonToggle();
+            loadingToggle(container);
             let chartData = data.rows;
             let chartObject = {
                 data: chartData,
@@ -556,7 +591,6 @@ const getBottomWordsForResult=()=>{
     }
 }
 const buildBottomWordsForResult=(bottomWordsForResult, question_word)=>{
-    document.getElementById('bottomWordsForResultChart').remove(); 
     let canvas = document.createElement('canvas');
     canvas.id = 'bottomWordsForResultChart';
     document.getElementById('bottomWordsForResultChartContainer').append(canvas);
@@ -611,13 +645,16 @@ const buildBottomWordsForResult=(bottomWordsForResult, question_word)=>{
 }
 let colorpieSlicesSearch = { question_word: '' };
 const getColorpieSlices=()=>{
+    document.getElementById('resultColorpieSlicesChart').remove(); 
+    let container = document.getElementById('resultColorpieSlicesChartContainer').parentElement;
     const question_word = document.getElementById('resultColorpieSlicesSearch').value;
     colorpieSlicesSearch.question_word = question_word;
     let storageReturn = checkStorage("colorpieSlices", question_word);
     if(storageReturn){
-        buttonToggle();
         buildColorPieSlices(storageReturn.data, storageReturn.question_word)
     }else{
+        buttonToggle();
+        loadingToggle(container);
     fetch('/charts/resultColorpieSlices',{
         method: 'POST',
         mode: 'cors',
@@ -629,6 +666,7 @@ const getColorpieSlices=()=>{
     .then(response => response.json())
         .then(data => {
             buttonToggle();
+            loadingToggle(container);
             let chartData = data.rows;
             let chartObject = {
                 data: chartData,
@@ -640,7 +678,6 @@ const getColorpieSlices=()=>{
     }
 }
 const buildColorPieSlices=(colorpieSlices, question_word)=>{
-    document.getElementById('resultColorpieSlicesChart').remove(); 
     let canvas = document.createElement('canvas');
     canvas.id = 'resultColorpieSlicesChart';
     document.getElementById('resultColorpieSlicesChartContainer').append(canvas);
@@ -731,9 +768,9 @@ function compareValues(key, order = 'asc') {
 
 
 const buttons = document.querySelectorAll(".query");
-for (let i = 0; i < buttons.length; i++) {
-    buttons[i].addEventListener("click", function(){buttonToggle()});
-}
+// for (let i = 0; i < buttons.length; i++) {
+//     buttons[i].addEventListener("click", function(){buttonToggle()});
+// }
 function buttonToggle(){
     for (let i = 0; i < buttons.length; i++) {
         buttons[i].classList.toggle("disabled-button");

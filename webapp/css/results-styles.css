@@ -6,10 +6,12 @@
 #results-container{
     max-width: 180ch;
     margin: auto;
+    height: 100%;
+    background-color: var(--content-block);
+    margin: 0 1em;
 }
 #text-dump{
-    margin: 0 1em;
-    padding: 1em 1em 10em 1em;
+    padding: 1ch 1em 10ch 1em;
     background-color: var(--content-block);
 }
 .result-header{

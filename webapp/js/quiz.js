@@ -104,17 +104,22 @@ const fetchQuestions = ()=>
 
 const nextQuestion =()=>{
     questionWords = JSON.parse(localStorage.getItem("questions"));
+    let resultsSection = document.querySelector("#results-section");
     let nextQuestion;
     if(questionCounter === 0){
         nextQuestion = questionWords[0];
         questionColor = nextQuestion.cd_color;
-        clearResult();
+        if(!resultsSection.classList.contains("hiddenElement")){
+            clearResult();
+        }
     }else if(questionCounter < 175){
         let scoreArray = [colorsAsked.W, colorsAsked.U, colorsAsked.B, colorsAsked.R, colorsAsked.G]
         let scoreArrayDesc = scoreArray.sort((a,b)=>{return b - a});
         nextQuestion = questionWords[questionCounter];
         questionColor = nextQuestion.cd_color;
-        clearResult();
+        if(!resultsSection.classList.contains("hiddenElement")){
+            clearResult();
+        }
     } else {
         nextQuestion ={question: "Quiz Complete!"}
     }
@@ -149,7 +154,7 @@ const clearResult = ()=>{
     let totalsDiv = document.querySelector("#totals");
     let resultsDiv = document.querySelector("#results");
     let resetButton = document.querySelector("#reset-button");
-    resetButton.scrollIntoView({behavior: "smooth", block: "start"});
+    resetButton.scrollIntoView({behavior: "auto", block: "start"});
     resultsSection.classList.add("hiddenElement");
     totalsDiv.textContent = "";
     resultsDiv.textContent = "";
