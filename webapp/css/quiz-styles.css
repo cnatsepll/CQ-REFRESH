@@ -117,4 +117,10 @@
     #quiz-response{
         margin: 1em;
     }
+    .response-button{
+        margin-top: .5em;
+        margin-bottom: .5em;
+        padding-top: .5em;
+        padding-bottom: .5em;
+    }
 }
