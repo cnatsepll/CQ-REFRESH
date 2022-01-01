@@ -110,23 +110,23 @@
 @media only screen and (max-width:750px) {
     #answerRow{
         flex-direction: column;
-        max-width: 20ch;
+        max-width: 30ch;
     }
     #question{
         margin: 2em 0 1.5em 0;
-        font-size: 1.5em;
+        font-size: 1.6em;
     }
     #quiz-response{
         margin: 1em;
         padding: 1em;
     }
     .response-button{
-        margin-top: .5em;
-        margin-bottom: .5em;
-        padding-top: .5em;
-        padding-bottom: .5em;
+        margin-top: .2em;
+        margin-bottom: .2em;
+        padding-top: .8em;
+        padding-bottom: .8em;
     }
     #calculate-div {
-        margin-top: 3em;
+        margin-top: 2.5em;
     }
 }
