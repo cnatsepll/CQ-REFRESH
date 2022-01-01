@@ -229,12 +229,12 @@ a h1{
     text-align: end;
 }
 .hr-style-top{
-    border-top: solid var(--hr-line) 3px;
+    border-top: solid var(--black) 3px;
     filter: drop-shadow(0 .1em .1em var(--card-forground));
     margin: auto;
 }
 .hr-style-bottom{
-    border-bottom: solid var(--hr-line) 3px;
+    border-bottom: solid var(--black) 3px;
     filter: drop-shadow(0 .1em .1em var(--card-forground));
     margin: auto;
     width: 75%;
