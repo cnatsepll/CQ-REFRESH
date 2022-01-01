@@ -55,7 +55,7 @@
     display:inline-block;
     border:0.16em solid rgba(255,255,255,0);
     border-color: var(--black-hover);
-    border-radius:2px;
+    border-radius:4px;
     box-sizing: border-box;
     text-align:center;
     padding:0.2em 0.5em;
@@ -95,7 +95,7 @@
 #results-section{
     grid-area: results;
     margin: 5em 1em 5em 1em;
-    padding: 1.5em;
+    padding: 3em 1em 3em 1em;
     background-color: var(--content-block);
 }
 #calculate-div{
@@ -110,7 +110,7 @@
 @media only screen and (max-width:750px) {
     #answerRow{
         flex-direction: column;
-        max-width: 30ch;
+        max-width: 25ch;
     }
     #question{
         margin: 2em 0 1.5em 0;
