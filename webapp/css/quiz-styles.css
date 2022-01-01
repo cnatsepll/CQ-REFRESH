@@ -94,7 +94,7 @@
 
 #results-section{
     grid-area: results;
-    margin: 5em 1em 1em 1em;
+    margin: 5em 1em 5em 1em;
     padding: 1.5em;
     background-color: var(--content-block);
 }
@@ -110,17 +110,23 @@
 @media only screen and (max-width:750px) {
     #answerRow{
         flex-direction: column;
+        max-width: 20ch;
     }
     #question{
         margin: 2em 0 1.5em 0;
+        font-size: 1.5em;
     }
     #quiz-response{
         margin: 1em;
+        padding: 1em;
     }
     .response-button{
         margin-top: .5em;
         margin-bottom: .5em;
         padding-top: .5em;
         padding-bottom: .5em;
+    }
+    #calculate-div {
+        margin-top: 3em;
     }
 }
