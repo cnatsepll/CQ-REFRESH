@@ -15,7 +15,8 @@
 #question{
     margin: 8% 0 8% 0;
     font-weight: bold;
-    font-size: x-large;
+    font-size: 1.8em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 #quiz-left-options{
@@ -38,7 +39,9 @@
     grid-area: response;
 }
 #quiz-response{
+    padding: 1.5em;
     margin: 1em;
+    border-color: var(--blue-bold);
 }
 #totals{
     margin: 1em;
@@ -77,6 +80,7 @@
     grid-area: results;
     margin: 5em 1em 1em 1em;
     padding: 1.5em;
+    background-color: var(--content-block);
 }
 #calculate-div{
     margin-top:1em;

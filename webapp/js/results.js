@@ -7,16 +7,34 @@ const loadDescriptionContainers = ()=>{
     for(let i = 0; i < containers.length; i+=1){
         let container = containers[i]
         container.appendChild(document.createElement("br"));
+        let colorId = container.id;
+        let name = colorId.charAt(0).toUpperCase() + colorId.slice(1);;
         let descriptionArray = shortDescriptions[container.id]();
         if(!!descriptionArray){
             for(let i = 0 ; i < descriptionArray.length; i+=1){
                 let newDiv = document.createElement("div");
                 newDiv.innerText = descriptionArray[i];
+                if(i === 0){newDiv.style.fontWeight = "bold"};
                 container.appendChild(newDiv);
                 container.appendChild(document.createElement("br"));
             }
         }
-        container.appendChild(document.createElement("hr"));
+        if(!!dice[colorId]){
+            let diceDiv = document.createElement("div");
+            let diceLinkText = document.createTextNode(`Click here to watch a video on ${name}'s philosophy`);
+            let diceLink = document.createElement("a");
+            diceLink.style.color = "black";
+            diceLink.title = `DiceTry video on ${name}`;
+            diceLink.href = dice[colorId];
+            diceLink.target = '_blank';
+            diceLink.appendChild(diceLinkText);
+            diceDiv.appendChild(diceLink);
+            container.appendChild(diceDiv);
+            container.appendChild(document.createElement("br"));
+            container.appendChild(document.createElement("hr"));
+        }else{
+            container.appendChild(document.createElement("hr"));
+        }
     }    
 }
 
@@ -75,7 +93,7 @@ shortDescriptions.orzhov = ()=>{
     mage.push("A White/Black Planeswalker asks the question who's in my circle of concern? The colors White and Black combine to form tribalism, the \"us versus them\" mentality. Think Don Corleone and the other gangsters from The Godfather—a strict system of codes and honor within the group, and almost total impunity with outsiders. You can also see the white/black ingroup/outgroup dynamic in certain swaths of social justice culture.");
     return mage;
 }
-shortDescriptions.azorious = ()=>{
+shortDescriptions.azorius = ()=>{
     let mage = [];
     mage.push("You are a White/Blue Planeswalker (Welcome to the Azorius Senate).");
     mage.push("A White/Blue Planeswalker asks the question how do we know what's right and good? The whole concept of a \"rationality technique\" is extremely white/blue, the idea that we might create carefully defined, algorithmic heuristics for doing things better according to some outside standard is not one that other color combinations are likely to produce. Effective Altruism is also a white/blue movement, though it makes efforts to reach out to red (compassion) and black (taking the long view on self interest)");
@@ -151,7 +169,7 @@ shortDescriptions.jund = ()=>{
     mage.push("Jund has a feral realism with no sugar coating, a self aware self indulgence that doesn't pretend to be anything it isn't. Those of Jund colors show a refusal to slow down or be contained, and do not follow standards that are contrived and ephemeral in the first place.");
     return mage;
 }
-shortDescriptions.monoWhite = ()=>{
+shortDescriptions.white = ()=>{
     let mage = [];
     mage.push("You are a Mono White Planeswalker, all for one one for all.");
     mage.push("White wants peace.");
@@ -160,7 +178,7 @@ shortDescriptions.monoWhite = ()=>{
     mage.push("White does want as many as possible to understand its motives and share them. But white realizes that in order to accomplish its larger goal, some individuals will have to be lead down the path rather than venture there of their own accord.");
     return mage;
 }
-shortDescriptions.monoBlue = ()=>{
+shortDescriptions.blue = ()=>{
     let mage = [];
     mage.push("You are a Mono Blue Planeswalker, stay curious.");
     mage.push("Blue wants perfection");
@@ -169,7 +187,7 @@ shortDescriptions.monoBlue = ()=>{
     mage.push("Much as blue wishes to perfect itself, it also wants to perfect the world it lives in. Part of this is to ensure that blue has access to the resources it needs, but part of it is the belief that an element of reaching one's potential is living within a world that has reached its own potential. As such, blue is the color most interested in technology and wants the latest and greatest version of whatever it is using.");
     return mage;
 }
-shortDescriptions.monoBlack = ()=>{
+shortDescriptions.black = ()=>{
     let mage = [];
     mage.push("You are a Mono Black Planeswalker, be uninhibited.");
     mage.push("Black wants power.");
@@ -178,7 +196,7 @@ shortDescriptions.monoBlack = ()=>{
     mage.push("Black's philosophy is very simple: There's no one better suited to look after your own interests than you. Therefore, if everyone looks out after their own interests, you've created a system where everyone has someone looking out for them. In addition, black's system allows everyone the opportunity to succeed. Will everyone succeed? Of course not—but once again, that's not black's doing. That's just how the world works.");
     return mage;
 }
-shortDescriptions.monoRed = ()=>{
+shortDescriptions.red = ()=>{
     let mage = [];
     mage.push("You are a Mono Red Planeswalker, stay true to yourself.");
     mage.push("Red wants freedom.");
@@ -187,7 +205,7 @@ shortDescriptions.monoRed = ()=>{
     mage.push("To outsiders, red might seem a bit chaotic; but that's only because others can't see what's in red's heart. They cannot feel red's emotions guiding them. Living life to its fullest takes a lot of dedication and perseverance, but red is always up to the task.");
     return mage;
 }
-shortDescriptions.monoGreen = ()=>{
+shortDescriptions.green = ()=>{
     let mage = [];
     mage.push("You are a Mono Green Planeswalker, one with the world.");
     mage.push("Green wants harmony.");

@@ -21,41 +21,44 @@
     </section>
 
     <section id="results-page">
-        <section id="text-dump">
-            <section id="monoColorSection">
-                <div class="result-header">Mono Color Results</div>
-                <div id="monoWhite" class="description-container"></div>
-                <div id="monoBlue" class="description-container"></div>
-                <div id="monoBlack" class="description-container"></div>
-                <div id="monoRed" class="description-container"></div>
-                <div id="monoGreen" class="description-container"></div>
-            </section>
-            <section id="colorPairSection">
-                <div class="result-header">Color Pair Results</div>
-                <div id="azorious" class="description-container"></div>
-                <div id="orzhov" class="description-container"></div>
-                <div id="boros" class="description-container"></div>
-                <div id="selesnya" class="description-container"></div>
-                <div id="dimir" class="description-container"></div>
-                <div id="izzet" class="description-container"></div>
-                <div id="simic" class="description-container"></div>
-                <div id="rakdos" class="description-container"></div>
-                <div id="golgari" class="description-container"></div>
-                <div id="gruul" class="description-container"></div>
-            </section>
-            <section id="triColorSection">
-                <div class="result-header">Tri Color Results</div>
-                <div id="jund" class="description-container"></div>
-                <div id="bant" class="description-container"></div>
-                <div id="grixis" class="description-container"></div>
-                <div id="naya" class="description-container"></div>
-                <div id="esper" class="description-container"></div>
-                <div id="jeskai" class="description-container"></div>
-                <div id="mardu" class="description-container"></div>
-                <div id="sultai" class="description-container"></div>
-                <div id="temur" class="description-container"></div>
-                <div id="abzan" class="description-container"></div>
-            </section>
+        <section class="flex-column" id="text-dump">
+            <button type="button" class="centered-text collapsible result-button red">Mono Color Results</button>
+                <div class="collapsible-content">
+                    <br>
+                    <div id="white" class="description-container"></div>
+                    <div id="blue" class="description-container"></div>
+                    <div id="black" class="description-container"></div>
+                    <div id="red" class="description-container"></div>
+                    <div id="green" class="description-container"></div>
+                </div>
+            <button type="button" class="centered-text collapsible result-button blue">Color Pair Results</button>
+                <div class="collapsible-content">
+                    <br>
+                    <div id="azorius" class="description-container"></div>
+                    <div id="orzhov" class="description-container"></div>
+                    <div id="boros" class="description-container"></div>
+                    <div id="selesnya" class="description-container"></div>
+                    <div id="dimir" class="description-container"></div>
+                    <div id="izzet" class="description-container"></div>
+                    <div id="simic" class="description-container"></div>
+                    <div id="rakdos" class="description-container"></div>
+                    <div id="golgari" class="description-container"></div>
+                    <div id="gruul" class="description-container"></div>
+                </div>
+            <button type="button" class="centered-text collapsible result-button green">Tri Color Results</button>
+                <div class="collapsible-content">
+                    <br>
+                    <div id="jund" class="description-container"></div>
+                    <div id="bant" class="description-container"></div>
+                    <div id="grixis" class="description-container"></div>
+                    <div id="naya" class="description-container"></div>
+                    <div id="esper" class="description-container"></div>
+                    <div id="jeskai" class="description-container"></div>
+                    <div id="mardu" class="description-container"></div>
+                    <div id="sultai" class="description-container"></div>
+                    <div id="temur" class="description-container"></div>
+                    <div id="abzan" class="description-container"></div>
+                </div>
         </section>
     </section>
  
@@ -63,6 +66,7 @@
 
 
 </body>
-
+<script src="/js/dice-links.js"></script>
 <script src="/js/results.js"></script>
+<script src="/js/common.js"></script>
 </html>

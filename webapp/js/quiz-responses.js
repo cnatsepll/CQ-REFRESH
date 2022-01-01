@@ -31,7 +31,6 @@ const calculateResult = () =>{
     third = sortedAnswersArray[2];
     fourth = sortedAnswersArray[3];
     fifth = sortedAnswersArray[4];
-
     placed = {
         first: {
             key: first[0],
@@ -59,19 +58,15 @@ const calculateResult = () =>{
             name: fifth[1][1]
         }
     };
-
-    // console.log(`wubrg answers  ${JSON.stringify(wubrgAnswers)}`);
-    // console.log(`sorted answers  ${sortedAnswersArray}`);
-    // console.log(`answers placed  ${JSON.stringify(placed)}`);
     if(placed.first.value *.9 <= placed.second.value 
         && placed.first.value *.9 <= placed.third.value  
         && placed.first.value *.9 <= placed.fourth.value){
         colorless();
         console.log('colorless result');
-    } else if(placed.first.value * .72 > placed.second.value){
+    } else if(placed.first.value * .71 > placed.second.value){
          monoColor();
         console.log('mono color result');
-    } else if(placed.second.value * .89 <= placed.third.value){
+    } else if(placed.second.value * .88 <= placed.third.value){
         let resultArray = [placed.first.key, placed.second.key, placed.third.key].sort();
         let result = resultArray.join("");
         triColor(result);
@@ -85,21 +80,17 @@ const calculateResult = () =>{
     }
 }
 
-const setResult = (result)=>{
+const setResult = (result, name)=>{
     let resultsSection = document.querySelector("#results-section");
     let totalsDiv = document.querySelector("#totals");
     let resultsDiv = document.querySelector("#results");
 	let totalScore = parseInt(answers.W)+parseInt(answers.U)+parseInt(answers.B)+parseInt(answers.R)+parseInt(answers.G);
 	console.log(totalScore)
 	let Wpercent =()=>{
-		if(answers.W > 0){
-			 return ((parseFloat(answers.W) / totalScore)* 100).toFixed(1)
-		}else{
-			return 0
-		}
+		if(answers.W > 0){return ((parseFloat(answers.W) / totalScore)* 100).toFixed(1)
+		}else{return 0}
 	}
-	let Upercent =()=>{
-		if(answers.U > 0){return ((parseFloat(answers.U) / totalScore)* 100).toFixed(1)
+	let Upercent =()=>{if(answers.U > 0){return ((parseFloat(answers.U) / totalScore)* 100).toFixed(1)
 		}else{return 0}
 	}
 	let Bpercent =()=>{
@@ -125,6 +116,7 @@ const setResult = (result)=>{
     for(let i = 0 ; i < result.length ; i+=1){
         let newDiv = document.createElement("div");
         newDiv.innerText = result[i];
+		if(i === 0){newDiv.style.fontWeight = "bold"};
         resultsDiv.appendChild(newDiv);
         resultsDiv.appendChild(document.createElement("br"));
     }
@@ -132,6 +124,23 @@ const setResult = (result)=>{
 	chartDiv.id = "chartResults"
 	totalsDiv.appendChild(chartDiv);
 	addChart(percentsObj);
+	totalsDiv.appendChild(document.createElement("br"));
+	totalsDiv.appendChild(document.createElement("br"));
+	let colorId = name.toLowerCase();
+	if(!!dice[colorId]){
+		totalsDiv.appendChild(document.createElement("br"));
+		let diceDiv = document.createElement("div");
+		let diceLinkText = document.createTextNode(`Click here to watch a video on ${name}'s philosophy`);
+		let diceLink = document.createElement("a");
+		diceLink.style.color = "var(--blue-bold)";
+		diceLink.title = `DiceTry video on ${name}`;
+		diceLink.href = dice[colorId];
+		diceLink.target = '_blank';
+		diceLink.appendChild(diceLinkText);
+		diceDiv.appendChild(diceLink);
+		totalsDiv.appendChild(diceDiv);
+		
+        }
     resultsSection.classList.remove("hiddenElement");
 }
 
@@ -140,45 +149,45 @@ const colorless = ()=>{
     let mage = [];
     mage.push("You are a Multicolored Wonder. The Planes are at your fingertips");
     mage.push("There is no holding you back. You are intertwined with all of the facets of life and, when given the chance, use them to your full advantage.");
-    setResult(mage);
+    setResult(mage, "Colorless");
 }
 const monoColor = ()=>{
     if(placed.first.key ==="W"){
-        setResult(descriptions.monoWhite());
+        setResult(descriptions.monoWhite(), "White");
     } else if(placed.first.key ==="U"){
-        setResult(descriptions.monoBlue());
+        setResult(descriptions.monoBlue(), "Blue");
     } else if(placed.first.key ==="B"){
-		setResult(descriptions.monoBlack());
+		setResult(descriptions.monoBlack(), "Black");
     } else if(placed.first.key ==="R"){
-        setResult(descriptions.monoRed());
+        setResult(descriptions.monoRed(), "Red");
     } else if(placed.first.key ==="G"){
-        setResult(descriptions.monoGreen());
+        setResult(descriptions.monoGreen(), "Green");
     }
 }
 // WUBRG = B G R U W
 const triColor = (result)=>{
-    if(result === "BGR"){setResult(descriptions.jund());}
-    else if(result === "GUW"){setResult(descriptions.bant());}
-    else if(result === "BRU"){setResult(descriptions.grixis());}
-    else if(result === "GRW"){setResult(descriptions.naya());}
-    else if(result === "BUW"){setResult(descriptions.esper());}
-    else if(result === "RUW"){setResult(descriptions.jeskai());}
-    else if(result === "BRW"){setResult(descriptions.mardu());}
-    else if(result === "BGU"){setResult(descriptions.sultai());}
-    else if(result === "GRU"){setResult(descriptions.temur());}
-    else if(result === "BGW"){setResult(descriptions.abzan());}
+    if(result === "BGR"){setResult(descriptions.jund(), "Jund");}
+    else if(result === "GUW"){setResult(descriptions.bant(), "Bant");}
+    else if(result === "BRU"){setResult(descriptions.grixis(), "Grixis");}
+    else if(result === "GRW"){setResult(descriptions.naya(), "Naya");}
+    else if(result === "BUW"){setResult(descriptions.esper(), "Esper");}
+    else if(result === "RUW"){setResult(descriptions.jeskai(), "Jeskai");}
+    else if(result === "BRW"){setResult(descriptions.mardu(), "Mardu");}
+    else if(result === "BGU"){setResult(descriptions.sultai(), "Sultai");}
+    else if(result === "GRU"){setResult(descriptions.temur(), "Temur");}
+    else if(result === "BGW"){setResult(descriptions.abzan(), "Abzan");}
 }
 const twoColor = (result)=>{
-    if (result === "UW"){setResult(descriptions.azorious());}
-    else if (result === "BW"){setResult(descriptions.orzhov());}
-    else if (result === "RW"){setResult(descriptions.boros());}
-    else if (result === "GW"){setResult(descriptions.selesnya());}
-    else if (result === "BU"){setResult(descriptions.dimir());}
-    else if (result === "RU"){setResult(descriptions.izzet());}
-    else if (result === "GU"){setResult(descriptions.simic());}
-    else if (result === "BR"){setResult(descriptions.rakdos());}
-    else if (result === "BG"){setResult(descriptions.golgari());}
-    else if (result === "GR"){setResult(descriptions.gruul());}
+    if (result === "UW"){setResult(descriptions.azorius(), "Azorius");}
+    else if (result === "BW"){setResult(descriptions.orzhov(), "Orzhov");}
+    else if (result === "RW"){setResult(descriptions.boros(), "Boros");}
+    else if (result === "GW"){setResult(descriptions.selesnya(), "Selesnya");}
+    else if (result === "BU"){setResult(descriptions.dimir(), "Dimir");}
+    else if (result === "RU"){setResult(descriptions.izzet(), "Izzet");}
+    else if (result === "GU"){setResult(descriptions.simic(), "Simic");}
+    else if (result === "BR"){setResult(descriptions.rakdos(), "Rakdos");}
+    else if (result === "BG"){setResult(descriptions.golgari(), "Golgari");}
+    else if (result === "GR"){setResult(descriptions.gruul(), "Gruul");}
 }
 
 
@@ -339,7 +348,7 @@ descriptions.orzhov = ()=>{
 			mage.push("Black's philosophy is very simple: There's no one better suited to look after your own interests than you. Therefore, if everyone looks out after their own interests, you've created a system where everyone has someone looking out for them. In addition, black's system allows everyone the opportunity to succeed. Will everyone succeed? Of course not—but once again, that's not black's doing. That's just how the world works.");
 			return mage;
 }
-descriptions.azorious = ()=>{
+descriptions.azorius = ()=>{
     let mage = [];
     mage.push("You are a White/Blue Planeswalker (Welcome to the Azorius Senate).");
 			mage.push("A White/Blue Planeswalker asks the question how do we know what's right and good? The whole concept of a \"rationality technique\" is extremely white/blue, the idea that we might create carefully defined, algorithmic heuristics for doing things better according to some outside standard is not one that other color combinations are likely to produce. Effective Altruism is also a white/blue movement, though it makes efforts to reach out to red (compassion) and black (taking the long view on self interest)");

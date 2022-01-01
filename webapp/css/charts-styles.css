@@ -26,7 +26,7 @@
     width: 100%;
     display: flex;
     max-width: 1000px;
-    background-color: white;
+    background-color: var(--bg-shade);
     border-radius: 3px;
 }
 .chart-container{
@@ -163,6 +163,7 @@ select{
     justify-content: center;
     align-items: center;
     margin: auto;
+    padding: 1em;
 }
 
 .random{
@@ -176,7 +177,7 @@ select{
     flex-grow: 1;
     max-width: 20ch;
     border-radius: 3px;
-    font-size: 1.1em;
+    font-size: 1em;
 }
 .query{
     border-radius: 3px;

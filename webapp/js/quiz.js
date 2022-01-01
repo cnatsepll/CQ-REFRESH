@@ -81,11 +81,14 @@ const fetchQuestions = ()=>
 
 
 
-
+const nextQuestion =()=>{
+    questionWords = JSON.parse(localStorage.getItem("questions"));
+    let nextQuestion = questionWords[questionCounter].question;
+    return nextQuestion;
+}
 const setQuestion = ()=>{
     let questionDiv = document.querySelector("#question");
-    questionWords = JSON.parse(localStorage.getItem("questions"));
-    questionDiv.textContent = `${questionWords[questionCounter].question}`;
+    questionDiv.textContent = nextQuestion();
 };
 
 const setMaxQuestionsDiv = ()=>{
