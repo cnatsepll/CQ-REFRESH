@@ -47,7 +47,7 @@
     padding: 1.5em;
     margin: 1em;
     border-color: var(--blue-bold);
-    background-color: #86bef557;
+    background-color: #84b8e954;
 }
 #totals{
     margin: 1em;
@@ -126,7 +126,7 @@
     }
     #quiz-response{
         margin: 1em 1.5em;
-        padding: .7 .5em;
+        padding: .7em .5em;
         border-radius: 12px;
     }
     #calculate-div {
