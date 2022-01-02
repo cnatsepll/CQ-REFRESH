@@ -125,10 +125,10 @@
         max-width: 18ch;
     }
     #quiz-response{
-        margin: 1em 2em;
+        margin: 1em;
         padding: .7 .5em;
     }
     #calculate-div {
-        margin-top: 2.5em;
+        margin-top: 2.2em;
     }
 }
