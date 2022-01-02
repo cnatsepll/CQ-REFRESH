@@ -32,6 +32,7 @@
     border-radius: 3px;
     position: relative;
     overflow-x: scroll;
+    margin-bottom: 1.2em;
 }
 .chart-container{
     display: inline-block;
