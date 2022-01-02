@@ -13,10 +13,15 @@
 }
 
 #question{
-    margin: 8% 0 8% 0;
+    font-family: 'Roboto', sans-serif;
+    color: black;
+    margin: 2ch 0 2ch 0;
+    height: 4ch;
+    text-align: center;
     font-weight: bold;
-    font-size: 1.8em;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 2.3em;
+    text-shadow: 1px 1px 1px #a9d5ff;
+    /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
 }
 
 #quiz-left-options{
@@ -42,7 +47,7 @@
     padding: 1.5em;
     margin: 1em;
     border-color: var(--blue-bold);
-    background-color: #91afcd26;
+    background-color: #86bef557;
 }
 #totals{
     margin: 1em;
@@ -53,13 +58,16 @@
     font-size: 1.1em;
     text-decoration: none;  
     display:inline-block;
-    border:0.16em solid rgba(255,255,255,0);
-    border-color: var(--black-hover);
-    border-radius:4px;
+    border:0.16em solid;
+    border-color: #91919175;
+    border-radius:30px;
     box-sizing: border-box;
     text-align:center;
-    padding:0.2em 0.5em;
-    color: var(--nav-button-color);
+    margin-top: .2em;
+    margin-bottom: .2em;
+    padding: 0.5em 1.4em;
+    color: var(--black-bold);
+    box-shadow: 0px 2px 4px 1px rgb(51 96 179);
 }
 #reset-button{
     font-size: 1em;
@@ -79,7 +87,8 @@
 @media(hover: hover) {
     .response-button:hover {
         border-color: var(--blue-bold);
-        color: var(--blue-bold);
+        color: #1f6cbb;
+        background-color: #fafcff;
     }
 }
 
@@ -112,21 +121,11 @@
 @media only screen and (max-width:750px) {
     #answerRow{
         flex-direction: column;
-        max-width: 25ch;
-    }
-    #question{
-        margin: 1.5em 0 1.5em 0;
-        font-size: 1.5em;
+        max-width: 18ch;
     }
     #quiz-response{
-        margin: 1em;
-        padding: 1em;
-    }
-    .response-button{
-        margin-top: .2em;
-        margin-bottom: .2em;
-        padding-top: .8em;
-        padding-bottom: .8em;
+        margin: 1em 2em;
+        padding: .6em;
     }
     #calculate-div {
         margin-top: 2.5em;
