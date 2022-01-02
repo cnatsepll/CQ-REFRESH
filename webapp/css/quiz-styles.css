@@ -47,7 +47,7 @@
     padding: 1.5em;
     margin: 1em;
     border-color: var(--blue-bold);
-    background-color: #84b8e954;
+    background-color: #84b8e945;
 }
 #totals{
     margin: 1em;
@@ -59,7 +59,7 @@
     text-decoration: none;  
     display:inline-block;
     border:0.16em solid;
-    border-color: #91919175;
+    border-color: #787878a1;
     border-radius:30px;
     box-sizing: border-box;
     text-align:center;
@@ -68,7 +68,7 @@
     padding: 0.5em 1.4em;
     background-color: var(--content-block);
     color: var(--black-bold);
-    box-shadow: 0px 2px 4px 1px rgb(51 96 179);
+    box-shadow: 0px 2px 3px 1px rgb(51 96 179 / 50%);
 }
 #reset-button{
     font-size: 1em;
