@@ -27,22 +27,19 @@ app.use(bodyParser.json());
 app.use(express.static("webapp"))
 
 app.get('/', (req, res)=> {
-    res.sendFile(path.join(__dirname + '/webapp/html/home.html'));
+    res.sendFile(__dirname + '/webapp/home/');
 });
-
 app.get('/quiz', (req, res)=> {
-    res.sendFile(path.join(__dirname + '/webapp/html/quiz.html'));
+    res.sendFile(__dirname + '/webapp/quiz/');
 });
-
 app.get('/charts', (req, res)=> {
-    res.sendFile(path.join(__dirname + '/webapp/html/charts.html'));
+    res.sendFile(__dirname + '/webapp/charts/');
 });
-
 app.get('/results', (req, res)=> {
-    res.sendFile(path.join(__dirname + '/webapp/html/results.html'));
+    res.sendFile(__dirname + '/webapp/results/');
 });
 app.get('/about', (req, res)=> {
-    res.sendFile(path.join(__dirname + '/webapp/html/about.html'));
+    res.sendFile(__dirname + '/webapp/about/');
 });
 
 app.get('/charts/getTotalResults', (req, res)=>{
