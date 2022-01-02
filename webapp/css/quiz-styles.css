@@ -122,11 +122,12 @@
 @media only screen and (max-width:750px) {
     #answerRow{
         flex-direction: column;
-        max-width: 18ch;
+        max-width: 20ch;
     }
     #quiz-response{
-        margin: 1em;
+        margin: 1em 1.5em;
         padding: .7 .5em;
+        border-radius: 12px;
     }
     #calculate-div {
         margin-top: 2.2em;
