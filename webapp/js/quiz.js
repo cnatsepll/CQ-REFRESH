@@ -153,8 +153,8 @@ const clearResult = ()=>{
     let resultsSection = document.querySelector("#results-section");
     let totalsDiv = document.querySelector("#totals");
     let resultsDiv = document.querySelector("#results");
-    let resetButton = document.querySelector("#reset-button");
-    resetButton.scrollIntoView({behavior: "auto", block: "start"});
+    let header = document.querySelector("#header");
+    header.scrollIntoView({behavior: "auto", block: "start"});
     resultsSection.classList.add("hiddenElement");
     totalsDiv.textContent = "";
     resultsDiv.textContent = "";

@@ -681,31 +681,35 @@ const buildColorPieSlices=(colorpieSlices, question_word)=>{
     let canvas = document.createElement('canvas');
     canvas.id = 'resultColorpieSlicesChart';
     document.getElementById('resultColorpieSlicesChartContainer').append(canvas);
-    let white_counter = (colorpieSlices[0].white_counter / colorpieSlices[0].total_counter).toFixed(3);
-    let blue_counter = (colorpieSlices[0].blue_counter / colorpieSlices[0].total_counter).toFixed(3);
-    let black_counter = (colorpieSlices[0].black_counter / colorpieSlices[0].total_counter).toFixed(3);
-    let red_counter = (colorpieSlices[0].red_counter / colorpieSlices[0].total_counter).toFixed(3);
-    let green_counter = (colorpieSlices[0].green_counter / colorpieSlices[0].total_counter).toFixed(3);
+    let white_counter = ((colorpieSlices[0].white_counter / colorpieSlices[0].total_counter)*100).toFixed(1);
+    let blue_counter = ((colorpieSlices[0].blue_counter / colorpieSlices[0].total_counter)*100).toFixed(1);
+    let black_counter = ((colorpieSlices[0].black_counter / colorpieSlices[0].total_counter)*100).toFixed(1);
+    let red_counter = ((colorpieSlices[0].red_counter / colorpieSlices[0].total_counter)*100).toFixed(1);
+    let green_counter = ((colorpieSlices[0].green_counter / colorpieSlices[0].total_counter)*100).toFixed(1);
 
     let colorCounterArray = [
-        {name: 'white', count: white_counter},
-        {name: 'blue', count: blue_counter},
-        {name: 'black', count: black_counter},
-        {name: 'red', count: red_counter},
-        {name: 'green', count: green_counter}
+        {name: 'White', count: white_counter},
+        {name: 'Blue', count: blue_counter},
+        {name: 'Black', count: black_counter},
+        {name: 'Red', count: red_counter},
+        {name: 'Green', count: green_counter}
     ];
     colorCounterArray.sort((a,b)=> b.count - a.count);
     var ctx = document.getElementById('resultColorpieSlicesChart').getContext('2d');
     window.colorpieSlices = new Chart(ctx, {
         type: 'pie',
         data: {
-          labels: [colorCounterArray[0].name, colorCounterArray[1].name, colorCounterArray[2].name, colorCounterArray[3].name, colorCounterArray[4].name],
+          labels: [`${colorCounterArray[0].name} : ${colorCounterArray[0].count}%`, 
+          `${colorCounterArray[1].name} : ${colorCounterArray[1].count}%`,  
+          `${colorCounterArray[2].name} : ${colorCounterArray[2].count}%`,  
+          `${colorCounterArray[3].name} : ${colorCounterArray[3].count}%`,  
+          `${colorCounterArray[4].name} : ${colorCounterArray[4].count}%`],
           datasets: [{
             backgroundColor: [colorCounterArray[0].name, colorCounterArray[1].name, colorCounterArray[2].name, colorCounterArray[3].name, colorCounterArray[4].name],
             borderColor: 'black',
             borderWidth: 3,
               label: question_word,
-              data: [`${(colorCounterArray[0].count*100).toFixed(1)}`, `${(colorCounterArray[1].count*100).toFixed(1)}`, `${(colorCounterArray[2].count*100).toFixed(1)}`, `${(colorCounterArray[3].count*100).toFixed(1)}`, `${(colorCounterArray[4].count*100).toFixed(1)}`]
+              data: [colorCounterArray[0].count, colorCounterArray[1].count, colorCounterArray[2].count, colorCounterArray[3].count, colorCounterArray[4].count]
           }]
           // second dataset to show the percentage of the result color popularity
       },
