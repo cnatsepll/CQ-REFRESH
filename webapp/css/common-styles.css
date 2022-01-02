@@ -237,7 +237,7 @@ a h1{
     border-bottom: solid var(--black-hover) 3px;
     /* filter: drop-shadow(0 .1em .1em var(--card-forground)); */
     margin: auto;
-    width: 75%;
+    width: 98%;
 }
 
 .collapsible {
