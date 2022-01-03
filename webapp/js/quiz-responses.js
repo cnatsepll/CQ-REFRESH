@@ -137,14 +137,21 @@ const setResult = (result, name)=>{
 		diceLink.title = `DiceTry video on ${name}`;
 		diceLink.href = dice[colorId];
 		diceLink.target = '_blank';
+
+		diceLink.addEventListener("click", ()=>{diceClick(name, dice[colorId])});
+		console.log(diceLink)
+
+
 		diceLink.appendChild(diceLinkText);
 		diceDiv.appendChild(diceLink);
-		totalsDiv.appendChild(diceDiv);
-		
+		totalsDiv.appendChild(diceDiv);	
         }
     resultsSection.classList.remove("hiddenElement");
 }
 
+const diceClick =(name, diceLink)=>{
+	console.log(`${name} : ${diceLink}`)
+}
 
 const colorless = ()=>{
     let mage = [];
