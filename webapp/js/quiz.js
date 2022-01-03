@@ -68,6 +68,7 @@ const checkForQuestions = ()=>{
        fetchQuestions().then(()=>{setMaxQuestionsDiv()});
        console.log('questions reset')
     } else {
+        questionWords = JSON.parse(localStorage.getItem("questions"));
         console.log('questions found')
         setQuestion();
         setMaxQuestionsDiv();
@@ -75,22 +76,24 @@ const checkForQuestions = ()=>{
     }
 };
 const resetQuestionWords = () =>{
-    if(!localStorage.getItem("questions")){
-        fetchQuestions();
-    } else {
-        questionWords = JSON.parse(localStorage.getItem("questions"));
-        shuffle(questionWords);
-        questionWordsStringified = JSON.stringify(questionWords);
-        localStorage.setItem("questions", questionWordsStringified);
-        setQuestion();
-    }
+    fetchQuestions();
+    // if(!localStorage.getItem("questions")){
+    //     fetchQuestions();
+    // } else {
+    //     questionWords = JSON.parse(localStorage.getItem("questions"));
+    //     shuffle(questionWords);
+    //     questionWordsStringified = JSON.stringify(questionWords);
+    //     localStorage.setItem("questions", questionWordsStringified);
+    //     setQuestion();
+    // }
 };
 
 const fetchQuestions = ()=>
     new Promise((resolve, reject) => {
         fetch("/charts/listAllQuestionWords")
         .then(response => response.json())
-        .then(questionWords => {
+        .then(response => {
+            questionWords = response;
             shuffle(questionWords);
             questionWordsStringified = JSON.stringify(questionWords);
             localStorage.setItem("questions", questionWordsStringified);
@@ -104,20 +107,30 @@ const fetchQuestions = ()=>
 
 // }
 
+const returnWord =()=>{
+    let scoreArray = [colorsAsked.W, colorsAsked.U, colorsAsked.B, colorsAsked.R, colorsAsked.G]
+    let scoreArrayDesc = scoreArray.sort((a,b)=>{return b - a});
+    let scoreArrayAsc = scoreArray.sort((a,b)=>{return a - b});
+    let highestValue = scoreArrayDesc[0];
+    let lowestValue = scoreArrayAsc[0];
+    console.log(scoreArray)    
+    console.log(colorsAsked);
+    for(let i = 0; i < questionWords.length; i+=1){
+        if(colorsAsked[questionWords[i].cd_color] === lowestValue){
+            removedWords = questionWords.splice(i,1);
+            questionWordsStringified = JSON.stringify(questionWords);
+            localStorage.setItem("questions", questionWordsStringified);
+            console.log(removedWords[0])
+            return removedWords[0];
+        }   
+    }
+}
+
 const nextQuestion =()=>{
-    questionWords = JSON.parse(localStorage.getItem("questions"));
     let resultsSection = document.querySelector("#results-section");
     let nextQuestion;
-    if(questionCounter === 0){
-        nextQuestion = questionWords[0];
-        questionColor = nextQuestion.cd_color;
-        if(!resultsSection.classList.contains("hiddenElement")){
-            clearResult();
-        }
-    }else if(questionCounter < 175){
-        let scoreArray = [colorsAsked.W, colorsAsked.U, colorsAsked.B, colorsAsked.R, colorsAsked.G]
-        let scoreArrayDesc = scoreArray.sort((a,b)=>{return b - a});
-        nextQuestion = questionWords[questionCounter];
+    if(questionCounter < 175){
+        nextQuestion = returnWord();
         questionColor = nextQuestion.cd_color;
         if(!resultsSection.classList.contains("hiddenElement")){
             clearResult();
@@ -125,14 +138,15 @@ const nextQuestion =()=>{
     } else {
         nextQuestion ={question: "Quiz Complete!"}
     }
-
     question = nextQuestion.question;
-    return question;
+    let questionDiv = document.querySelector("#question");
+    questionDiv.textContent = question;
 }
 
 const setQuestion = ()=>{
     let questionDiv = document.querySelector("#question");
-    questionDiv.textContent = nextQuestion();
+    questionColor = questionWords[0].cd_color;
+    questionDiv.textContent = questionWords[0].question;
 };
 
 const setMaxQuestionsDiv = ()=>{
@@ -208,14 +222,14 @@ const selected = (responseValue) => {
         questionCounter += 1;
         setCounter();
         addAnswer(questionColor, questionValue);
-        setQuestion();
+        nextQuestion();
     }else if (questionCounter === 174){
         questionCounter += 1;
         localStorage.setItem("counter", questionCounter);
         addAnswer(questionColor, questionValue);
         let counterDiv = document.querySelector("#counter");
         counterDiv.textContent = 175;
-        setQuestion();
+        nextQuestion();
     } else {
         questionCounter += 1;
         localStorage.setItem("counter", questionCounter);
