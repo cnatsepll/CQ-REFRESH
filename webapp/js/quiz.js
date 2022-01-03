@@ -109,19 +109,14 @@ const fetchQuestions = ()=>
 
 const returnWord =()=>{
     let scoreArray = [colorsAsked.W, colorsAsked.U, colorsAsked.B, colorsAsked.R, colorsAsked.G]
-    let scoreArrayDesc = scoreArray.sort((a,b)=>{return b - a});
     let scoreArrayAsc = scoreArray.sort((a,b)=>{return a - b});
-    let highestValue = scoreArrayDesc[0];
     let lowestValue = scoreArrayAsc[0];
-    console.log(scoreArray)    
     console.log(colorsAsked);
     for(let i = 0; i < questionWords.length; i+=1){
         if(colorsAsked[questionWords[i].cd_color] === lowestValue){
             removedWords = questionWords.splice(i,1);
-            questionWordsStringified = JSON.stringify(questionWords);
-            localStorage.setItem("questions", questionWordsStringified);
-            console.log(removedWords[0])
-            return removedWords[0];
+            questionWords.unshift(removedWords[0]);
+            return questionWords[0];
         }   
     }
 }
@@ -145,8 +140,12 @@ const nextQuestion =()=>{
 
 const setQuestion = ()=>{
     let questionDiv = document.querySelector("#question");
-    questionColor = questionWords[0].cd_color;
-    questionDiv.textContent = questionWords[0].question;
+    if(!questionWords[0]){
+        questionDiv.textContent = "Quiz Complete!";
+    } else {
+        questionColor = questionWords[0].cd_color;
+        questionDiv.textContent = questionWords[0].question;
+    }
 };
 
 const setMaxQuestionsDiv = ()=>{
@@ -217,6 +216,9 @@ const setCounter = ()=>{
 };
 
 const selected = (responseValue) => {
+    questionWords.splice(0,1);
+            questionWordsStringified = JSON.stringify(questionWords);
+            localStorage.setItem("questions", questionWordsStringified);
     let questionValue = responseValue;
     if(questionCounter < 174){
         questionCounter += 1;

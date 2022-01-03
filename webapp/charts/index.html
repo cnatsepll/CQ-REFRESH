@@ -40,7 +40,8 @@
         <section id="charts-container" id="chart-group">      
             <section class="chart-section">
                 <div class="centered-grid">
-                    <div class="centered-text"><b>Radar Graph of Color's Tendency to Favor the Question Word</b></div>
+                    <div class="centered-text"><b>Question Color Strength</b></div>
+                    <div class="centered-text">Percent of favorable answers by question, grouped by highest overall scored color in final result</div>
                 </div>
                 <div class="flex query-button-row">
                     <input class="random" type="button" id="fiveColorRadarRandom" value="Random Word" onclick="randomQuestionWord(this)">
@@ -57,7 +58,8 @@
 
             <section class="chart-section" >
                 <div class="centered-grid">
-                    <div class="centered-text"><b>Top Words for Color by Percentage of Favorable Responses</b></div>
+                    <div class="centered-text"><b>Color's Most Favored Words</b></div>
+                    <div class="centered-text">Percent of total favorable responses by question for the chosen color</div>
                 </div>
                 <div class="flex query-button-row">
                     <input class="random" type="button" id="topWordsForResultRandom" value="Random Color" onclick="randomColorGroup(this)">
@@ -74,7 +76,8 @@
             
             <section class="chart-section" >
                 <div class="centered-grid">
-                    <div class="centered-text"><b>Top Words for Color by Percentage of Opposing Responses</b></div>
+                    <div class="centered-text"><b>Color's Least Favored Words</b></div>
+                    <div class="centered-text">Percent of total unfavorable responses by question for the chosen color</div>
                 </div>
                 <div class="flex query-button-row">
                     <input class="random" type="button" id="bottomWordsForResultRandom" value="Random Color" onclick="randomColorGroup(this)">
@@ -93,7 +96,8 @@
             
             <section class="chart-section" >
                 <div class="centered-grid">
-                    <div class="centered-text"><b>Colors by Percentage of Results in Favor of the Word</b></div>
+                    <div class="centered-text"><b>Question's Favored Colors</b></div>
+                    <div class="centered-text">Percentage of results for each color with favorable answers to the question</div>
                 </div>
                 <div class="flex query-button-row">
                     <input class="random" type="button" id="resultMostLikeRandom" value="Random Word" onclick="randomQuestionWord(this)">
@@ -111,7 +115,8 @@
             
             <section class="chart-section" >
                 <div class="centered-grid">
-                    <div class="centered-text"><b>Colors by Percentage of Results in Opposition of the Word</b></div>
+                    <div class="centered-text"><b>Question's Least Favored Colors</b></div>
+                    <div class="centered-text">Percentage of results for each color with unfavorable answers to the question</div>
                 </div>
                 <div class="flex query-button-row">
                     <input class="random" type="button" id="resultLeastLikeRandom" value="Random Word" onclick="randomQuestionWord(this)">
@@ -145,7 +150,7 @@
 
             <section class="chart-section" >
                 <div class="centered-grid">
-                    <div class="centered-text"><b>Percentage of Result Color's Color Pie Slices</b></div>
+                    <div class="centered-text"><b>Color Pie Slices</b></div>
                 </div>                    
                 <div class="flex query-button-row">
                     <input type="button" id="resultColorpieSlicesRandom" value="Random Color" onclick="randomColorGroup(this)">
