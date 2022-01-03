@@ -185,6 +185,11 @@ const getfiveColorRadar=()=>{
             storeResult("fiveColorRadar", chartObject);
             buildFiveColorRadar(chartData, question_word);
         })
+        .catch((error) => {
+            console.error('Error:', error);
+            buttonToggle();
+            loadingToggle(container);
+          });
     }
 }
 const buildFiveColorRadar = (fiveColorRadar, question_word) =>{
