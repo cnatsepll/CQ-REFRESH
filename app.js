@@ -11,7 +11,7 @@ const { Pool, Client } = require('pg');
 //     port: 5432
 // };
 const connection = {
-    connectionString: process.env.DATABASE_URL,
+    connectionString: process.env.HEROKU_POSTGRESQL_MAROON_URL,
     ssl: {
       rejectUnauthorized: false
     }
@@ -132,6 +132,7 @@ app.post('/charts/bottomWordsForResult', (req, res)=>{
 });
 app.post('/charts/fiveColorRadar', (req, res)=>{
     const client = new Client(connection);
+    console.log(client)
     let response;
     client.connect();
     client.query(queries.fiveColorRadar, [req.body.question_word], (err, data) => {
