@@ -23,16 +23,19 @@
         <section id="quiz-container">
             <section id="quiz-info-box" class="flex">
                 <div id="quiz-options" class="info-item">
-                    <input id="reset-button" class="black" type="button" value="Reset Quiz" onclick="resetQuiz()"/>
+                    <input id="reset-button" class="red quiz-option" type="button" value="Reset Quiz" onclick="resetQuiz()"/>
                 </div>
                 <div id="scoreboard" class="info-item">
                     <div id="counter"></div>
                     <div id="max-questions"></div>    
                 </div>     
+                <div style="display: none;" id="previous-question" class="info-item">
+                    <input id="previous-button" class="black quiz-option" type="button" value="Previous Question" onclick="previousQuestion()"/>
+                </div>
             </section>
             <section id="response-block">
-                <div id="quiz-response" class="section-card">
-                    <div id="instruction-reminder">How closely do you align yourself with the term shown below?</div>
+                <div id="quiz-response">
+                    <div id="instruction-reminder">Do you align yourself with the term shown below?</div>
                     <div id="question"></div>
                     <div id="answerRow" class="flex flex-space-around">
                         <input type="button" value="Not at all" class="response-button padding-sides-medium" onclick="selected(1)"/>

@@ -14,13 +14,13 @@
 
 #question{
     font-family: 'Roboto', sans-serif;
-    color: black;
-    margin: 2ch 0 2ch 0;
+    color: #2c2b34;
+    margin: 1.5em 0 1.5em 0;
     height: 4ch;
     text-align: center;
-    font-weight: bold;
-    font-size: 2.3em;
-    text-shadow: 1px 1px 1px white;
+    font-weight: 800;
+    font-size: 3em;
+    text-shadow: 0px 0px 2px #f7fbfb;
     /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
 }
 
@@ -44,10 +44,14 @@
     grid-area: response;
 }
 #quiz-response{
-    padding: 1.5em;
+    padding: 2em;
     margin: 1em;
+    border: 3px solid;
     border-color: var(--blue-bold);
     background-color: #84b8e945;
+    
+    border-radius: 5px;
+    height: fit-content;
 }
 #totals{
     margin: 1em;
@@ -58,7 +62,7 @@
     font-size: 1.1em;
     text-decoration: none;  
     display:inline-block;
-    border:0.16em solid;
+    border: 2px solid;
     border-color: #787878a1;
     border-radius:30px;
     box-sizing: border-box;
@@ -68,7 +72,15 @@
     padding: 0.5em 1.4em;
     background-color: var(--content-block);
     color: var(--black-bold);
-    box-shadow: 0px 2px 3px 1px rgb(51 96 179 / 50%);
+    box-shadow: 0px 1px 2px 0px rgb(51 96 179 / 20%);
+    
+}
+.quiz-option{
+    font-size: 1em;
+    cursor: pointer;
+    color: white;
+    border-radius: 4px;
+    text-shadow: 0px 1px 3px #000000a1;;
 }
 #reset-button{
     font-size: 1em;
@@ -88,8 +100,9 @@
 @media(hover: hover) {
     .response-button:hover {
         border-color: var(--blue-bold);
-        color: #1f6cbb;
+        color: #0d6acb;
         background-color: #fafcff;
+        box-shadow: 0px 2px 3px 1px rgb(51 96 179 / 50%);
     }
 }
 
@@ -134,5 +147,9 @@
     }
     #quiz-info-box {
         margin-top: .6em;
+    }
+    #question{
+        font-size: 3em;
+        margin: .7em 0 .6em 0;
     }
 }

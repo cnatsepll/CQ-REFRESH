@@ -100,7 +100,9 @@ const fetchQuestions = ()=>
         })
     });
 
+// const previousQuestion =()=>{
 
+// }
 
 const nextQuestion =()=>{
     questionWords = JSON.parse(localStorage.getItem("questions"));
@@ -154,7 +156,7 @@ const clearResult = ()=>{
     let totalsDiv = document.querySelector("#totals");
     let resultsDiv = document.querySelector("#results");
     let header = document.querySelector("#header");
-    header.scrollIntoView({behavior: "auto", block: "nearest"});
+    header.scrollIntoView({behavior: "auto", block: "start"});
     resultsSection.classList.add("hiddenElement");
     totalsDiv.textContent = "";
     resultsDiv.textContent = "";
