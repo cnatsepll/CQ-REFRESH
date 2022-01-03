@@ -132,7 +132,6 @@ app.post('/charts/bottomWordsForResult', (req, res)=>{
 });
 app.post('/charts/fiveColorRadar', (req, res)=>{
     const client = new Client(connection);
-    console.log(client)
     let response;
     client.connect();
     client.query(queries.fiveColorRadar, [req.body.question_word], (err, data) => {

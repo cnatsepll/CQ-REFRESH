@@ -282,6 +282,14 @@ const getTopResults=()=>{
                 storeResult("topResults", chartObject);
                 buildTopResults(chartData);
             })
+            .catch((error) => {
+                console.error('Error:', error);
+                buttonToggle();
+                loadingToggle(container);
+                let canvas = document.createElement('canvas');
+                canvas.id = 'topResultsChart';
+                document.getElementById('topResultsChartContainer').append(canvas);
+              });
     }
 }
 const buildTopResults=(topResults)=>{
@@ -359,6 +367,14 @@ const getResultMostLike=()=>{
             storeResult("resultsMostLike", chartObject);
             buildResultMostLike(chartData, question_word);
         })
+        .catch((error) => {
+            console.error('Error:', error);
+            buttonToggle();
+            loadingToggle(container);
+            let canvas = document.createElement('canvas');
+            canvas.id = 'resultMostLikeChart';
+            document.getElementById('resultMostLikeChartContainer').append(canvas);
+          });
     }
 }
 const buildResultMostLike=(resultMostLike, question_word)=>{
@@ -434,6 +450,14 @@ const getResultLeastLike=()=>{
             storeResult("resultsLeastLike", chartObject);
             buildResultLeastLike(chartData, question_word);
         })
+        .catch((error) => {
+            console.error('Error:', error);
+            buttonToggle();
+            loadingToggle(container);
+            let canvas = document.createElement('canvas');
+            canvas.id = 'resultLeastLikeChart';
+            document.getElementById('resultLeastLikeChartContainer').append(canvas);
+          });
     }
 }
 const buildResultLeastLike=(resultLeastLike, question_word)=>{
@@ -509,6 +533,14 @@ const getTopWordsForResult=()=>{
             storeResult("topWordsForResult", chartObject);
             buildTopWordsForResult(chartData, question_word);
         })
+        .catch((error) => {
+            console.error('Error:', error);
+            buttonToggle();
+            loadingToggle(container);
+            let canvas = document.createElement('canvas');
+            canvas.id = 'topWordsForResultChart';
+            document.getElementById('topWordsForResultChartContainer').append(canvas);
+          });
     }
 }
 const buildTopWordsForResult=(topWordsForResult, question_word)=>{
@@ -596,6 +628,14 @@ const getBottomWordsForResult=()=>{
             storeResult("bottomWordsForResult", chartObject);
             buildBottomWordsForResult(chartData, question_word);
         })
+        .catch((error) => {
+            console.error('Error:', error);
+            buttonToggle();
+            loadingToggle(container);
+            let canvas = document.createElement('canvas');
+            canvas.id = 'bottomWordsForResultChart';
+            document.getElementById('bottomWordsForResultChartContainer').append(canvas);
+          });
     }
 }
 const buildBottomWordsForResult=(bottomWordsForResult, question_word)=>{
@@ -683,6 +723,14 @@ const getColorpieSlices=()=>{
             storeResult("colorpieSlices", chartObject);
             buildColorPieSlices(chartData, question_word);
         })
+        .catch((error) => {
+            console.error('Error:', error);
+            buttonToggle();
+            loadingToggle(container);
+            let canvas = document.createElement('canvas');
+            canvas.id = 'resultColorpieSlicesChart';
+            document.getElementById('resultColorpieSlicesChartContainer').append(canvas);
+          });
     }
 }
 const buildColorPieSlices=(colorpieSlices, question_word)=>{
