@@ -189,6 +189,9 @@ const getfiveColorRadar=()=>{
             console.error('Error:', error);
             buttonToggle();
             loadingToggle(container);
+            let canvas = document.createElement('canvas');
+            canvas.id = 'fiveColorRadarChart';
+            document.getElementById('fiveColorRadarChartContainer').append(canvas);
           });
     }
 }
