@@ -112,7 +112,8 @@ const setResult = (result, name)=>{
 		R: Rpercent(),
 		G: Gpercent()
 	}
-    totalsDiv.textContent = `| White: ${percentsObj.W}% | Blue: ${percentsObj.U}% | Black: ${percentsObj.B}% | Red: ${percentsObj.R}% | Green: ${percentsObj.G}% | `;
+	let resultPercentString = `| White: ${percentsObj.W}% | Blue: ${percentsObj.U}% | Black: ${percentsObj.B}% | Red: ${percentsObj.R}% | Green: ${percentsObj.G}% | `;
+    totalsDiv.textContent = resultPercentString;
     for(let i = 0 ; i < result.length ; i+=1){
         let newDiv = document.createElement("div");
         newDiv.innerText = result[i];
@@ -145,6 +146,19 @@ const setResult = (result, name)=>{
 		totalsDiv.appendChild(diceDiv);	
         }
     resultsSection.classList.remove("hiddenElement");
+	let logObj ={
+		result: name,
+		array: resultPercentString,
+		score: questionCounter
+	}
+    fetch('/quiz',{
+		method: 'POST',
+		mode: 'cors',
+		headers: {
+		  'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(logObj)
+	})
 }
 
 const diceClick =(result, link)=>{

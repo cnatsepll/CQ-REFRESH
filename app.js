@@ -50,6 +50,10 @@ app.post('/chart', (req, res)=>{
     console.log(`logChart| ${req.body.chart} : ${req.body.question}`)
     res.send(true);
 });
+app.post('/quiz', (req, res)=>{
+    console.log(`logQuiz| ::${req.body.result}:: ${req.body.array}  [${req.body.score}]`)
+    res.send(true);
+});
 
 app.get('/charts/getTotalResults', (req, res)=>{
     const client = new Client(connection);
