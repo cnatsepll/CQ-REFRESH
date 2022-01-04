@@ -28,7 +28,7 @@ const loadDescriptionContainers = ()=>{
             diceLink.href = dice[colorId];
             diceLink.target = '_blank';
 
-            diceLink.addEventListener("click", ()=>{diceClick(name, dice[colorId])});
+            diceLink.addEventListener("click", ()=>{diceClick(`${name} - R`, dice[colorId])});
 
             diceLink.appendChild(diceLinkText);
             diceDiv.appendChild(diceLink);

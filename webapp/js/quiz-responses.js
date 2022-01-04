@@ -138,7 +138,7 @@ const setResult = (result, name)=>{
 		diceLink.href = dice[colorId];
 		diceLink.target = '_blank';
 
-		diceLink.addEventListener("click", ()=>{diceClick(name, dice[colorId])});
+		diceLink.addEventListener("click", ()=>{diceClick(`${name} - Q`, dice[colorId])});
 
 		diceLink.appendChild(diceLinkText);
 		diceDiv.appendChild(diceLink);
