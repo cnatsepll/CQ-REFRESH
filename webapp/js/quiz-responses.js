@@ -148,7 +148,7 @@ const setResult = (result, name)=>{
 }
 
 const diceClick =(result, link)=>{
-	let videoObj ={
+	let logObj ={
 		result: result,
 		link: link
 	}
@@ -158,7 +158,7 @@ const diceClick =(result, link)=>{
 		headers: {
 		  'Content-Type': 'application/json',
 		},
-		body: JSON.stringify(videoObj)
+		body: JSON.stringify(logObj)
 	})
 }
 

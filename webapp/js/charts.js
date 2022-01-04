@@ -116,6 +116,18 @@ const storeResult =(name, newData) =>{
 }
 
 const checkStorage = (name, question_word) =>{
+    let logObj ={
+		chart: name,
+		question: question_word
+	}
+    fetch('/chart',{
+		method: 'POST',
+		mode: 'cors',
+		headers: {
+		  'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(logObj)
+	})
     let storageItem = JSON.parse(localStorage.getItem(name));
     let storageReturn;
     if(!!storageItem){

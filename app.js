@@ -46,6 +46,10 @@ app.post('/video', (req, res)=>{
     console.log(`logVideo| ${req.body.result} : ${req.body.link}`)
     res.send(true);
 });
+app.post('/chart', (req, res)=>{
+    console.log(`logChart| ${req.body.chart} : ${req.body.question}`)
+    res.send(true);
+});
 
 app.get('/charts/getTotalResults', (req, res)=>{
     const client = new Client(connection);
@@ -96,7 +100,6 @@ app.get('/charts/topResultsDetailed', (req, res)=>{
     })
 });
 app.post('/charts/resultMostLike', (req, res)=>{
-    console.log('logChart| colorsMostLike '+req.body.question_word)
     const client = new Client(connection);
     let response;
     client.connect();
@@ -107,7 +110,6 @@ app.post('/charts/resultMostLike', (req, res)=>{
     })
 });
 app.post('/charts/resultLeastLike', (req, res)=>{
-    console.log('logChart| colorsLeastLike '+req.body.question_word)
     const client = new Client(connection);
     let response;
     client.connect();
@@ -118,7 +120,6 @@ app.post('/charts/resultLeastLike', (req, res)=>{
     })
 });
 app.post('/charts/topWordsForResult', (req, res)=>{
-    console.log('logChart| topWordsForColor '+req.body.question_word)
     const client = new Client(connection);
     let response;
     client.connect();
@@ -129,7 +130,6 @@ app.post('/charts/topWordsForResult', (req, res)=>{
     })
 });
 app.post('/charts/bottomWordsForResult', (req, res)=>{
-    console.log('logChart| bottomWordsForColor '+req.body.question_word)
     const client = new Client(connection);
     let response;
     client.connect();
@@ -140,7 +140,6 @@ app.post('/charts/bottomWordsForResult', (req, res)=>{
     })
 });
 app.post('/charts/fiveColorRadar', (req, res)=>{
-    console.log('logChart| fiveColorRadar '+req.body.question_word)
     const client = new Client(connection);
     let response;
     client.connect();
