@@ -131,6 +131,7 @@ app.post('/charts/bottomWordsForResult', (req, res)=>{
     })
 });
 app.post('/charts/fiveColorRadar', (req, res)=>{
+    console.log('fiveColorRadar'+req)
     const client = new Client(connection);
     let response;
     client.connect();
