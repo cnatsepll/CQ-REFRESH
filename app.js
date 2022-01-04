@@ -42,6 +42,11 @@ app.get('/about', (req, res)=> {
     res.sendFile(__dirname + '/webapp/about/');
 });
 
+app.post('/video', (req, res)=>{
+    console.log(`${req.body.result} : ${req.body.link}`)
+    res.send(true);
+});
+
 app.get('/charts/getTotalResults', (req, res)=>{
     const client = new Client(connection);
     let response;

@@ -116,7 +116,6 @@ const storeResult =(name, newData) =>{
 }
 
 const checkStorage = (name, question_word) =>{
-    console.log(`${name} : ${question_word}`)
     let storageItem = JSON.parse(localStorage.getItem(name));
     let storageReturn;
     if(!!storageItem){

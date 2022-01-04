@@ -86,7 +86,6 @@ const setResult = (result, name)=>{
     let totalsDiv = document.querySelector("#totals");
     let resultsDiv = document.querySelector("#results");
 	let totalScore = parseInt(answers.W)+parseInt(answers.U)+parseInt(answers.B)+parseInt(answers.R)+parseInt(answers.G);
-	console.log(totalScore)
 	let Wpercent =()=>{
 		if(answers.W > 0){return ((parseFloat(answers.W) / totalScore)* 100).toFixed(1)
 		}else{return 0}
@@ -139,7 +138,6 @@ const setResult = (result, name)=>{
 		diceLink.target = '_blank';
 
 		diceLink.addEventListener("click", ()=>{diceClick(name, dice[colorId])});
-		console.log(diceLink)
 
 
 		diceLink.appendChild(diceLinkText);
@@ -149,8 +147,19 @@ const setResult = (result, name)=>{
     resultsSection.classList.remove("hiddenElement");
 }
 
-const diceClick =(name, diceLink)=>{
-	console.log(`${name} : ${diceLink}`)
+const diceClick =(result, link)=>{
+	let videoObj ={
+		result: result,
+		link: link
+	}
+	fetch('/video',{
+		method: 'POST',
+		mode: 'cors',
+		headers: {
+		  'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(videoObj)
+	})
 }
 
 const colorless = ()=>{

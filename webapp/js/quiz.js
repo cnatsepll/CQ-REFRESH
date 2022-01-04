@@ -111,7 +111,6 @@ const returnWord =()=>{
     let scoreArray = [colorsAsked.W, colorsAsked.U, colorsAsked.B, colorsAsked.R, colorsAsked.G]
     let scoreArrayAsc = scoreArray.sort((a,b)=>{return a - b});
     let lowestValue = scoreArrayAsc[0];
-    console.log(colorsAsked);
     for(let i = 0; i < questionWords.length; i+=1){
         if(colorsAsked[questionWords[i].cd_color] === lowestValue){
             removedWords = questionWords.splice(i,1);
