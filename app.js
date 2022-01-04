@@ -91,6 +91,7 @@ app.get('/charts/topResultsDetailed', (req, res)=>{
     })
 });
 app.post('/charts/resultMostLike', (req, res)=>{
+    console.log('colorsMostLike'+req.body.question_word)
     const client = new Client(connection);
     let response;
     client.connect();
@@ -101,6 +102,7 @@ app.post('/charts/resultMostLike', (req, res)=>{
     })
 });
 app.post('/charts/resultLeastLike', (req, res)=>{
+    console.log('colorsLeastLike'+req.body.question_word)
     const client = new Client(connection);
     let response;
     client.connect();
@@ -111,6 +113,7 @@ app.post('/charts/resultLeastLike', (req, res)=>{
     })
 });
 app.post('/charts/topWordsForResult', (req, res)=>{
+    console.log('topWordsForColor'+req.body.question_word)
     const client = new Client(connection);
     let response;
     client.connect();
@@ -121,6 +124,7 @@ app.post('/charts/topWordsForResult', (req, res)=>{
     })
 });
 app.post('/charts/bottomWordsForResult', (req, res)=>{
+    console.log('bottomWordsForColor'+req.body.question_word)
     const client = new Client(connection);
     let response;
     client.connect();
@@ -131,7 +135,7 @@ app.post('/charts/bottomWordsForResult', (req, res)=>{
     })
 });
 app.post('/charts/fiveColorRadar', (req, res)=>{
-    console.log('fiveColorRadar'+req)
+    console.log('fiveColorRadar'+req.body.question_word)
     const client = new Client(connection);
     let response;
     client.connect();
