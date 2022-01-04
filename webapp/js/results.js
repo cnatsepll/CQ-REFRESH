@@ -27,6 +27,9 @@ const loadDescriptionContainers = ()=>{
             diceLink.title = `DiceTry video on ${name}`;
             diceLink.href = dice[colorId];
             diceLink.target = '_blank';
+
+            diceLink.addEventListener("click", ()=>{diceClick(name, dice[colorId])});
+
             diceLink.appendChild(diceLinkText);
             diceDiv.appendChild(diceLink);
             container.appendChild(diceDiv);
@@ -36,6 +39,21 @@ const loadDescriptionContainers = ()=>{
             container.appendChild(document.createElement("hr"));
         }
     }    
+}
+
+const diceClick =(result, link)=>{
+	let logObj ={
+		result: result,
+		link: link
+	}
+	fetch('/video',{
+		method: 'POST',
+		mode: 'cors',
+		headers: {
+		  'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(logObj)
+	})
 }
 
 let shortDescriptions = {};

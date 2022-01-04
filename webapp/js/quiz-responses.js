@@ -140,7 +140,6 @@ const setResult = (result, name)=>{
 
 		diceLink.addEventListener("click", ()=>{diceClick(name, dice[colorId])});
 
-
 		diceLink.appendChild(diceLinkText);
 		diceDiv.appendChild(diceLink);
 		totalsDiv.appendChild(diceDiv);	
