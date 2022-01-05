@@ -36,12 +36,12 @@
 }
 .chart-container{
     display: inline-block;
-    height: 40vh;
+    height: 44vh;
     min-width: 900px;
     margin: auto;
 }
 .chart-container-sized{
-    height: 40vh;
+    height: 44vh;
     margin: auto;
     min-width: 900px;
 }
