@@ -66,7 +66,7 @@ const calculateResult = () =>{
     } else if(placed.first.value * .71 > placed.second.value){
          monoColor();
         console.log('mono color result');
-    } else if(placed.second.value * .88 <= placed.third.value){
+    } else if(placed.second.value * .85 <= placed.third.value){
         let resultArray = [placed.first.key, placed.second.key, placed.third.key].sort();
         let result = resultArray.join("");
         triColor(result);
