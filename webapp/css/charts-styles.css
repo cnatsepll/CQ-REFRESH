@@ -194,6 +194,18 @@ select{
 .query:hover{
     background-color: #7ab37a;
 }
+.stored{
+    border-radius: 3px;
+    text-align: center;
+    color: white;
+    background-color: #699969;
+    flex-basis: 100px;
+    flex-grow: 3;
+    max-width: 40ch;
+}
+.stored:hover{
+    background-color: #7ab37a;
+}
 .disabled-button{
     pointer-events: none;
     color: rgb(211, 211, 211);
