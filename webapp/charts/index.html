@@ -65,7 +65,7 @@
                 <div class="flex query-button-row">
                     <input class="random" type="button" id="topWordsForResultRandom" value="Random Color" onclick="randomColorGroup(this)">
                     <select class="color-select text-display-input" type="text" id="topWordsForResultSearch">
-                    <input class="query"  value="Pull Results"  type="button" id="topWordsForResult" onclick="getTopWordsForResult()">
+                    <input class="stored"  value="Pull Results"  type="button" id="topWordsForResult" onclick="getTopWordsForResult()">
                 </div>
                 <div class="chart-container-wrapper">
                     <div class="chart-container" id="topWordsForResultChartContainer">
@@ -83,7 +83,7 @@
                 <div class="flex query-button-row">
                     <input class="random" type="button" id="bottomWordsForResultRandom" value="Random Color" onclick="randomColorGroup(this)">
                     <select class="color-select text-display-input" type="text" id="bottomWordsForResultSearch">
-                    <input class="query"  value="Pull Results"  type="button" id="bottomWordsForResult" onclick="getBottomWordsForResult()">
+                    <input class="stored"  value="Pull Results"  type="button" id="bottomWordsForResult" onclick="getBottomWordsForResult()">
                 </div>
                 <div class="chart-container-wrapper">
                     <div class="chart-container" id="bottomWordsForResultChartContainer">
@@ -157,7 +157,7 @@
                 <div class="flex query-button-row">
                     <input type="button" id="resultColorpieSlicesRandom" value="Random Color" onclick="randomColorGroup(this)">
                     <select class="color-select text-display-input" type="text" id="resultColorpieSlicesSearch">
-                    <input class="query" value="Pull Results" type="button" id="resultColorpieSlices" onclick="getColorpieSlices()">
+                    <input class="stored" value="Pull Results" type="button" id="resultColorpieSlices" onclick="getColorpieSlices()">
                 </div>
                 <div class="chart-container-wrapper">
                     <div class="chart-container-sized"  id="resultColorpieSlicesChartContainer">
@@ -173,6 +173,7 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
+<script src="/js/storage.js"></script>
 <script src="/js/charts.js"></script>
 <script src="/js/common.js"></script>
 </html>

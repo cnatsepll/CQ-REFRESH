@@ -77,11 +77,18 @@
     color: var(--darker-text);
 }
 .color-type-div{
-    
     color: var(--darker-text);
     text-align: center;
 }
-
+.question-options{
+    position: relative;
+    /* cursor: pointer; */
+}
+.options-modal{
+    position: absolute;
+    bottom: 0px;
+    left: 10px;
+}
 #group-bank{
     overflow-y: auto;
     padding: 1em 1ch 1em 1ch;

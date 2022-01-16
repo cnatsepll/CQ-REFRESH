@@ -137,7 +137,7 @@
         max-width: 20ch;
     }
     #quiz-response{
-        margin: 1em 1.5em;
+        margin: 1em .8em;
         padding: .7em .5em;
         border-radius: 12px;
     }
