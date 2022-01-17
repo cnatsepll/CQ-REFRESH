@@ -33,6 +33,7 @@
             </div>
         </section>
 
+        <div style="text-align: center;color: #5a728b;" class="totals-row">-  Database Limit Reached  -</div>
         <section id="totals">
             <div class="totals-row"><span class="emphasis">Total Results Given: </span><span id="total-results">213,298</span></div>
             <div class="totals-row"><span class="emphasis">Total Questions Answered: </span><span id="total-answers">16,978,761</span></div>
@@ -102,7 +103,7 @@
                 <div class="flex query-button-row">
                     <input class="random" type="button" id="resultMostLikeRandom" value="Random Word" onclick="randomQuestionWord(this)">
                     <select class="word-select text-display-input" type="text" id="resultMostLikeSearch">
-                    <input class="query"  value="Pull Results" type="button" id="resultMostLike" onclick="getResultMostLike()">
+                    <input class="stored"  value="Pull Results" type="button" id="resultMostLike" onclick="getResultMostLike()">
                 </div>
                 <div class="chart-container-wrapper">
                     <div class="chart-container" id="resultMostLikeChartContainer">
@@ -121,7 +122,7 @@
                 <div class="flex query-button-row">
                     <input class="random" type="button" id="resultLeastLikeRandom" value="Random Word" onclick="randomQuestionWord(this)">
                     <select class="word-select text-display-input" type="text" id="resultLeastLikeSearch">
-                    <input class="query"  value="Pull Results" type="button" id="resultLeastLike" onclick="getResultLeastLike()">
+                    <input class="stored"  value="Pull Results" type="button" id="resultLeastLike" onclick="getResultLeastLike()">
                 </div>
                 <div class="chart-container-wrapper">
                     <div class="chart-container" id="resultLeastLikeChartContainer">

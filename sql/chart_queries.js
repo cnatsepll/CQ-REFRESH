@@ -24,16 +24,37 @@ from (
 	select 
 	quick_name, 
 	count(answer.user_id) answers, 
-	(select cast(count(user_id) as decimal) total from result r2 where r2.result_color like concat('%',color_definitions.quick_name,'%'))
+	(select cast(count(answer.user_id) as decimal) total from result r2 
+	 join answer on answer.user_id = r2.user_id 
+	 where r2.result_color like concat('%',color_definitions.quick_name,'%') and question_word = $1)
 	from answer
 	join result r1 on r1.user_id = answer.user_id
 	join color_definitions on r1.result_color like concat('%',color_definitions.quick_name,'%')
 	where 
 	question_word = $1
 	and answer_value > 5
+	and quick_name not like 'Multicolored' 
 	group by quick_name
 ) innerTable
-order by percent_difference desc`;
+order by percent_difference desc
+`;
+
+// OLD RESULTS LIKE
+// select quick_name, answers, total, (answers / total) percent_difference 
+// from (
+// 	select 
+// 	quick_name, 
+// 	count(answer.user_id) answers, 
+// 	(select cast(count(user_id) as decimal) total from result r2 where r2.result_color like concat('%',color_definitions.quick_name,'%'))
+// 	from answer
+// 	join result r1 on r1.user_id = answer.user_id
+// 	join color_definitions on r1.result_color like concat('%',color_definitions.quick_name,'%')
+// 	where 
+// 	question_word = $1
+// 	and answer_value > 5
+// 	group by quick_name
+// ) innerTable
+// order by percent_difference desc
 
 // MORE ACCURATE BUT MUCH LONGER SEARCH FOR RESULTS MOST LIKE
 // select quick_name, answers, total, (answers / total) percent_difference 
@@ -61,13 +82,16 @@ from (
 	select 
 	quick_name, 
 	count(answer.user_id) answers, 
-	(select cast(count(user_id) as decimal) total from result r2 where r2.result_color like concat('%',color_definitions.quick_name,'%'))
+	(select cast(count(answer.user_id) as decimal) total from result r2 
+	 join answer on answer.user_id = r2.user_id 
+	 where r2.result_color like concat('%',color_definitions.quick_name,'%') and question_word = $1)
 	from answer
 	join result r1 on r1.user_id = answer.user_id
 	join color_definitions on r1.result_color like concat('%',color_definitions.quick_name,'%')
 	where 
 	question_word = $1
 	and answer_value < 5
+	and quick_name not like 'Multicolored' 
 	group by quick_name
 ) innerTable
 order by percent_difference desc`;

@@ -157,6 +157,10 @@ const checkStorage = (name, question_word) =>{
         storageItem = chartResultsBottomWordsForResult;
     } else if(name === 'colorpieSlices'){
         storageItem = chartResultsColorpieSlices;
+    } else if(name === 'resultsMostLike'){
+        storageItem = chartResultsResultsMostLike;
+    } else if(name === 'resultsLeastLike'){
+        storageItem = chartResultsResultsLeastLike;
     }
     if(!!storageItem){
         if(name === "topResults"){

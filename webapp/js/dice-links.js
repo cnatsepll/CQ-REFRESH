@@ -19,5 +19,13 @@ let dice = {
     selesnya : "https://youtu.be/aCmxwVvuzr0",
     rakdos : "https://youtu.be/XdNY-PjmQSc",
     simic : "https://youtu.be/ekZzVNi9zS8",
-    orzhov : "https://youtu.be/wGpvMMHJVBQ"
+    orzhov : "https://youtu.be/wGpvMMHJVBQ",
+
+    white: "https://www.youtube.com/watch?v=Kgj4Vb-Bc1g",
+    blue: "https://www.youtube.com/watch?v=_SJWQkWBj6c",
+    black: "https://www.youtube.com/watch?v=PAlr1_ReQq8",
+    red: "https://www.youtube.com/watch?v=uHJHwqsOZbU",
+    green: "https://www.youtube.com/watch?v=Wa4unbtsBtE",
+
+    colorless: "https://www.youtube.com/watch?v=qgnEqR8ORRo"
 }
