@@ -121,6 +121,7 @@
     margin: 5em 1em 5em 1em;
     padding: 4em 1em 4em 1em;
     background-color: var(--content-block);
+    line-height: 1.25em;
 }
 #calculate-div{
     margin-top: 5em;
