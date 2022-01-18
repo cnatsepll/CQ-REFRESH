@@ -58,9 +58,9 @@ const calculateResult = () =>{
             name: fifth[1][1]
         }
     };
-    if(placed.first.value *.9 <= placed.second.value 
-        && placed.first.value *.9 <= placed.third.value  
-        && placed.first.value *.9 <= placed.fourth.value){
+    if(placed.first.value *.95 <= placed.second.value 
+        && placed.first.value *.95 <= placed.third.value  
+        && placed.first.value *.95 <= placed.fourth.value){
         colorless();
         console.log('colorless result');
     } else if(placed.first.value * .71 > placed.second.value){
