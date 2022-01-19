@@ -84,7 +84,7 @@ shortDescriptions.simic = ()=>{
 shortDescriptions.izzet = ()=>{
     let mage = [];
     mage.push("You are a Blue/Red Planeswalker (Welcome to the Izzet League).");
-    mage.push("A Blue/Red Planeswalker asks the question what can be achieved? What might be possible? Blue and red taken together are the colors of creativity. Passion combined with perfection, freedom combined with investigation, blue/red is the pairing that most typifies wild artistry and mad science. Nikola Tesla's endeavors are one of our strongest examples of blue/red mentality in modern society. Tony Stark from Iron Man started out blue/black, he ended up blue/red. Willy Wonka is also a blue/red archetype, as are Doc Brown from Back to the Future and Indiana Jones.");
+    mage.push("A Blue/Red Planeswalker asks the question what can be achieved? What might be possible? Blue and red taken together are the colors of creativity. Passion combined with perfection, freedom combined with investigation, blue/red is the pairing that most typifies wild artistry and mad science. Nikola Tesla's endeavors are a strong example of blue/red mentality in modern society. Tony Stark from Iron Man started out blue/black, he ended up blue/red. Willy Wonka is also a blue/red archetype, as are Doc Brown from Back to the Future and Indiana Jones.");
     return mage;
 }
 shortDescriptions.dimir = ()=>{
