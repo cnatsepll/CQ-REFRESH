@@ -60,6 +60,24 @@
 
             <section class="chart-section" >
                 <div class="centered-grid">
+                    <div class="centered-text"><b>Color Pie Slices</b></div>
+                    <div class="centered-text">Color percentage averages from all results for each color</div>
+                </div>                    
+                <div class="flex query-button-row">
+                    <input type="button" id="resultColorpieSlicesRandom" value="Random Color" onclick="randomColorGroup(this)">
+                    <select class="color-select text-display-input" type="text" id="resultColorpieSlicesSearch">
+                    <input class="stored" value="Pull Results" type="button" id="resultColorpieSlices" onclick="getColorpieSlices()">
+                </div>
+                <div class="chart-container-wrapper">
+                    <div class="chart-container-sized"  id="resultColorpieSlicesChartContainer">
+                        <canvas id="resultColorpieSlicesChart"></canvas>
+                    </div>
+                </div>
+                <div class="hr-style-bottom"></div>
+            </section>  
+
+            <section class="chart-section" >
+                <div class="centered-grid">
                     <div class="centered-text"><b>Color's Most Favored Words</b></div>
                     <div class="centered-text">Percent of total favorable responses by question for the chosen color</div>
                 </div>
@@ -150,24 +168,8 @@
 
             </section>
 
-            <section class="chart-section" >
-                <div class="centered-grid">
-                    <div class="centered-text"><b>Color Pie Slices</b></div>
-                    <div class="centered-text">Color percentage averages from all results for each color</div>
-                </div>                    
-                <div class="flex query-button-row">
-                    <input type="button" id="resultColorpieSlicesRandom" value="Random Color" onclick="randomColorGroup(this)">
-                    <select class="color-select text-display-input" type="text" id="resultColorpieSlicesSearch">
-                    <input class="stored" value="Pull Results" type="button" id="resultColorpieSlices" onclick="getColorpieSlices()">
-                </div>
-                <div class="chart-container-wrapper">
-                    <div class="chart-container-sized"  id="resultColorpieSlicesChartContainer">
-                        <canvas id="resultColorpieSlicesChart"></canvas>
-                    </div>
-                </div>
-                <div class="hr-style-bottom"></div>
 
-            </section>  
+
         </section>
     </section>
 </body>
