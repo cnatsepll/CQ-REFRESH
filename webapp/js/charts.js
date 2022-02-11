@@ -9,6 +9,14 @@ const toggleModal=(e)=>{
 console.log(e)
 e.querySelector('.options-modal').classList.toggle('hiddenElement')
 }
+questionWords.sort((a,b)=> (a.question > b.question ? 1 : -1));
+colorGroups.sort((a,b)=> (a.quick_name > b.quick_name ? 1 : -1));
+chartResultsBottomWordsForResult.sort((a,b)=> (a.question_word > b.question_word ? 1 : -1));
+chartResultsColorpieSlices.sort((a,b)=> (a.question_word > b.question_word ? 1 : -1));
+chartResultsFiveColorRadar.sort((a,b)=> (a.question_word > b.question_word ? 1 : -1));
+chartResultsResultsLeastLike.sort((a,b)=> (a.question_word > b.question_word ? 1 : -1));
+chartResultsResultsMostLike.sort((a,b)=> (a.question_word > b.question_word ? 1 : -1));
+chartResultsTopWordsForResult.sort((a,b)=> (a.question_word > b.question_word ? 1 : -1));
 
 window.onload = ()=>{
     document.getElementById('bottomWordsForResultChart').remove();
@@ -64,10 +72,10 @@ window.onload = ()=>{
         document.getElementById('color-groups').appendChild(resultContainer);
     }
 
-    chartResultsFiveColorRadar.sort((a,b)=> (a.question_word > b.question_word ? 1 : -1));
-
     let randomWord = Math.floor(Math.random() * 175);
-    let randomColor = Math.floor(Math.random() * 26);
+    let randomColor = Math.floor(Math.random() * 25);
+
+    console.log(randomColor);
 
     for(let i=0; i < wordSelects.length; i+=1){
         let select = wordSelects[i];
@@ -87,6 +95,8 @@ window.onload = ()=>{
             option.text = `${colorGroups[i].quick_name}`;
             if(i === randomColor){
                 option.selected = true;
+                console.log(colorGroups[i].quick_name)
+                console.log(colorGroups[randomColor].quick_name)
             }
             select.add(option);
         }
