@@ -152,7 +152,7 @@ select{
     flex-direction: row;
     margin: auto;
     margin-top: .5em;
-    margin-bottom: 3em;
+    /* margin-bottom: 3em; */
     max-width: 70ch;
     justify-content: center;
     flex-wrap: wrap;
