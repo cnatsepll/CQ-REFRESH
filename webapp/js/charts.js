@@ -11,6 +11,14 @@ e.querySelector('.options-modal').classList.toggle('hiddenElement')
 }
 
 window.onload = ()=>{
+    document.getElementById('bottomWordsForResultChart').remove();
+    document.getElementById('resultColorpieSlicesChart').remove(); 
+    document.getElementById('fiveColorRadarChart').remove(); 
+    document.getElementById('resultLeastLikeChart').remove(); 
+    document.getElementById('resultMostLikeChart').remove(); 
+    document.getElementById('topResultsChart').remove(); 
+    document.getElementById('topWordsForResultChart').remove();  
+    
     for(let i = 0; i < questionWords.length; i+=1){
         let containerDiv = document.createElement('div');
         containerDiv.className = 'question-options';
@@ -55,11 +63,20 @@ window.onload = ()=>{
         resultContainer.appendChild(colorArrayDiv);
         document.getElementById('color-groups').appendChild(resultContainer);
     }
+
+    chartResultsFiveColorRadar.sort((a,b)=> (a.question_word > b.question_word ? 1 : -1));
+
+    let randomWord = Math.floor(Math.random() * 175);
+    let randomColor = Math.floor(Math.random() * 26);
+
     for(let i=0; i < wordSelects.length; i+=1){
         let select = wordSelects[i];
         for(let i = 0; i < questionWords.length; i+=1){
             option  = document.createElement("option");
             option.text = `${questionWords[i].question}`;
+            if(i === randomWord){
+                option.selected = true;
+            }
             select.add(option);
         }
     }
@@ -68,9 +85,20 @@ window.onload = ()=>{
         for(let i = 0; i < colorGroups.length; i+=1){
             option  = document.createElement("option");
             option.text = `${colorGroups[i].quick_name}`;
+            if(i === randomColor){
+                option.selected = true;
+            }
             select.add(option);
         }
     }
+
+    buildBottomWordsForResult(chartResultsBottomWordsForResult[randomColor].data, chartResultsBottomWordsForResult[randomColor].question_word);
+    buildColorPieSlices(chartResultsColorpieSlices[randomColor].data, chartResultsColorpieSlices[randomColor].question_word);
+    buildFiveColorRadar(chartResultsFiveColorRadar[randomWord].data, chartResultsFiveColorRadar[randomWord].question_word);
+    buildResultLeastLike(chartResultsResultsLeastLike[randomWord].data, chartResultsResultsLeastLike[randomWord].question_word);
+    buildResultMostLike(chartResultsResultsMostLike[randomWord].data, chartResultsResultsMostLike[randomWord].question_word);
+    buildTopResults(chartResultsTopResults[0].data, "All");
+    buildTopWordsForResult(chartResultsTopWordsForResult[randomColor].data, chartResultsTopWordsForResult[randomColor].question_word);
 }
 
 Chart.defaults.font.size = 13;
@@ -206,7 +234,7 @@ const getfiveColorRadar=()=>{
     if(storageReturn){
         buildFiveColorRadar(storageReturn.data, storageReturn.question_word)
     }else{
-        buttonToggle("fiveColorRadar");
+        //buttonToggle("fiveColorRadar");
         loadingToggle(container);
         fiveColorRadarSearch.question_word = question_word;
         fetch('/charts/fiveColorRadar',{
@@ -219,7 +247,7 @@ const getfiveColorRadar=()=>{
         })
         .then(response => response.json())
         .then(data => {
-            buttonToggle();
+            //buttonToggle();
             loadingToggle(container);
             let chartData = data.rows;
             let chartObject = {
@@ -231,7 +259,7 @@ const getfiveColorRadar=()=>{
         })
         .catch((error) => {
             console.error('Error:', error);
-            buttonToggle();
+            //buttonToggle();
             loadingToggle(container);
             let canvas = document.createElement('canvas');
             canvas.id = 'fiveColorRadarChart';
@@ -311,12 +339,12 @@ const getTopResults=()=>{
     if(storageReturn){
         buildTopResults(storageReturn.data, storageReturn.question_word)
     }else{
-        buttonToggle();
+        //buttonToggle();
         loadingToggle(container);
         fetch('/charts/topResults')
         .then(response => response.json())
         .then(data => {
-            buttonToggle();
+            //buttonToggle();
             loadingToggle(container);
                 let chartData = data.rows;
                 let chartObject = {
@@ -328,7 +356,7 @@ const getTopResults=()=>{
             })
             .catch((error) => {
                 console.error('Error:', error);
-                buttonToggle();
+                //buttonToggle();
                 loadingToggle(container);
                 let canvas = document.createElement('canvas');
                 canvas.id = 'topResultsChart';
@@ -389,7 +417,7 @@ const getResultMostLike=()=>{
         buildResultMostLike(storageReturn.data, storageReturn.question_word)
     }else{
         resultMostLikeSearch.question_word = question_word;
-        buttonToggle();
+        //buttonToggle();
         loadingToggle(container);
         fetch('/charts/resultMostLike',{
             method: 'POST',
@@ -401,7 +429,7 @@ const getResultMostLike=()=>{
         })
         .then(response => response.json())
         .then(data => {
-            buttonToggle();
+            //buttonToggle();
             loadingToggle(container);
             let chartData = data.rows;
             let chartObject = {
@@ -413,7 +441,7 @@ const getResultMostLike=()=>{
         })
         .catch((error) => {
             console.error('Error:', error);
-            buttonToggle();
+            //buttonToggle();
             loadingToggle(container);
             let canvas = document.createElement('canvas');
             canvas.id = 'resultMostLikeChart';
@@ -472,7 +500,7 @@ const getResultLeastLike=()=>{
         buildResultLeastLike(storageReturn.data, storageReturn.question_word)
     }else{
     resultLeastLikeSearch.question_word = question_word;
-    buttonToggle();
+    //buttonToggle();
     loadingToggle(container);
     fetch('/charts/resultLeastLike',{
         method: 'POST',
@@ -484,7 +512,7 @@ const getResultLeastLike=()=>{
         })
         .then(response => response.json())
         .then(data => {
-            buttonToggle();
+            //buttonToggle();
             loadingToggle(container);
             let chartData = data.rows;
             let chartObject = {
@@ -496,7 +524,7 @@ const getResultLeastLike=()=>{
         })
         .catch((error) => {
             console.error('Error:', error);
-            buttonToggle();
+            //buttonToggle();
             loadingToggle(container);
             let canvas = document.createElement('canvas');
             canvas.id = 'resultLeastLikeChart';
@@ -554,7 +582,7 @@ const getTopWordsForResult=()=>{
     if(storageReturn){
         buildTopWordsForResult(storageReturn.data, storageReturn.question_word)
     }else{
-        buttonToggle();
+        //buttonToggle();
         loadingToggle(container);
         topWordsForResultSearch.question_word = question_word;
         fetch('/charts/topWordsForResult',{
@@ -567,7 +595,7 @@ const getTopWordsForResult=()=>{
         })
         .then(response => response.json())
         .then(data => {
-            buttonToggle();
+            //buttonToggle();
             loadingToggle(container);
             let chartData = data.rows;
             let chartObject = {
@@ -579,7 +607,7 @@ const getTopWordsForResult=()=>{
         })
         .catch((error) => {
             console.error('Error:', error);
-            buttonToggle();
+            //buttonToggle();
             loadingToggle(container);
             let canvas = document.createElement('canvas');
             canvas.id = 'topWordsForResultChart';
@@ -649,7 +677,7 @@ const getBottomWordsForResult=()=>{
     if(storageReturn){
         buildBottomWordsForResult(storageReturn.data, storageReturn.question_word)
     }else{
-        buttonToggle();
+        //buttonToggle();
         loadingToggle(container);
         bottomWordsForResultSearch.question_word = question_word;
         fetch('/charts/bottomWordsForResult',{
@@ -662,7 +690,7 @@ const getBottomWordsForResult=()=>{
         })
         .then(response => response.json())
         .then(data => {
-            buttonToggle();
+            //buttonToggle();
             loadingToggle(container);
             let chartData = data.rows;
             let chartObject = {
@@ -674,7 +702,7 @@ const getBottomWordsForResult=()=>{
         })
         .catch((error) => {
             console.error('Error:', error);
-            buttonToggle();
+            //buttonToggle();
             loadingToggle(container);
             let canvas = document.createElement('canvas');
             canvas.id = 'bottomWordsForResultChart';
@@ -745,7 +773,7 @@ const getColorpieSlices=()=>{
     if(storageReturn){
         buildColorPieSlices(storageReturn.data, storageReturn.question_word)
     }else{
-        buttonToggle();
+        //buttonToggle();
         loadingToggle(container);
     fetch('/charts/resultColorpieSlices',{
         method: 'POST',
@@ -757,7 +785,7 @@ const getColorpieSlices=()=>{
     })
     .then(response => response.json())
         .then(data => {
-            buttonToggle();
+            //buttonToggle();
             loadingToggle(container);
             let chartData = data.rows;
             let chartObject = {
@@ -769,7 +797,7 @@ const getColorpieSlices=()=>{
         })
         .catch((error) => {
             console.error('Error:', error);
-            buttonToggle();
+            //buttonToggle();
             loadingToggle(container);
             let canvas = document.createElement('canvas');
             canvas.id = 'resultColorpieSlicesChart';
@@ -871,12 +899,12 @@ function compareValues(key, order = 'asc') {
 
 
 
-const buttons = document.querySelectorAll(".query");
-// for (let i = 0; i < buttons.length; i++) {
-//     buttons[i].addEventListener("click", function(){buttonToggle()});
+//   const buttons = document.querySelectorAll(".stored");
+//   for (let i = 0; i < buttons.length; i++) {
+//       buttons[i].click();
+//   }
+// function buttonToggle(){
+//     for (let i = 0; i < buttons.length; i++) {
+//         buttons[i].classList.toggle("disabled-button");
+//     }
 // }
-function buttonToggle(){
-    for (let i = 0; i < buttons.length; i++) {
-        buttons[i].classList.toggle("disabled-button");
-    }
-}
