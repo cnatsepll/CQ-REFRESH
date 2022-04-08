@@ -62,15 +62,12 @@ const calculateResult = () =>{
         && placed.first.value *.95 <= placed.third.value  
         && placed.first.value *.95 <= placed.fourth.value){
         colorless();
-        console.log('colorless result');
     } else if(placed.first.value * .71 > placed.second.value){
          monoColor();
-        console.log('mono color result');
     } else if(placed.second.value * .85 <= placed.third.value){
         let resultArray = [placed.first.key, placed.second.key, placed.third.key].sort();
         let result = resultArray.join("");
         triColor(result);
-        console.log('tri color result');
     } else if(placed.first.value >= placed.second.value){
         let resultArray = [placed.first.key, placed.second.key].sort();
         let result = resultArray.join("");
