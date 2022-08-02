@@ -2,20 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
-// const { Pool, Client } = require('pg');
-// const connection = {
-//     user: 'postgres',
-//     host: 'localhost',
-//     database: 'color_quiz',
-//     password: 'admin',
-//     port: 5432
-// };
-// const connection = {
-//     connectionString: process.env.HEROKU_POSTGRESQL_MAROON_URL,
-//     ssl: {
-//       rejectUnauthorized: false
-//     }
-//   };
+
 
 const port = process.env.PORT || 3000;
 
