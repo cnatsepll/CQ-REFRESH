@@ -11,15 +11,15 @@ let dice = {
     esper : "https://youtu.be/D3vO1rwYqEQ",
 
     boros : "https://youtu.be/fX5zDdunue8",
-    golgari : "https://youtu.be/407k0x0oT54",
-    izzet : "https://youtu.be/Ek1HGc1COiA",
+    golgari : "https://youtu.be/lKbFm03Ricg",
+    izzet : "https://youtu.be/B3sbfqH5XXQ",
     azorius : "https://youtu.be/Ju4fmtUBmD8",
     gruul : "https://youtu.be/igDSxoFJxPg",
     dimir : "https://youtu.be/HTtUwxVTKw8",
     selesnya : "https://youtu.be/aCmxwVvuzr0",
     rakdos : "https://youtu.be/XdNY-PjmQSc",
     simic : "https://youtu.be/ekZzVNi9zS8",
-    orzhov : "https://youtu.be/wGpvMMHJVBQ",
+    orzhov : "https://youtu.be/5awyITlhH4o",
 
     white: "https://www.youtube.com/watch?v=Kgj4Vb-Bc1g",
     blue: "https://www.youtube.com/watch?v=_SJWQkWBj6c",
