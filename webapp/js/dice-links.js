@@ -17,7 +17,7 @@ let dice = {
     gruul : "https://youtu.be/igDSxoFJxPg",
     dimir : "https://youtu.be/HTtUwxVTKw8",
     selesnya : "https://youtu.be/aCmxwVvuzr0",
-    rakdos : "https://youtu.be/XdNY-PjmQSc",
+    rakdos : "https://www.youtube.com/watch?v=DS7sh1_XZ8w",
     simic : "https://youtu.be/eYk-Oi_-i0o",
     orzhov : "https://youtu.be/5awyITlhH4o",
 
