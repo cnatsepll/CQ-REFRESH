@@ -10,7 +10,7 @@ let dice = {
     jund : "https://youtu.be/-b54bN8q698",
     esper : "https://youtu.be/D3vO1rwYqEQ",
 
-    boros : "https://youtu.be/fX5zDdunue8",
+    boros : "https://youtu.be/0qqTpvjCRWc",
     golgari : "https://youtu.be/lKbFm03Ricg",
     izzet : "https://youtu.be/B3sbfqH5XXQ",
     azorius : "https://youtu.be/Ju4fmtUBmD8",
@@ -18,7 +18,7 @@ let dice = {
     dimir : "https://youtu.be/HTtUwxVTKw8",
     selesnya : "https://youtu.be/aCmxwVvuzr0",
     rakdos : "https://youtu.be/XdNY-PjmQSc",
-    simic : "https://youtu.be/ekZzVNi9zS8",
+    simic : "https://youtu.be/eYk-Oi_-i0o",
     orzhov : "https://youtu.be/5awyITlhH4o",
 
     white: "https://www.youtube.com/watch?v=Kgj4Vb-Bc1g",
